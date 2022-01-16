@@ -1,0 +1,4 @@
+Клиент:
+- Stylus
+- React
+- Webpack

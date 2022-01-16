@@ -1,0 +1,36 @@
+.input
+  font-size $font-size-base
+  border .1em solid #dde3e8
+  border-radius .35em
+  padding .35em .5em
+  display flex
+  align-items center
+  width 100%
+  max-width 53.2em
+  overflow hidden
+  color #a5adb3
+
+  &__label
+  &__state
+    display inline-flex
+    justify-content center
+    align-items center
+
+  &__label
+    margin-right .5em
+
+  &__field
+    border none
+    outline none
+    display block
+    width 100%
+    appearance none
+    color inherit
+
+  &__state
+    margin-left .5em
+
+  &--active
+    color #1791fe
+    border-color #1791fe
+    box-shadow 0 0 0 .165em rgba(#1791fe, .25)

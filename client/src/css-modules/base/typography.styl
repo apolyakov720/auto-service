@@ -1,0 +1,30 @@
+// Для каждого объявления(строка CSS кода), для свойства font-family устанавливаем значение на основе имени шрифта
+// Для каждого правила(языковые конструкции начинающиеся с символа @) @font-face необходимо задать значение свойства src в максимальных возможной поддержкой
+// Для создания форматов шрифтов https://transfonter.org/
+
+@font-face
+  font-family 'Fira Code Light'
+  src url('~@assets/fonts/fira-code-light.ttf') format('truetype'),
+      url('~@assets/fonts/fira-code-light.woff2') format('woff2'),
+      url('~@assets/fonts/fira-code-light.woff') format('woff')
+  font-weight 300
+  font-style normal
+  font-stretch normal
+
+@font-face
+  font-family 'Fira Code Regular'
+  src url('~@assets/fonts/fira-code-regular.ttf') format('truetype'),
+      url('~@assets/fonts/fira-code-regular.woff2') format('woff2'),
+      url('~@assets/fonts/fira-code-regular.woff') format('woff')
+  font-weight 500
+  font-style normal
+  font-stretch normal
+
+@font-face
+  font-family 'Fira Code Bold'
+  src url('~@assets/fonts/fira-code-bold.ttf') format('truetype'),
+      url('~@assets/fonts/fira-code-bold.woff2') format('woff2'),
+      url('~@assets/fonts/fira-code-bold.woff') format('woff')
+  font-weight 700
+  font-style normal
+  font-stretch normal

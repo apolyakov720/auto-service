@@ -1,0 +1,47 @@
+$origin-scroll-bar-size = 24px
+$custom-scroll-bar-size = 6px
+
+.scroll-box
+  width 100%
+  max-width 100%
+  overflow hidden
+  position relative
+  background #fff
+  height 400px
+  display flex
+  padding 5px 0 5px 5px
+
+  &__content
+    overflow-x hidden
+    overflow-y auto
+    padding-right ($origin-scroll-bar-size / 2 + $custom-scroll-bar-size)
+    margin-right -($origin-scroll-bar-size + $custom-scroll-bar-size)
+    flex 1
+
+  &__vertical-bar
+    margin-right $custom-scroll-bar-size
+    position relative
+    width $custom-scroll-bar-size
+    background rgba(0, 0, 0, .25)
+    border-radius 5px
+
+    &--hide
+      background transparent
+
+    .marker
+      position absolute
+      top 0
+      left 0
+      width 100%
+      height 25px
+      background rgba(0, 0, 0, .35)
+      transition top .1s, box-shadow .1s
+      border-radius inherit
+
+      &:hover
+        background rgba(0, 0, 0, .45)
+        box-shadow 0 0 1px 1px rgba(0, 0, 0, .45)
+
+      &:active
+        background rgba(0, 0, 0, .55)
+        box-shadow 0 0 1px 1px rgba(0, 0, 0, .55)
