@@ -1,0 +1,39 @@
+.login-page
+  font-size 2rem
+  height 100%
+  width 100%
+  display flex
+  flex-direction column
+  align-items center
+  justify-content center
+  background-color transparent
+
+.reg-auth-form
+  width 80%
+  max-width 25em
+  min-width 15em
+
+  &__tabs
+    display flex
+
+    > .tab
+      flex 1
+      text-align center
+      padding .5em 0
+      cursor pointer
+
+      &--active
+        background-color #eee
+
+  &__content
+    // height 300px
+    background-color #eee
+    padding .5em
+
+.form-fields
+  > *:not(:last-child)
+    margin-bottom .5em
+
+.form-controls
+  display flex
+  justify-content center

@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import hooks from './hooks';
 import ScrollBox from '@components/scroll-box';
 
-const Dropdown = ({ children }) => {
+const Dropdown = ({ children, trigger }) => {
   const [open, setOpen] = useState(false);
   const [position, setPosition] = hooks.usePosition();
 
@@ -13,7 +13,7 @@ const Dropdown = ({ children }) => {
     if (open) {
       setOpen(false);
     } else {
-      setPosition(event.target);
+      setPosition(trigger);
       setOpen(true);
     }
 

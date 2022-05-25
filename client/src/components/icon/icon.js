@@ -9,7 +9,11 @@ const Icon = ({ source }) => {
 
   const Svg = source;
 
-  return <Svg />;
+  return (
+    <div className="icon">
+      <Svg />
+    </div>
+  );
 };
 
 Icon.sources = {

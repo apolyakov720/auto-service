@@ -1,3 +1,9 @@
+const development = {
+  path: '/dev',
+  component: () => import('../../pages/development'),
+  isEnabled: true,
+}
+
 const login = {
   path: '/',
   component: () => import('../../pages/login'),
@@ -10,4 +16,4 @@ const main = {
   isEnabled: true,
 };
 
-export default [login, main];
+export default [login, main, development];

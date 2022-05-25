@@ -1,19 +1,25 @@
 import { useState } from 'react';
 
 const usePosition = () => {
-  const [css, setCSS] = useState({});
+  const [position, setPosition] = useState({});
 
-  const getPosition = (targetElement) => {
-    // const targetRect = targetElement.getBoundingClientRect();
+  const getPosition = element => {
+    if (element.current) {
+      const elementRect = element.current.getBoundingClientRect();
+      const x = window.pageXOffset + elementRect.left;
+      const y = window.pageYOffset + elementRect.top + elementRect.height;
 
-    // console.log('targetRect: ', targetElement);
-    console.dir(targetElement);
+      return {
+        left: x,
+        top: y,
+      };
+    }
   };
 
   return [
-    { ...css, position: 'fixed' },
-    (targetElement) => {
-      setCSS({ ...getPosition(targetElement) });
+    { ...position, position: 'fixed' },
+    element => {
+      setPosition({ ...getPosition(element) });
     },
   ];
 };

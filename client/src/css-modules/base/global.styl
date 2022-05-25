@@ -1,7 +1,7 @@
 :root
   font-family "Fira Code Regular", Tahoma, sans-serif
   font-size 10px
-  line-height 1.2
+  line-height 1 // <- Потом нужно будет проверить
   box-sizing border-box
   color #333
   height 100%
@@ -36,5 +36,12 @@ body
   max-width $max-width-application
   margin 0 auto
 
-  background #eee
+  // background #eee
   padding 50px
+
+.input-no-visible
+  &:not(:checked)
+  &:checked
+    position absolute
+    opacity 0
+    pointer-events none
