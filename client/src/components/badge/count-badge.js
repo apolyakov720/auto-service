@@ -20,9 +20,7 @@ class CountBadge extends React.Component {
   }
 
   render() {
-    const value = this.value;
-
-    return <Badge content={value} circled />;
+    return <Badge content={this.value} circled />;
   }
 }
 

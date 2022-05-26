@@ -1,0 +1,23 @@
+.alert
+	font-size 2rem
+	border-radius .3em
+	padding 1em
+	color $colors.jade
+	background-color lighten(@color, 90%)
+	display flex
+
+	&__content
+		flex 1
+
+	&--secondary
+		color $colors.blue
+		background-color lighten(@color, 90%)
+
+	&--warning
+		color $colors.orange
+		background-color lighten(@color, 90%)
+	
+	&--error
+		color $colors.burntSienna
+		background-color lighten(@color, 90%)
+

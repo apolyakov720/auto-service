@@ -2,7 +2,7 @@
   font-size 2rem
   display inline-block
   color $colors.blueViolet
-  background-color lighten(@color, 70%)
+  background-color lighten(@color, 90%)
   border-radius 1em
   text-transform uppercase
   padding .5em 1em
@@ -10,15 +10,15 @@
 
   &--cancelled
     color $colors.burntSienna
-    background-color lighten(@color, 70%)
+    background-color lighten(@color, 90%)
 
   &--completed
     color $colors.jade
-    background-color lighten(@color, 70%)
+    background-color lighten(@color, 90%)
 
   &--squared
     border-radius .3em
-
+    
   &--circled
     display inline-flex
     border-radius 50%
@@ -27,7 +27,7 @@
     min-width 1.4em
     padding .2em
 
-  &::before
+    &::before
       content ''
       float left
       width auto
