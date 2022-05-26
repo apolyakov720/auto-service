@@ -1,19 +1,23 @@
 .badge
   font-size 2rem
   display inline-block
-  color $colors.blueViolet
+  color $colors.jade
   background-color lighten(@color, 90%)
   border-radius 1em
   text-transform uppercase
   padding .5em 1em
   font-weight bold
 
-  &--cancelled
-    color $colors.burntSienna
+  &--secondary
+    color $colors.blueViolet
     background-color lighten(@color, 90%)
 
-  &--completed
-    color $colors.jade
+  &--warning
+    color $colors.orange
+    background-color lighten(@color, 90%)
+
+  &--error
+    color $colors.burntSienna
     background-color lighten(@color, 90%)
 
   &--squared
