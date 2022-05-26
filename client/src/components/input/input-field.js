@@ -6,11 +6,7 @@ const InputField = ({ mask, state, label, ...inputProps }) => {
   const [value, setValue] = useState('');
 
   return (
-    <Rifm
-      value={value}
-      onChange={setValue}
-      format={val => val}
-      mask={mask}>
+    <Rifm value={value} onChange={setValue} format={(val) => val} mask={mask}>
       {({ value, onChange }) => (
         <Input state={state} label={label} value={value} onChange={onChange} {...inputProps} />
       )}

@@ -1,5 +1,5 @@
 import React from 'react';
-import CSSUtils from "@utils/css";
+import CSSUtils from '@utils/css';
 
 const FormControl = ({ label, state, active, children }) => {
   return (

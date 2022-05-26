@@ -2,5 +2,3 @@
 - Stylus
 - React
 - Webpack
-
-Hello, Leha !

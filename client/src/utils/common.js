@@ -47,6 +47,10 @@ function debounce(fn, { delay = 100, immediate = false } = {}) {
   };
 }
 
+/** Значение - это число */
+const isNumeric = (value) => !isNaN(parseFloat(value)) && isFinite(parseFloat(value));
+
 export default {
   debounce,
+  isNumeric,
 };

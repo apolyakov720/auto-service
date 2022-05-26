@@ -1,17 +1,34 @@
-.badge 
-	display inline-block
-	color #4952b8
-	background-color lighten(@color, 70%)
-	border-radius 10px
-	text-transform uppercase
-	padding 5px 10px
-	font-weight bold
-	
-	&--cancelled
-		color #ed5556
-		background-color lighten(@color, 70%)
+.badge
+  font-size 2rem
+  display inline-block
+  color $colors.blueViolet
+  background-color lighten(@color, 70%)
+  border-radius 1em
+  text-transform uppercase
+  padding .5em 1em
+  font-weight bold
 
-	&--completed
-		color #00bf79
-		background-color lighten(@color, 70%)
+  &--cancelled
+    color $colors.burntSienna
+    background-color lighten(@color, 70%)
 
+  &--completed
+    color $colors.jade
+    background-color lighten(@color, 70%)
+
+  &--squared
+    border-radius .3em
+
+  &--circled
+    display inline-flex
+    border-radius 50%
+    justify-content center
+    align-items center
+    min-width 1.4em
+    padding .2em
+
+  &::before
+      content ''
+      float left
+      width auto
+      padding-bottom 100%

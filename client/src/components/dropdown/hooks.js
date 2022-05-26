@@ -3,7 +3,7 @@ import { useState } from 'react';
 const usePosition = () => {
   const [position, setPosition] = useState({});
 
-  const getPosition = element => {
+  const getPosition = (element) => {
     if (element.current) {
       const elementRect = element.current.getBoundingClientRect();
       const x = window.pageXOffset + elementRect.left;
@@ -18,7 +18,7 @@ const usePosition = () => {
 
   return [
     { ...position, position: 'fixed' },
-    element => {
+    (element) => {
       setPosition({ ...getPosition(element) });
     },
   ];

@@ -2,7 +2,7 @@ const development = {
   path: '/dev',
   component: () => import('../../pages/development'),
   isEnabled: true,
-}
+};
 
 const login = {
   path: '/',

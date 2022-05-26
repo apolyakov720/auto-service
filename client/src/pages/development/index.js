@@ -1,17 +1,21 @@
-import React from "react";
+import React from 'react';
 
-import Input from '@components/input';
-import Icon from '@components/icon';
-import Select from "@components/select";
-import Loader from '@components/loader';
-import Badge from '@components/badge';
+import { Badge, CountBadge } from '@components/badge';
 
 const DevelopmentPage = () => {
   return (
     <>
-      <Badge text="pending" state="pending" />
-      <Badge text="cancelled" state="cancelled" />
-      <Badge text="completed" state="completed" />
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 25 }}>
+        <CountBadge count={100} limit={2} />
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 25 }}>
+        <Badge content="see more" squared />
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 25 }}>
+        <Badge content="pending" />
+        <Badge content="cancelled" state="cancelled" />
+        <Badge content="completed" state="completed" />
+      </div>
     </>
   );
 };
