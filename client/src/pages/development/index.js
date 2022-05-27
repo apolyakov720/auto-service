@@ -7,8 +7,13 @@ import Tooltip from '@components/tooltip';
 const DevelopmentPage = () => {
   return (
     <>
-      <div style={{ display: 'flex', marginBottom: 25 }}>
-        <Tooltip content="Hello world" />
+      <div style={{ display: 'flex', marginBottom: 25, justifyContent: 'space-around' }}>
+        <Tooltip content="Hello world">
+          <Badge content="Click me!" squared />
+        </Tooltip>
+        <Tooltip content="Это счетчик" position="bottom">
+          <CountBadge />
+        </Tooltip>
       </div>
       <div
         style={{

@@ -1,24 +1,52 @@
-.tooltip
-  font-size 2rem
-  display inline-flex
-  border-radius .3em
-  padding .5em
-  color $colors.white
-  background linear-gradient(90deg, #475259, #1e2225)
+.trigger
+  display inline-block;
   position relative
-  box-shadow 0 5px 8px rgba(#000000, .35)
-  min-width 4em
-  min-height 1.8em
 
-  &:before
-  &::before
-    content ''
-    position absolute
-    top 100%
+.tooltip
+  position absolute
+
+  &--top
+  &--bottom
     left 50%
     transform translateX(-50%)
-    width 0
-    height 0
-    border-left .2em solid transparent
-    border-right .2em solid transparent
-    border-top .3em solid mix(#475259, #1e2225)
+
+  &--top
+    top -120%
+
+  &--bottom
+    top 120%
+
+  &__content
+    font-size 2rem
+    display inline-flex
+    border-radius .3em
+    padding .5em
+    color $colors.white
+    background linear-gradient(90deg, #475259, #1e2225)
+    position relative
+    box-shadow 0 5px 8px rgba(#000000, .35)
+    min-width 4em
+    min-height 1.8em
+    white-space nowrap
+
+    &:before
+    &::before
+      content ''
+      position absolute
+      width 0
+      height 0
+
+      ^[0]--top &
+      ^[0]--bottom &
+        left 50%
+        transform translateX(-50%)
+        border-left .2em solid transparent
+        border-right .2em solid transparent
+
+      ^[0]--top &
+        top 100%
+        border-top .3em solid mix(#475259, #1e2225)
+
+      ^[0]--bottom &
+        bottom 100%
+        border-bottom .3em solid mix(#475259, #1e2225)
