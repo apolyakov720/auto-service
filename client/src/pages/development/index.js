@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Badge, CountBadge } from '@components/badge';
 import Alert from '@components/alert';
 import Tooltip from '@components/tooltip';
+import Input from '@components/input';
+import Icon from '@components/icon';
+import SearchBar from '@components/search-bar';
 
 const DevelopmentPage = () => {
+  const [themeInput, setThemeInput] = useState('');
+
   return (
     <>
+      <div style={{ display: 'flex', marginBottom: 25, flexDirection: 'column' }}>
+        <SearchBar />
+        <br />
+        <Input
+          extra={<Icon source={Icon.sources.base.person} />}
+          theme={themeInput}
+          placeholder="Enter your first name"
+          onFocus={() => setThemeInput('active')}
+          onBlur={() => setThemeInput('')}
+        />
+      </div>
       <div style={{ display: 'flex', marginBottom: 25, justifyContent: 'space-around' }}>
         <Tooltip content="Hello world">
           <Badge content="Click me!" squared />

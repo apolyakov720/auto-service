@@ -19,18 +19,16 @@ class Tooltip extends React.Component {
     });
 
     return (
-      <>
-        <div className="trigger" onClick={this.toggleVisible}>
-          {children}
-          {this.state.visible && (
-            <div className={tooltipClass}>
-              <div className="tooltip__content">
-                <div>{content}</div>
-              </div>
+      <div className="trigger" onClick={this.toggleVisible}>
+        {children}
+        {this.state.visible && (
+          <div className={tooltipClass}>
+            <div className="tooltip__content">
+              <div>{content}</div>
             </div>
-          )}
-        </div>
-      </>
+          </div>
+        )}
+      </div>
     );
   }
 }

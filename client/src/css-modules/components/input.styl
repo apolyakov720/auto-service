@@ -1,42 +1,16 @@
 .input
-  font-size 2rem
-  border .1em solid #dde3e8
-  border-radius .35em
-  padding .35em .5em
-  display flex
-  align-items center
+  font-size inherit
+  font-family "Fira Code Light", $spare-font
+  border none
+  outline none
+  display block
   width 100%
-  max-width 53.2em
-  overflow hidden
-  color #a5adb3
-  background-color #fff
-
-  &__label
-  &__state
-    display inline-flex
-    justify-content center
-    align-items center
-
-  &__label
-    margin-right .5em
-
-  &__field
-    line-height @font-size
-    border none
-    outline none
-    display block
-    width 100%
-    appearance none
-    color inherit
-    font-size .75em
-
-    &::placeholder
-      color #a5adb3
-
-  &__state
-    margin-left .5em
+  appearance none
+  background-color $colors.white;
+  color $colors.gray200;
 
   &--active
-    color #333
-    border-color #1791fe
-    box-shadow 0 0 0 .15em rgba(#1791fe, .25)
+    color $colors.gray500;
+
+  &::placeholder
+    color $colors.gray200;

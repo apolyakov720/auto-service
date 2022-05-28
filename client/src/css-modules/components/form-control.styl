@@ -1,42 +1,33 @@
 .form-control
   font-size 2rem
-  border .1em solid #dde3e8
-  border-radius .35em
-  padding .35em .5em
+  color $colors.gray200;
+  background-color $colors.white;
+  border .09em solid currentColor
+  border-radius .3em
   display flex
   align-items center
   width 100%
   max-width 53.2em
   overflow hidden
-  color #a5adb3
-  background-color #fff
 
-  &__label
-  &__state
+  &__extra
+  &__effect
+  &__component
     display inline-flex
-    justify-content center
     align-items center
+    justify-content center
 
-  &__label
-    margin-right .5em
+  &__extra
+    background-color $colors.gray100;
+    padding  .5em
+    border-right .09em solid currentColor
 
-  &__field
-    line-height @font-size
-    border none
-    outline none
-    display block
-    width 100%
-    appearance none
-    color inherit
-    font-size .75em
-
-    &::placeholder
-      color #a5adb3
-
-  &__state
+  &__effect
     margin-left .5em
 
+  &__component
+    width 100%
+    padding .35em .5em
+
   &--active
-    color #333
-    border-color #1791fe
-    box-shadow 0 0 0 .15em rgba(#1791fe, .25)
+    color $colors.gray500;

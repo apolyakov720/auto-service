@@ -1,19 +1,16 @@
 import React from 'react';
-import CSSUtils from '@utils/css';
+import FormControl from '@components/form-control';
+import { CSSUtils } from '@utils';
 
-const Input = ({ label, state, value, onChange, active, type = 'text', ...inputProps }) => {
+const Input = ({ extra, effect, effectProps, theme, onChange, type = 'text', ...inputProps }) => {
+  const inputClass = CSSUtils.mergeModifiers('input', {
+    [theme]: theme,
+  });
+
   return (
-    <div className={CSSUtils.mergeModifiers('input', { active: active })}>
-      {label && <div className="input__label">{label}</div>}
-      <input
-        className="input__field"
-        type={type}
-        value={value}
-        onChange={onChange}
-        {...inputProps}
-      />
-      {state && <div className="input__state">{state}</div>}
-    </div>
+    <FormControl extra={extra} effect={effect} theme={theme} effectProps={effectProps}>
+      <input className={inputClass} type={type} onChange={onChange} {...inputProps} />
+    </FormControl>
   );
 };
 
