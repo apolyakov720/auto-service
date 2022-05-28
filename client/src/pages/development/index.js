@@ -6,12 +6,16 @@ import Tooltip from '@components/tooltip';
 import Input from '@components/input';
 import Icon from '@components/icon';
 import SearchBar from '@components/search-bar';
+import Toggle from "@components/toggle";
 
 const DevelopmentPage = () => {
   const [themeInput, setThemeInput] = useState('');
 
   return (
     <>
+      <div style={{ display: 'flex', marginBottom: 25, flexDirection: 'column' }}>
+        <Toggle caption="Включить переводы" />
+      </div>
       <div style={{ display: 'flex', marginBottom: 25, flexDirection: 'column' }}>
         <SearchBar />
         <br />
@@ -53,7 +57,7 @@ const DevelopmentPage = () => {
         />
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 25 }}>
-        <CountBadge count={1000} limit={3} />
+        <CountBadge count={100} limit={2} />
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 25 }}>
         <Badge content="see more" squared />

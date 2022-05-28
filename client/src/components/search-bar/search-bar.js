@@ -43,10 +43,10 @@ class SearchBar extends React.Component {
   render() {
     const { placeholder = 'Поиск...' } = this.props;
     const { value, theme } = this.state;
-    let effect = <Icon source={Icon.sources.base.cross} />;
+    let effect = null;
 
-    if (!value) {
-      effect = null;
+    if (value) {
+      effect = <Icon source={Icon.sources.base.cross} />;
     }
 
     return (

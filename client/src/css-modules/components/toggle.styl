@@ -1,0 +1,34 @@
+.toggle
+  font-size 2rem
+  display inline-flex
+  align-items center
+
+  &__input
+    display inline-block
+    height 1.5em
+    width $w = @height * 1.7
+    border-radius (@height / 2)
+    background-color $colors.jade;
+    box-shadow 0 1px 3px $colors.gray400;
+    position relative
+    flex-shrink 0
+
+    &:before
+    &::before
+      content ''
+      position absolute
+      top 0
+      left 0
+      height @height
+      width @height
+      border-radius 50%
+      background-color $colors.white;
+      transform scale(.8)
+      transition left .25s
+      box-shadow 0 2px 5px rgba($colors.black, .35);
+
+      ^[0] input:checked + &
+        left $w - @width
+
+  &__caption
+    margin-left .25em
