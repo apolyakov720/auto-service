@@ -6,7 +6,7 @@ import Tooltip from '@components/tooltip';
 import Input from '@components/input';
 import Icon from '@components/icon';
 import SearchBar from '@components/search-bar';
-import Toggle from "@components/toggle";
+import Toggle from '@components/toggle';
 
 const DevelopmentPage = () => {
   const [themeInput, setThemeInput] = useState('');
