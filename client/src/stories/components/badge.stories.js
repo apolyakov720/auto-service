@@ -15,4 +15,3 @@ Default.args = {
   circled: false,
   squared: false,
 };
-

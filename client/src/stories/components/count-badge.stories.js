@@ -1,5 +1,5 @@
 import React from 'react';
-import { CountBadge} from '@components/badge';
+import { CountBadge } from '@components/badge';
 
 export default {
   title: 'Components/CountBadge',
@@ -12,4 +12,3 @@ Default.args = {
   count: 15,
   limit: 1,
 };
-

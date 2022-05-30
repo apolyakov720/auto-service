@@ -1,6 +1,6 @@
 import React from 'react';
 
-import FormField from '@components/form-field'
+import FormField from '@components/form-field';
 import Input from '@components/input';
 
 export default {
@@ -21,9 +21,5 @@ Default.args = {
     'Придумайте логин для входа в систему',
     'Логин должен соответствовать правилам безопасности',
   ],
-  errors: [
-    'Логин должен содержать не менее 10 символов',
-    'Обязательно для заполнения',
-  ],
+  errors: ['Логин должен содержать не менее 10 символов', 'Обязательно для заполнения'],
 };
-

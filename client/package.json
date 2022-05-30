@@ -5,7 +5,7 @@
   "scripts": {
     "lint": "eslint . --ext .js,.jsx --ignore-pattern node_modules --config ./configs/eslint.js --fix",
     "dev-server": "cd dev-server && node prepare-server && node --require dotenv/config server dotenv_config_path=../configs/.environment",
-    "storybook": "start-storybook -p 6006"
+    "storybook": "start-storybook -c configs/storybook -p 6006"
   },
   "author": "Polyakov Alexey",
   "devDependencies": {

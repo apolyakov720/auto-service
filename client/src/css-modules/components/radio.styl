@@ -1,0 +1,33 @@
+.radio
+  font-size 2rem
+  display inline-flex
+  align-items center
+
+  &__input
+    display inline-block
+    height 1.5em
+    width @height
+    border-radius 50%
+    position relative
+    flex-shrink 0
+    color $colors.gray200;
+    border .09em solid currentColor
+
+    &:before
+    &::before
+      content ''
+      position absolute
+      top -1px
+      right -1px
+      bottom -1px
+      left -1px
+      border .4em solid currentColor
+      background-color $colors.white;
+      border-radius inherit
+      visibility hidden
+
+      ^[0] input:checked + &
+        visibility visible
+
+  &__caption
+    margin-left .25em

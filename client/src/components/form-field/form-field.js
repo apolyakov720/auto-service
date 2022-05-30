@@ -4,8 +4,8 @@ class FormField extends React.Component {
   render() {
     const { children, label, required, hints = [], errors = [] } = this.props;
 
-    const resultHints = hints.map((hint, index) => (<li key={index}>{hint}</li>));
-    const resultErrors = errors.map((error, index) => (<li key={index}>{error}</li>));
+    const resultHints = hints.map((hint, index) => <li key={index}>{hint}</li>);
+    const resultErrors = errors.map((error, index) => <li key={index}>{error}</li>);
 
     return (
       <div className="form-field">
@@ -15,9 +15,7 @@ class FormField extends React.Component {
             {required && '*'}
           </div>
         )}
-        <div className="form-field__content">
-          {children}
-        </div>
+        <div className="form-field__content">{children}</div>
         <ul className="form-field__hints">{resultHints}</ul>
         <ul className="form-field__errors">{resultErrors}</ul>
       </div>
