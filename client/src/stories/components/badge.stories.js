@@ -16,4 +16,3 @@ Default.args = {
   squared: false,
 };
 
-
