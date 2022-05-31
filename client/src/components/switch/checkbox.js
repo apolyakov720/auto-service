@@ -8,7 +8,7 @@ class Checkbox extends React.Component {
 
     return (
       <Switch type="checkbox" baseClass="checkbox" caption={caption} {...inputProps}>
-        <Icon source={Icon.sources.base.check} />
+        <Icon source={Icon.sources.base.check} size="xxl" />
       </Switch>
     );
   }

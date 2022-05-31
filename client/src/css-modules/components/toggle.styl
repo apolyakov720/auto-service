@@ -8,10 +8,14 @@
     height 1.5em
     width $w = @height * 1.7
     border-radius (@height / 2)
-    background-color $colors.jade;
+    background-color $colors.gray400;
     box-shadow 0 1px 3px $colors.gray400;
     position relative
     flex-shrink 0
+    transition background-color .25s
+
+    ^[0] input:checked + &
+      background-color $colors.jade;
 
     &:before
     &::before

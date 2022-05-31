@@ -2,20 +2,20 @@
   font-size 2rem
   display inline-flex
   align-items center
-  cursor pointer
 
   &__input
     display inline-flex
-    width 1em
+    width 1.5em
     height @width
-    background-color white
-    border .1em solid #dde3e8
-    border-radius .25em
-    position relative
+    color $colors.white;
+    border .09em solid $colors.gray200;
+    background-color $colors.white;
+    border-radius .3em
     justify-content center
 
-    ~/:hover &
-      border-color #1791fe
+    ^[0] input:checked + &
+      border-color $colors.blue;
+      background-color $colors.blue;
 
   &__caption
     margin-left .5em

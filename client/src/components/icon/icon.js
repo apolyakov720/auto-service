@@ -1,16 +1,20 @@
 import React from 'react';
 
 import baseIconSet from './sets/base';
+import { CSSUtils } from "@utils";
 
-const Icon = ({ source }) => {
+const Icon = ({ source, size }) => {
   if (!source) {
     return null;
   }
 
   const Svg = source;
+  const iconClass = CSSUtils.mergeModifiers('icon', {
+    [`size-${size}`]: size,
+  });
 
   return (
-    <div className="icon">
+    <div className={iconClass}>
       <Svg />
     </div>
   );

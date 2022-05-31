@@ -10,24 +10,25 @@
     border-radius 50%
     position relative
     flex-shrink 0
-    color $colors.gray200;
-    border .09em solid currentColor
+    color $colors.white;
+    border .09em solid $colors.gray200;
+    background-color $colors.white;
+
+    ^[0] input:checked + &
+      border-color $colors.blue;
+      background-color $colors.blue;
 
     &:before
     &::before
       content ''
       position absolute
-      top -1px
-      right -1px
-      bottom -1px
-      left -1px
-      border .4em solid currentColor
-      background-color $colors.white;
+      width (@width / 2.1)
+      height @width
+      top 50%
+      left 50%
+      transform translate(-50%, -50%)
+      background-color currentColor
       border-radius inherit
-      visibility hidden
-
-      ^[0] input:checked + &
-        visibility visible
 
   &__caption
     margin-left .25em
