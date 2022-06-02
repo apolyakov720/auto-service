@@ -2,13 +2,12 @@ import React from 'react';
 import { CountBadge } from '@components/badge';
 
 export default {
-  title: 'Components/CountBadge',
+  title: 'Components/Badge/CountBadge',
   component: CountBadge,
 };
 
-export const Default = (args) => <CountBadge {...args} />;
-
-Default.args = {
+export const Basic = (args) => <CountBadge {...args} />;
+Basic.args = {
   count: 15,
   limit: 1,
 };

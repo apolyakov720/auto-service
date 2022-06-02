@@ -1,16 +1,16 @@
 import React from 'react';
+
 import { CSSUtils } from '@utils';
 
-const Button = ({ name, state, onClick, type = 'primary', size = 'medium' }) => {
+const Button = ({ caption, extra, onClick, theme }) => {
   return (
     <button
       className={CSSUtils.mergeModifiers('button', {
-        [type]: true,
-        [size]: true,
+        [theme]: theme,
       })}
       onClick={onClick}>
-      {state && <span className="button__state">{state}</span>}
-      <span>{name}</span>
+      {extra && <span className="button__extra">{extra}</span>}
+      <span>{caption}</span>
     </button>
   );
 };

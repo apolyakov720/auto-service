@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Toggle } from '@components/switch';
 
 export default {

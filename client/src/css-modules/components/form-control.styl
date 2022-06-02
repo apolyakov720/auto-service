@@ -1,11 +1,13 @@
 .form-control
   font-size 2rem
   color $colors.gray200;
+  border-width $border-width
+  border-color @color
+  border-style solid
   background-color $colors.white;
-  border .09em solid currentColor
-  border-radius .3em
+  border-radius $border-radius
   display flex
-  align-items center
+  align-items stretch
   width 100%
   max-width 53.2em
   overflow hidden
@@ -19,8 +21,10 @@
 
   &__extra
     background-color $colors.gray100;
-    padding  .5em
-    border-right .09em solid currentColor
+    padding .5em
+    border-right-width @border-width
+    border-right-style @border-style
+    border-color currentColor
 
   &__effect
     margin-left .5em
@@ -29,5 +33,6 @@
     width 100%
     padding .35em .5em
 
-  &--active
-    color $colors.gray500;
+  &--primary
+    color $theme.primary;
+    border-color @color

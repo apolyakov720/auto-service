@@ -1,23 +1,33 @@
 .alert
-	font-size 2rem
-	border-radius .3em
-	padding 1em
-	color $colors.jade;
-	background-color lighten(@color, 90%)
-	display flex
+  font-size 2rem
+  border-radius $border-radius
+  padding 1em
+  color $theme.primary;
+  background-color lighten(@color, 90%)
+  display flex
 
-	&__content
-		flex 1
+  &__content
+    flex 1
 
-	&--secondary
-		color $colors.blue;
-		background-color lighten(@color, 90%)
+  &__effect
+    display flex
+    align-items center
+    justify-content center
+    margin-left .5em
+    line-height 0
 
-	&--warning
-		color $colors.orange;
-		background-color lighten(@color, 90%)
-	
-	&--error
-		color $colors.coral;
-		background-color lighten(@color, 90%)
+  &--secondary
+    color $theme.secondary;
+    background-color lighten(@color, 90%)
 
+  &--info
+    color $theme.info;
+    background-color lighten(@color, 90%)
+
+  &--warning
+    color $theme.warning;
+    background-color lighten(@color, 90%)
+
+  &--error
+    color $theme.error;
+    background-color lighten(@color, 90%)

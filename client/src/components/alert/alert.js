@@ -1,15 +1,21 @@
-import React from 'react'; // чтобы писать разметку в .js
-import { CSSUtils } from '@utils';
-import Icon from '@components/icon';
+import React from 'react';
 
-const Alert = ({ content, type }) => {
+import Icon from '@components/icon';
+import { CSSUtils } from '@utils';
+
+const Alert = ({ content, theme, closable = true }) => {
   const alertClass = CSSUtils.mergeModifiers('alert', {
-    [type]: type,
+    [theme]: theme,
   });
+
   return (
     <div className={alertClass}>
       <div className="alert__content">{content}</div>
-      <Icon source={Icon.sources.base.cross} />
+      {closable && (
+        <div className="alert__effect">
+          <Icon source={Icon.sources.base.cross} bold />
+        </div>
+      )}
     </div>
   );
 };

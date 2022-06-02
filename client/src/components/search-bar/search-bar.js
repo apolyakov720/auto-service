@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Input from '@components/input';
 import Icon from '@components/icon';
 
@@ -9,10 +10,6 @@ class SearchBar extends React.Component {
   };
 
   setValue = (value = '') => {
-    if (typeof value === 'object') {
-      value = '';
-    }
-
     this.setState({
       value,
     });
@@ -20,7 +17,7 @@ class SearchBar extends React.Component {
 
   setTheme = () => {
     this.setState({
-      theme: 'active',
+      theme: 'primary',
     });
   };
 
@@ -54,8 +51,8 @@ class SearchBar extends React.Component {
         theme={theme}
         extra={<Icon source={Icon.sources.base.search} />}
         effect={effect}
-        effectProps={{
-          onClick: this.setValue,
+        additionalProps={{
+          onEffectClick: this.setValue,
         }}
         placeholder={placeholder}
         onFocus={this.setTheme}

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Badge from './badge';
 import { CommonUtils } from '@utils';
 
@@ -20,7 +21,9 @@ class CountBadge extends React.Component {
   }
 
   render() {
-    return <Badge content={this.value} circled />;
+    const { theme } = this.props;
+
+    return <Badge content={this.value} theme={theme} circled />;
   }
 }
 

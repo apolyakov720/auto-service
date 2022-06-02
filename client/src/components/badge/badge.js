@@ -1,13 +1,14 @@
 import React from 'react';
+
 import { CSSUtils } from '@utils';
 
 class Badge extends React.Component {
   render() {
-    const { type, content, squared, circled } = this.props;
+    const { theme, content, squared, circled } = this.props;
     const badgeClass = CSSUtils.mergeModifiers('badge', {
       circled,
       squared,
-      [type]: type,
+      [theme]: theme,
     });
 
     return <div className={badgeClass}>{content && <span>{content}</span>}</div>;

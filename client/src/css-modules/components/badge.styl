@@ -1,27 +1,31 @@
 .badge
   font-size 2rem
+  font-weight bold
   display inline-block
-  color $colors.jade;
-  background-color lighten(@color, 90%)
+  color $theme.primary;
+  background-color lighten(@color, 90%);
+  padding .5em 1em
   border-radius 1em
   text-transform uppercase
-  padding .5em 1em
-  font-weight bold
 
   &--secondary
-    color $colors.violet;
+    color $theme.secondary;
+    background-color lighten(@color, 90%)
+
+  &--info
+    color $theme.info;
     background-color lighten(@color, 90%)
 
   &--warning
-    color $colors.orange;
+    color $theme.warning;
     background-color lighten(@color, 90%)
 
   &--error
-    color $colors.coral;
+    color $theme.error;
     background-color lighten(@color, 90%)
 
   &--squared
-    border-radius .3em
+    border-radius $border-radius
     
   &--circled
     display inline-flex

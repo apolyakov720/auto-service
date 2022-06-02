@@ -2,12 +2,70 @@ $font-size-base = 5rem
 $max-width-application = 1200px
 $spare-font = Tahoma, sans-serif
 
+$border-radius = .3em
+$border-width = .09em
+
 // Размерность:
 // s - small (маленький)
 // m - medium small (средний - по умолчанию, создавать отдельный мофикатор не нужно)
 // l - large (большой)
 // xl - extra large (очень большой)
 // xxl - extra extra large (очень очень большой)
+
+$sizes = {
+  s: .8,
+  m: 1,
+  l: 1.2,
+  xl: 1.4,
+  xxl: 1.6,
+}
+
+$colors = {
+  // theme primary light (пока не используется, может пригодиться в будущем)
+  blue: #5c67e6,
+
+  // theme primary dark
+  darkBlue: #4952b8,
+
+  // theme secondary light (пока не используется, может пригодиться в будущем)
+  green: #0abf8a
+
+  // theme secondary dark
+  darkGreen: #00bf79,
+
+  // theme info
+  lightBlue: #51c5f5,
+
+  // theme warning
+  orange: #fcc419,
+
+  // theme error
+  coral: #ed5556,
+
+  // light backgrounds
+  white: #ffffff,
+
+  // backgrounds
+  gray100: #f5f7fa,
+
+  // borders, separators
+  gray200: #cfdae6,
+
+  // dark borders
+  gray300: #bfccd9,
+
+  // icons, subheaders, placeholders
+  gray400: #adbdcc,
+
+  // body text
+  gray500: #8595a6,
+
+  // headers, labels
+  gray600: #475259,
+
+  // dark backgrounds
+  black: #1e2225,
+}
 
 // Theme (тема элемента)
 // primary - основная (по умолчанию, создавать отдельный мофикатор не нужно)
@@ -16,17 +74,11 @@ $spare-font = Tahoma, sans-serif
 // error - ошибка
 // disable - отключенный
 
-$colors = {
-  violet: #4952b8,
-  coral: #ed5556,
-  jade: #00bf79,
-  orange: #fcc419,
-  blue: #4c6ef5,
-  white: #ffffff,
-  black: #000000,
-  gray100: #f5f7fa,
-  gray200: #cfdae6,
-  gray300: #bfccd9,
-  gray400: #adbdcc,
-  gray500: #8595a6,
+$theme = {
+  primary: $colors.darkBlue,
+  secondary: $colors.darkGreen,
+  info: $colors.lightBlue,
+  warning: $colors.orange,
+  error: $colors.coral,
+  disable: (),
 }

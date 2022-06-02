@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Input from '@components/input/input';
-import Checkbox from '@components/checkbox';
 import Button from '@components/button';
 
 import Icon from '@components/icon';
@@ -20,7 +19,6 @@ const LoginPage = () => {
             <Input label="Пароль" />
           </div>
           <div style={{ margin: '10px 0' }}>
-            <Checkbox />
           </div>
           <div className="form-controls">
             <Button name="Войти" />
