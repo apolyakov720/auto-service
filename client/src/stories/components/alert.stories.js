@@ -25,14 +25,14 @@ Secondary.args = {
 export const Info = Template.bind({});
 Info.args = {
   theme: 'info',
-  content: 'Heads up! This alert needs your attention, but it\'s not super important.',
+  content: "Heads up! This alert needs your attention, but it's not super important.",
   closable: true,
 };
 
 export const Warning = Template.bind({});
 Warning.args = {
   theme: 'warning',
-  content: 'Warning! Better check yourself, you\'re not looking too good.',
+  content: "Warning! Better check yourself, you're not looking too good.",
   closable: true,
 };
 

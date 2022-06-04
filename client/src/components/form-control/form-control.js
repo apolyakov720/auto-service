@@ -2,10 +2,16 @@ import React from 'react';
 
 import { CSSUtils } from '@utils';
 
-const FormControl = ({ extra, effect, theme, children, additionalProps = {
-  onExtraClick: null,
-  onEffectClick: null,
-}}) => {
+const FormControl = ({
+  extra,
+  effect,
+  theme,
+  children,
+  additionalProps = {
+    onExtraClick: null,
+    onEffectClick: null,
+  },
+}) => {
   const formControlClass = CSSUtils.mergeModifiers('form-control', { [theme]: theme });
 
   const onExtraClick = () => {
@@ -18,7 +24,9 @@ const FormControl = ({ extra, effect, theme, children, additionalProps = {
   return (
     <div className={formControlClass}>
       {extra && (
-        <div onClick={onExtraClick} className="form-control__extra">{extra}</div>
+        <div onClick={onExtraClick} className="form-control__extra">
+          {extra}
+        </div>
       )}
       <div className="form-control__component">
         {children}

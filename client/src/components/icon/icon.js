@@ -1,7 +1,7 @@
 import React from 'react';
 
 import baseIconSet from './sets/base';
-import { CSSUtils } from "@utils";
+import { CSSUtils } from '@utils';
 
 const Icon = ({ source, size, bold }) => {
   if (!source) {

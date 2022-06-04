@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Tooltip from '@components/tooltip';
-import { Badge } from '@components/badge'
+import { Badge } from '@components/badge';
 
 export default {
   title: 'Components/Tooltip',

@@ -1,9 +1,13 @@
 import React from 'react';
 
+import Pagination from '@components/pagination';
+
 const DevelopmentPage = () => {
   return (
     <>
-      <div>Development page</div>
+      <div>
+        <Pagination size={5} quantity={40} /* onChangePage={} */ />
+      </div>
     </>
   );
 };

@@ -3,7 +3,15 @@ import React from 'react';
 import FormControl from '@components/form-control';
 import { CSSUtils } from '@utils';
 
-const Input = ({ extra, effect, additionalProps, theme, onChange, type = 'text', ...inputProps }) => {
+const Input = ({
+  extra,
+  effect,
+  additionalProps,
+  theme,
+  onChange,
+  type = 'text',
+  ...inputProps
+}) => {
   const themeKey = theme === 'primary' ? 'active' : theme;
   const inputClass = CSSUtils.mergeModifiers('input', {
     [themeKey]: theme,

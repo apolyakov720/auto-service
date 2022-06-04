@@ -18,8 +18,7 @@ const LoginPage = () => {
             <Input label={<Icon source={Icon.sources.base.check} />} />
             <Input label="Пароль" />
           </div>
-          <div style={{ margin: '10px 0' }}>
-          </div>
+          <div style={{ margin: '10px 0' }}></div>
           <div className="form-controls">
             <Button name="Войти" />
           </div>

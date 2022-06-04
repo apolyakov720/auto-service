@@ -1,0 +1,36 @@
+.pagination
+  font-size 2rem
+  display inline-flex
+  border-width $border-width
+  border-style solid
+  border-color $colors.gray200;
+  border-radius $border-radius
+  user-select none
+
+  &__page
+    display inline-block
+    padding .1em
+    border-right-width @border-width
+    border-right-color @border-color
+    border-right-style solid
+    color $theme.primary;
+    background-color $colors.white;
+
+    &--disabled
+      color $colors.gray200;
+      background-color $colors.gray100;
+
+    &:last-child
+      border none
+
+  &__page-content
+    width 2em
+    height @width
+    text-align center
+    line-height @height
+
+    &--selected
+      color $colors.white;
+      background-color $theme.primary;
+      border-radius $border-radius
+      box-shadow 0 1px 3px $colors.gray400;

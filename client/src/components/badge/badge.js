@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CSSUtils } from '@utils';
+import { CSSUtils, CommonUtils } from '@utils';
 
 class Badge extends React.Component {
   render() {
@@ -11,7 +11,9 @@ class Badge extends React.Component {
       [theme]: theme,
     });
 
-    return <div className={badgeClass}>{content && <span>{content}</span>}</div>;
+    return (
+      <div className={badgeClass}>{!CommonUtils.isEmpty(content) && <span>{content}</span>}</div>
+    );
   }
 }
 

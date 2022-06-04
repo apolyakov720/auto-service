@@ -47,10 +47,22 @@ function debounce(fn, { delay = 100, immediate = false } = {}) {
   };
 }
 
+/** Неопределенное значение */
+const isNull = (value) => value === undefined || value === null;
+
+/** Пустое значение */
+const isEmpty = (value) =>
+  isNull(value) ||
+  value === false ||
+  (Object.keys(value).length === 0 && value.constructor === Object) ||
+  value.length === 0;
+
 /** Значение - это число */
 const isNumeric = (value) => !isNaN(parseFloat(value)) && isFinite(parseFloat(value));
 
 export default {
   debounce,
   isNumeric,
+  isNull,
+  isEmpty,
 };
