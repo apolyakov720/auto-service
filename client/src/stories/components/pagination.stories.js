@@ -9,6 +9,6 @@ export default {
 
 export const Basic = (args) => <Pagination {...args} />;
 Basic.args = {
-  quantity: 40,
+  quantity: 61,
   size: 5,
 };

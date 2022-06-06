@@ -27,9 +27,7 @@ app.use((req, res, next) => {
       } catch (e) {
         return res.json({
           result: false,
-          messages: [
-            'Can\'t find folder or file',
-          ],
+          messages: [`Can't find file on ${filePath}`],
         });
       }
     }

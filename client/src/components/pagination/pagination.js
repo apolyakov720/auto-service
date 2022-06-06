@@ -8,81 +8,115 @@ class Pagination extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = this.calculate();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { quantity, size } = this.props;
+
+    if (prevProps.quantity !== quantity || prevProps.size !== size) {
+      this.setState(this.calculate());
+    }
+  }
+
+  calculate = () => {
     const { quantity, size } = this.props;
     let pageSize = null;
     let countPages = null;
     let pages = [];
-    let isAvailable = CommonUtils.isNumeric(quantity) || quantity > 0;
+    let isAvailable = CommonUtils.isNumeric(quantity) && quantity > 0 && quantity > size;
 
     if (isAvailable) {
-      pageSize = CommonUtils.isNumeric(size) ? Math.abs(size) : 5;
+      pageSize = CommonUtils.isNumeric(size) && size > 0 ? size : 5;
       countPages = Math.floor(quantity / pageSize) + (quantity % pageSize > 0 ? 1 : 0);
       pages = [...new Array(countPages)];
     }
 
-    this.state = {
+    return {
       pageSize,
       countPages,
       isAvailable,
       pages,
       selected: 0,
     };
-  }
+  };
 
   setSelectedPage = (selected) => {
+    const { onChange } = this.props;
+
     this.setState({
       selected,
     });
+
+    onChange && onChange(selected);
   };
 
   setPreviousPage = () => {
-    this.setState({
-      selected: this.state.selected - 1,
-    });
+    this.setSelectedPage(this.state.selected - 1);
   };
 
   setNextPage = () => {
-    this.setState({
-      selected: this.state.selected + 1,
-    });
+    this.setSelectedPage(this.state.selected + 1);
   };
 
   get pages() {
     const { pages, selected } = this.state;
+    const pageCount = pages.length - 1;
 
-    let visiblePages = [0, selected - 1, selected, selected + 1, pages.length - 1];
-    // const horizontalDots = <Icon source={Icon.sources.base.dotsHorizontal} size="s" bold />;
+    let visiblePages = new Set([0, selected - 1, selected, selected + 1, pageCount]);
+    const horizontalDots = <Icon source={Icon.sources.base.dotsHorizontal} size="s" bold />;
 
-    return pages.reduce((accumulator, _, index) => {
-      let content = index + 1;
-      let disabled = false;
+    if (selected <= 3) {
+      [1, 2, 3, 4].forEach((page) => visiblePages.add(page));
+    }
 
-      if (selected === 0) {
-        visiblePages = visiblePages.concat(2);
-      }
-
-      if (selected === pages.length - 1) {
-        visiblePages = visiblePages.concat(pages.length - 3);
-      }
-
-      if (!visiblePages.includes(index)) {
-        content = null;
-        disabled = true;
-      }
-
-      accumulator.push(
-        <PaginationItem
-          id={index}
-          key={index}
-          content={content}
-          selected={index === selected}
-          onClick={this.setSelectedPage}
-          disabled={disabled}
-        />,
+    if (selected >= pageCount - 3) {
+      [pageCount - 1, pageCount - 2, pageCount - 3, pageCount - 4].forEach((page) =>
+        visiblePages.add(page),
       );
+    }
 
-      return accumulator;
-    }, []);
+    return pages.reduce(
+      (accumulator, _, index) => {
+        let content = index + 1;
+        let disabled = false;
+
+        if (!visiblePages.has(index)) {
+          if (index <= selected - 2 && !accumulator.leftCollapse) {
+            accumulator.leftCollapse = true;
+            visiblePages.add(index);
+          }
+
+          if (index >= selected + 2 && !accumulator.rightCollapse) {
+            accumulator.rightCollapse = true;
+            visiblePages.add(index);
+          }
+
+          content = horizontalDots;
+          disabled = true;
+        }
+
+        if (visiblePages.has(index)) {
+          accumulator.pages.push(
+            <PaginationItem
+              id={index}
+              key={index}
+              content={content}
+              selected={index === selected}
+              onClick={this.setSelectedPage}
+              disabled={disabled}
+            />,
+          );
+        }
+
+        return accumulator;
+      },
+      {
+        pages: [],
+        leftCollapse: false,
+        rightCollapse: false,
+      },
+    ).pages;
   }
 
   render() {

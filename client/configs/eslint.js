@@ -9,6 +9,9 @@ module.exports = {
       configFile: path.resolve(__dirname, 'babel.js'),
     },
   },
+  globals: {
+    USE_MOCK_API: true,
+  },
   env: {
     browser: true,
     node: true,

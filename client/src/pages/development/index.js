@@ -6,7 +6,7 @@ const DevelopmentPage = () => {
   return (
     <>
       <div>
-        <Pagination size={5} quantity={40} /* onChangePage={} */ />
+        <Pagination quantity={50} size={-3} />
       </div>
     </>
   );
