@@ -1,0 +1,11 @@
+{
+  "database": {
+    "hostname": "localhost",
+    "port": "27017",
+    "name": "auto-service"
+  },
+  "server": {
+    "port": "9090",
+    "privateKey": "secret-key"
+  }
+}

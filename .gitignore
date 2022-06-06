@@ -1,5 +1,7 @@
 .idea
 client/node_modules
+server/node_modules
 client/build
 *.DS_Store
 client/package-lock.json
+server/package-lock.json
