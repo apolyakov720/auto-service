@@ -1,5 +1,3 @@
-import Common from './common';
-import CSS from './css';
-
-export const CommonUtils = Common;
-export const CSSUtils = CSS;
+export { default as CommonUtils } from './common';
+export { default as CSSUtils } from './css';
+export { default as DateUtils } from './date';

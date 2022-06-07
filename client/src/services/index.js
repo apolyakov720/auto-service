@@ -1,5 +1,2 @@
-import Api from './api';
-import Normalizer from './normalizer';
-
-export const ApiService = Api;
-export const NormalizerService = Normalizer;
+export { default as ApiService } from './api';
+export { default as NormalizerService } from './normalizer';

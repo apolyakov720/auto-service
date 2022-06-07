@@ -1,12 +1,13 @@
 import React from 'react';
 
-import Pagination from '@components/pagination';
+import Calendar from '@components/calendar';
+import DatePicker from '@components/date-picker';
 
 const DevelopmentPage = () => {
   return (
     <>
       <div>
-        <Pagination quantity={50} size={-3} />
+        <Calendar />
       </div>
     </>
   );

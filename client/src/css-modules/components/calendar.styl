@@ -1,0 +1,26 @@
+.calendar
+  font-size 2rem
+  padding .25em
+  border $border-width solid $colors.gray200;
+  border-radius $border-radius
+  display inline-block
+
+  &__week
+    margin 0 -.1em
+
+  &__day
+    display inline-block
+    margin .1em
+    width 2em
+    height @width
+    text-align center
+    line-height @height
+    border-radius 50%
+
+    &--selected
+      color $colors.white;
+      background-color $theme.primary;
+      box-shadow 0 1px 3px $colors.gray400;
+
+    &--outside
+      color $colors.gray400;

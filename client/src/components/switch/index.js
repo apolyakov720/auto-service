@@ -1,5 +1,3 @@
-import Radio from './radio';
-import Checkbox from './checkbox';
-import Toggle from './toggle';
-
-export { Radio, Checkbox, Toggle };
+export { default as Radio } from './radio';
+export { default as Checkbox } from './checkbox';
+export { default as Toggle } from './toggle';

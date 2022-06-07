@@ -23,20 +23,17 @@ class Pagination extends React.Component {
     const { quantity, size } = this.props;
     let pageSize = null;
     let countPages = null;
-    let pages = [];
-    let isAvailable = CommonUtils.isNumeric(quantity) && quantity > 0 && quantity > size;
+    const isAvailable = CommonUtils.isNumeric(quantity) && quantity > 0 && quantity > size;
 
     if (isAvailable) {
       pageSize = CommonUtils.isNumeric(size) && size > 0 ? size : 5;
       countPages = Math.floor(quantity / pageSize) + (quantity % pageSize > 0 ? 1 : 0);
-      pages = [...new Array(countPages)];
     }
 
     return {
       pageSize,
       countPages,
       isAvailable,
-      pages,
       selected: 0,
     };
   };
@@ -60,8 +57,9 @@ class Pagination extends React.Component {
   };
 
   get pages() {
-    const { pages, selected } = this.state;
-    const pageCount = pages.length - 1;
+    const { countPages, selected } = this.state;
+    const pages = [...new Array(countPages)];
+    const pageCount = countPages - 1;
 
     let visiblePages = new Set([0, selected - 1, selected, selected + 1, pageCount]);
     const horizontalDots = <Icon source={Icon.sources.base.dotsHorizontal} size="s" bold />;
@@ -120,7 +118,7 @@ class Pagination extends React.Component {
   }
 
   render() {
-    const { isAvailable, selected, pages } = this.state;
+    const { isAvailable, selected, countPages } = this.state;
 
     if (!isAvailable) {
       return null;
@@ -140,7 +138,7 @@ class Pagination extends React.Component {
         <PaginationItem
           content={rightChevron}
           onClick={this.setNextPage}
-          disabled={selected === pages.length - 1}
+          disabled={selected === countPages - 1}
         />
       </ul>
     );
