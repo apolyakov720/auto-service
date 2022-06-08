@@ -5,7 +5,7 @@ import { DateUtils } from '@utils';
 
 class Week extends React.Component {
   get days() {
-    const { start, month, selected } = this.props;
+    const { start, month, selected, onSelectDate } = this.props;
 
     const startDay = DateUtils.getStartOfWeek(start);
 
@@ -20,7 +20,7 @@ class Week extends React.Component {
           date={date}
           outside={isOutsideDay}
           selected={isSelected}
-          onClick={() => {}}
+          onClick={onSelectDate}
         />
       );
     });

@@ -5,8 +5,23 @@
   border-radius $border-radius
   display inline-block
 
+  &__header
+    display flex
+    justify-content space-between
+    align-items center
+    margin .55em
+    font-weight bold
+    text-transform capitalize
+    user-select none
+
+  &__week-days
   &__week
     margin 0 -.1em
+
+  &__week-days
+    font-weight bold
+    text-transform capitalize
+    user-select none
 
   &__day
     display inline-block
