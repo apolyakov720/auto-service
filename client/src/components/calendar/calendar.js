@@ -27,14 +27,14 @@ class Calendar extends React.Component {
       const weekDay = DateUtils.formatWeekDay(day);
 
       return (
-        <li className="calendar__day" key={value}>{weekDay}</li>
+        <li className="calendar__day" key={value}>
+          {weekDay}
+        </li>
       );
     });
 
-    return (
-      <ul className="calendar__week-days">{weekDays}</ul>
-    );
-  };
+    return <ul className="calendar__week-days">{weekDays}</ul>;
+  }
 
   get weeks() {
     const { date } = this.state;

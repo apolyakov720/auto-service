@@ -1,4 +1,4 @@
-// classNames
+const mergeClasses = (...classes) => classes.join(' ');
 
 const mergeModifiers = (baseClass = '', modifiers = {}) => {
   return Object.entries(modifiers)
@@ -18,5 +18,6 @@ const mergeModifiers = (baseClass = '', modifiers = {}) => {
 };
 
 export default {
+  mergeClasses,
   mergeModifiers,
 };

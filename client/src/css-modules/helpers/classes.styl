@@ -1,0 +1,31 @@
+$classes-config-map = {
+  input-no-visible: {
+    pseudos: "&:not(:checked), &:checked",
+    values: {
+      position: absolute,
+      opacity: 0,
+      pointer-events: none
+    }
+  },
+  size: {
+    property: font-size,
+    values: $sizes
+  }
+}
+
+for class-key, class-props in $classes-config-map
+  property = class-props.property
+  values = class-props.values
+  pseudos = class-props.pseudos
+
+  if type(property) == 'ident'
+    if type(values) == 'object'
+      for value-key, value in values
+        .{class-key}-{value-key}
+          {property} value !important
+
+  if pseudos != null and type(pseudos) == 'string'
+    .{class-key}
+      {pseudos}
+        for pseudo-key, pseudo-value in values
+          {pseudo-key} pseudo-value

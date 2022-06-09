@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Day from './day';
-import { DateUtils } from '@utils';
+import { DateUtils, CommonUtils } from '@utils';
 
 class Week extends React.Component {
   get days() {
@@ -11,14 +11,14 @@ class Week extends React.Component {
 
     return [0, 1, 2, 3, 4, 5, 6].map((value) => {
       const date = DateUtils.addDays(startDay, value);
-      const isOutsideDay = month && month !== DateUtils.getMonth(date);
+      const isOutside = !CommonUtils.isEmpty(month) && month !== DateUtils.getMonth(date);
       const isSelected = DateUtils.isSameDay(date, selected);
 
       return (
         <Day
           key={value}
           date={date}
-          outside={isOutsideDay}
+          outside={isOutside}
           selected={isSelected}
           onClick={onSelectDate}
         />

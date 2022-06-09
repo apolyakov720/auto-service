@@ -3,20 +3,24 @@
   display inline-flex
   justify-content center
   align-items center
-  color $colors.white;
-  background $theme.primary;
-  border none
+  border $border-width solid $colors.gray200;
   border-radius $border-radius
-  padding .35em .8em
   outline none
+  padding .25em
+  color $colors.black;
+  background-color $colors.white;
   user-select none
-  vertical-align middle
-  min-width 4em
-  min-height 2em
-  max-width 100%
+
+  &__caption
+    margin .25em
 
   &__extra
-    margin-right .5em
     display inline-flex
     justify-content center
     align-items center
+
+  &--circled
+    border-radius 1em
+
+  &--no-stroke
+    border-color @background-color

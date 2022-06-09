@@ -1,6 +1,6 @@
 :root
-  font-family "Fira Code Regular", $spare-font
-  font-size 10px
+  font-family $font-family-regular, $font-family-safe
+  font-size $font-size-root
   box-sizing border-box
   color $colors.black;
   height 100%
@@ -34,13 +34,4 @@ body
   max-height 100%
   max-width $max-width-application
   margin 0 auto
-
-  // background #eee
   padding 50px
-
-.input-no-visible
-  &:not(:checked)
-  &:checked
-    position absolute
-    opacity 0
-    pointer-events none

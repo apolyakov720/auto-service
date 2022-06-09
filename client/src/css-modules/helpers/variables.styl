@@ -1,25 +1,40 @@
-$font-size-base = 5rem
-$max-width-application = 1200px
-$spare-font = Tahoma, sans-serif
-
-$border-radius = .3em
-$border-width = .09em
-
 // Размерность:
+// 1. В любом независимом блоке устанавливается размер шрифта, равному базовому размеру шрифта.
+// 2. Базовый размер зависит от значения размера шрифта для корня документа.
+// 3. Все отступы, заполнение, границы, радиус и т.д., указывается на основании размера шрифта блока в em.
+// 4. При необходимости уменьшить или увеличить блок необходимо воспользоваться вспомогательными классами.
+
+// Размер шрифта для корня документа
+$font-size-root = 10px // calc(0.5em + 1vw)
+
+// Базовый размер шрифта
+$font-size-base = 2rem
+
+// Схема множителей:
 // s - small (маленький)
 // m - medium small (средний - по умолчанию, создавать отдельный мофикатор не нужно)
 // l - large (большой)
 // xl - extra large (очень большой)
 // xxl - extra extra large (очень очень большой)
-
-$sizes = {
-  s: .8,
-  m: 1,
-  l: 1.2,
-  xl: 1.4,
-  xxl: 1.6,
+$scheme-size = {
+  "s": .8,
+  "m": 1,
+  "l": 1.2,
+  "xl": 1.4,
+  "xxl": 1.6
 }
 
+$sizes = map-loop($scheme-size, get-size-by-base)
+
+// Типография:
+// Основной шрифт - "Fira Code" (без засечек - sans-serif).
+// Запасной шрифт или безопасный шрифт - Tahoma (без засечек).
+$font-family-light = "Fira Code Light"
+$font-family-regular = "Fira Code Regular"
+$font-family-bold = "Fira Code Bold"
+$font-family-safe = Tahoma, sans-serif
+
+// Палитра цветов:
 $colors = {
   // theme primary light (пока не используется, может пригодиться в будущем)
   blue: #5c67e6,
@@ -82,3 +97,8 @@ $theme = {
   error: $colors.coral,
   disable: (),
 }
+
+// Другое, используемой сейчас
+$max-width-application = 1200px
+$border-radius = .3em
+$border-width = .09em

@@ -130,6 +130,7 @@ module.exports = {
   devtool: 'eval-source-map',
   stats: {
     colors: true,
+    errorDetails: true,
   },
   plugins,
 };

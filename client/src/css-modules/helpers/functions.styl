@@ -1,0 +1,13 @@
+map-loop(map, function)
+  result-map = {}
+
+  for map-key, map-value in map
+    result-map[map-key] = function(map-value)
+
+  return result-map
+
+get-size-by-base(factor, baseSize = 2rem)
+  if factor == null
+    return baseSize
+
+  return baseSize * factor
