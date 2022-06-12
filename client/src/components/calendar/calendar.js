@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Button from "@components/button";
+import Button from '@components/button';
 import Icon from '@components/icon';
 import Week from './week';
 import { DateUtils } from '@utils';

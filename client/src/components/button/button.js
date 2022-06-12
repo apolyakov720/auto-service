@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { CSSUtils } from '@utils';
 import { CSSConstants } from '@constants';
 
+/** Компонент кнопка */
 class Button extends React.Component {
   render() {
     const { caption, theme, size, extra, circled, noStroke, onClick } = this.props;
@@ -26,5 +28,37 @@ class Button extends React.Component {
     );
   }
 }
+
+Button.propTypes = {
+  /** Название кнопки */
+  caption: PropTypes.string,
+  /**
+   * Тема кнопки. Определяет внешний вид компонента.
+   * */
+  theme: PropTypes.oneOf(['primary', 'secondary', 'info', 'warning', 'error']),
+  /**
+   * Размер кнопки.
+   * Определяется на основе размера шрифта для корня документа.
+   * Примечание: размер "m" устанавливается по умолчанию средствами css, передача свойства необязательна.
+   * */
+  size: PropTypes.oneOf(['S', 'M', 'L', 'XL', 'XXL']),
+  /**
+   * Дополнительное содержимое кнопки.
+   * Принимает допустимый в качестве дочернего элемента React тип данных.
+   */
+  extra: PropTypes.elementType,
+  /** Флаг для придания кнопки округленного внешенего вида. */
+  circled: PropTypes.bool,
+  /** Флаг для скрытия границ кнопки, путем установления цвета границ в цвет фона. */
+  noStroke: PropTypes.bool,
+  /** Функция обработчик нажатия на кнопку. */
+  onClick: PropTypes.func,
+};
+
+Button.defaultProps = {
+  size: 'M',
+  circled: false,
+  noStroke: false,
+};
 
 export default Button;

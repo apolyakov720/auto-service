@@ -12,6 +12,10 @@ export default {
 export const Default = (args) => <Button {...args} />;
 Default.args = {
   caption: 'Default',
+  size: 'M',
+  noStroke: false,
+  circled: false,
+  extra: null,
 };
 
 export const Theme = () => (
@@ -41,23 +45,5 @@ export const Extra = () => (
     <br />
     <br />
     <Button noStroke extra={<Icon source={Icon.sources.base.key} />} />
-  </>
-);
-
-export const Sizeable = () => (
-  <>
-    <Button caption="Size S" theme={CSSConstants.theme.PRIMARY} size={CSSConstants.size.S} />
-    <br />
-    <br />
-    <Button caption="Size M (default)" theme={CSSConstants.theme.PRIMARY} />
-    <br />
-    <br />
-    <Button caption="Size L" theme={CSSConstants.theme.PRIMARY} size={CSSConstants.size.L} />
-    <br />
-    <br />
-    <Button caption="Size XL" theme={CSSConstants.theme.PRIMARY} size={CSSConstants.size.XL} />
-    <br />
-    <br />
-    <Button caption="Size XXL" theme={CSSConstants.theme.PRIMARY} size={CSSConstants.size.XXL} />
   </>
 );
