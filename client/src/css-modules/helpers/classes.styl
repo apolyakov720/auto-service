@@ -4,13 +4,19 @@ $classes-config-map = {
     values: {
       position: absolute,
       opacity: 0,
-      pointer-events: none
-    }
+      pointer-events: none,
+    },
   },
   size: {
     property: font-size,
-    values: $sizes
-  }
+    values: $sizes,
+  },
+  trigger: {
+    values: {
+      display: inline-block,
+      position: relative,
+    },
+  },
 }
 
 for class-key, class-props in $classes-config-map

@@ -8,9 +8,10 @@ export default {
   component: Icon,
 };
 
-export const Default = (args) => <Icon {...args} source={Icon.sources.base.check} />;
+export const Default = (args) => <Icon {...args} />;
 Default.args = {
   bold: false,
   size: CSSConstants.size.M,
   color: 'red',
+  source: Icon.sources.base.check,
 };

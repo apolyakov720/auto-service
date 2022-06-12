@@ -2,6 +2,7 @@ import React from 'react';
 
 import Input from '@components/input';
 import Icon from '@components/icon';
+import { CSSConstants } from '@constants';
 
 class SearchBar extends React.Component {
   state = {
@@ -17,7 +18,7 @@ class SearchBar extends React.Component {
 
   setTheme = () => {
     this.setState({
-      theme: 'primary',
+      theme: CSSConstants.theme.PRIMARY,
     });
   };
 
@@ -40,17 +41,14 @@ class SearchBar extends React.Component {
   render() {
     const { placeholder = 'Поиск...' } = this.props;
     const { value, theme } = this.state;
-    let effect = null;
 
-    if (value) {
-      effect = <Icon source={Icon.sources.base.cross} />;
-    }
+    const effectIconColor = value ? '' : 'white';
 
     return (
       <Input
         theme={theme}
         extra={<Icon source={Icon.sources.base.search} />}
-        effect={effect}
+        effect={<Icon source={Icon.sources.base.cross} color={effectIconColor} />}
         additionalProps={{
           onEffectClick: this.setValue,
         }}

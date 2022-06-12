@@ -29,7 +29,7 @@ const FormControl = ({
         </div>
       )}
       <div className="form-control__component">
-        {children}
+        <div className="form-control__container">{children}</div>
         {effect && (
           <div onClick={onEffectClick} className="form-control__effect">
             {effect}
