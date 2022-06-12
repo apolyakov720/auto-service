@@ -10,13 +10,13 @@
     border-radius 50%
     position relative
     flex-shrink 0
-    color $colors.white;
-    border $border-width solid $colors.gray200;
-    background-color $colors.white;
+    color $color-text.light;
+    border $border-width solid $color-border.default;
+    background-color $color-background.light;
 
     ^[0] input:checked + &
-      border-color $theme.primary;
-      background-color $theme.primary;
+      border-color $color-theme.primary;
+      background-color $color-theme.primary;
 
     &:before
     &::before
@@ -32,3 +32,4 @@
 
   &__caption
     margin-left .4em
+    user-select none

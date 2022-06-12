@@ -1,6 +1,8 @@
 import React from 'react';
+
 import Switch from './switch';
 import Icon from '@components/icon';
+import { CSSConstants } from '@constants';
 
 class Checkbox extends React.Component {
   render() {
@@ -8,7 +10,7 @@ class Checkbox extends React.Component {
 
     return (
       <Switch type="checkbox" baseClass="checkbox" caption={caption} {...inputProps}>
-        <Icon source={Icon.sources.base.check} size="xxl" />
+        <Icon source={Icon.sources.base.check} size={CSSConstants.size.XXL} />
       </Switch>
     );
   }

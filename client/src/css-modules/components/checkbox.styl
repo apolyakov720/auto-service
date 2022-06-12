@@ -7,15 +7,16 @@
     display inline-flex
     width 1.5em
     height @width
-    color $colors.white;
-    border $border-width solid $colors.gray200;
-    background-color $colors.white;
+    color $color-text.light;
+    border $border-width solid $color-border.default;
+    background-color $color-background.light;
     border-radius $border-radius
     justify-content center
 
     ^[0] input:checked + &
-      border-color $theme.primary;
-      background-color $theme.primary;
+      border-color $color-theme.primary;
+      background-color $color-theme.primary;
 
   &__caption
     margin-left .4em
+    user-select none

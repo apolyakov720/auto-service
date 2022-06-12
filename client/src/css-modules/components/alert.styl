@@ -2,7 +2,7 @@
   font-size 2rem
   border-radius $border-radius
   padding 1em
-  color $theme.primary;
+  color $color-theme.primary;
   background-color lighten(@color, 90%)
   display flex
 
@@ -16,18 +16,4 @@
     margin-left .5em
     line-height 0
 
-  &--secondary
-    color $theme.secondary;
-    background-color lighten(@color, 90%)
-
-  &--info
-    color $theme.info;
-    background-color lighten(@color, 90%)
-
-  &--warning
-    color $theme.warning;
-    background-color lighten(@color, 90%)
-
-  &--error
-    color $theme.error;
-    background-color lighten(@color, 90%)
+  theme-variant(variant-badge, ("primary" "info"))

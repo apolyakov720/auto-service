@@ -1,4 +1,33 @@
-const mergeClasses = (...classes) => classes.join(' ');
+import { CSSConstants } from '@constants';
+
+const mergeClasses = (...classes) => {
+  return classes
+    .reduce((accumulator, chunkClass) => {
+      let resultChunkClass = '';
+      const classChunkType = typeof chunkClass;
+
+      if (classChunkType === 'string') {
+        resultChunkClass = chunkClass;
+      }
+
+      if (classChunkType === 'object') {
+        const chunks = Object.entries(chunkClass);
+
+        chunks.forEach((chunk) => {
+          const [key, value] = chunk;
+
+          if (value) {
+            resultChunkClass = resultChunkClass.concat(key);
+          }
+        });
+      }
+
+      accumulator.push(resultChunkClass);
+
+      return accumulator;
+    }, [])
+    .join(' ');
+};
 
 const mergeModifiers = (baseClass = '', modifiers = {}) => {
   return Object.entries(modifiers)
@@ -7,7 +36,7 @@ const mergeModifiers = (baseClass = '', modifiers = {}) => {
         const [key, value] = modifier;
 
         if (value) {
-          accumulator.push(`${baseClass}--${key}`);
+          accumulator.push(`${baseClass}${CSSConstants.delimiter.MODIFIER}${key}`);
         }
 
         return accumulator;

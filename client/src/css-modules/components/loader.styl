@@ -7,15 +7,15 @@ $track-factor = 3 * $track-size
   height 5em
   padding $track-size
   border-radius 50%
-  background $colors.gray100;
+  background $color-background.default;
   overflow hidden
 
   &__circle
     width 100%
     height 100%
     border-radius inherit
-    background linear-gradient(0deg, $theme.primary, $theme.primary),
-               linear-gradient(0deg, $theme.primary 30%, $colors.gray100 60%)
+    background linear-gradient(0deg, $color-theme.primary, $color-theme.primary),
+               linear-gradient(0deg, $color-theme.primary 30%, $color-background.default 60%)
     background-size 50% 100%, 51% 100%
     background-position 0 0, 100% 0
     background-repeat no-repeat, no-repeat
@@ -27,14 +27,14 @@ $track-factor = 3 * $track-size
       content ''
       width ($track-factor / 2)
       height ($track-factor / 2)
-      background-color $theme.primary;
+      background-color $color-theme.primary;
       border-radius inherit
       top 0
       left 40%
 
   &__placeholder
     position absolute
-    background-color $colors.gray100;
+    background-color $color-background.default;
     top 50%
     left 50%
     width 'calc(100% - %s)' % ($track-factor)

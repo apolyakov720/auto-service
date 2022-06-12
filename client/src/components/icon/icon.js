@@ -1,6 +1,7 @@
 import React from 'react';
 
 import baseIconSet from './sets/base';
+import { CSSConstants } from '@constants';
 import { CSSUtils } from '@utils';
 
 const Icon = ({ source, size, bold }) => {
@@ -9,9 +10,8 @@ const Icon = ({ source, size, bold }) => {
   }
 
   const Svg = source;
-  const iconClass = CSSUtils.mergeModifiers('icon', {
-    bold,
-    [`size-${size}`]: size,
+  const iconClass = CSSUtils.mergeClasses(CSSUtils.mergeModifiers('icon', { bold }), {
+    [CSSConstants.sizeClass[size]]: size,
   });
 
   return (

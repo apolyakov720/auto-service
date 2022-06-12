@@ -3,7 +3,7 @@
   display inline-flex
   border-width $border-width
   border-style solid
-  border-color $colors.gray200;
+  border-color $color-border.default;
   border-radius $border-radius
   user-select none
   overflow hidden
@@ -14,12 +14,12 @@
     border-right-width @border-width
     border-right-color @border-color
     border-right-style solid
-    color $theme.primary;
-    background-color $colors.white;
+    color $color-theme.primary;
+    background-color $color-background.light;
 
     &--disabled
-      color $colors.gray200;
-      background-color $colors.gray100;
+      color $color-element.placeholder;
+      background-color $color-background.default;
 
     &:last-child
       border none
@@ -31,7 +31,7 @@
     line-height @height
 
     &--selected
-      color $colors.white;
-      background-color $theme.primary;
+      color $color-text.light;
+      background-color $color-theme.primary;
       border-radius $border-radius
-      box-shadow 0 1px 3px $colors.gray400;
+      box-shadow 0 1px 3px rgba($color-element.shadow-dark, .5);

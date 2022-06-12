@@ -1,8 +1,10 @@
 import React from 'react';
 
+import Button from "@components/button";
 import Icon from '@components/icon';
 import Week from './week';
 import { DateUtils } from '@utils';
+import { CSSConstants } from '@constants';
 
 class Calendar extends React.Component {
   constructor(props) {
@@ -79,13 +81,17 @@ class Calendar extends React.Component {
     return (
       <div className="calendar">
         <div className="calendar__header">
-          <div onClick={this.setPreviousMonth}>
-            <Icon source={Icon.sources.base.chevronLeft} size="s" bold />
-          </div>
+          <Button
+            extra={<Icon source={Icon.sources.base.chevronLeft} size={CSSConstants.size.S} bold />}
+            onClick={this.setPreviousMonth}
+            noStroke
+          />
           <div className="calendar__month">{this.header}</div>
-          <div onClick={this.setNextMonth}>
-            <Icon source={Icon.sources.base.chevronRight} size="s" bold />
-          </div>
+          <Button
+            extra={<Icon source={Icon.sources.base.chevronRight} size={CSSConstants.size.S} bold />}
+            onClick={this.setNextMonth}
+            noStroke
+          />
         </div>
         <div className="calendar__daily-planner">
           {this.weekDays}

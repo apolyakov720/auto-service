@@ -3,6 +3,7 @@ import React from 'react';
 import PaginationItem from './pagination-item';
 import Icon from '@components/icon';
 import { CommonUtils } from '@utils';
+import { CSSConstants } from '@constants';
 
 class Pagination extends React.Component {
   constructor(props) {
@@ -62,7 +63,9 @@ class Pagination extends React.Component {
     const pageCount = countPages - 1;
 
     let visiblePages = new Set([0, selected - 1, selected, selected + 1, pageCount]);
-    const horizontalDots = <Icon source={Icon.sources.base.dotsHorizontal} size="s" bold />;
+    const horizontalDots = (
+      <Icon source={Icon.sources.base.dotsHorizontal} size={CSSConstants.size.S} bold />
+    );
 
     if (selected <= 3) {
       [1, 2, 3, 4].forEach((page) => visiblePages.add(page));
@@ -124,8 +127,12 @@ class Pagination extends React.Component {
       return null;
     }
 
-    const leftChevron = <Icon source={Icon.sources.base.chevronLeft} size="s" bold />;
-    const rightChevron = <Icon source={Icon.sources.base.chevronRight} size="s" bold />;
+    const leftChevron = (
+      <Icon source={Icon.sources.base.chevronLeft} size={CSSConstants.size.S} bold />
+    );
+    const rightChevron = (
+      <Icon source={Icon.sources.base.chevronRight} size={CSSConstants.size.S} bold />
+    );
 
     return (
       <ul className="pagination">

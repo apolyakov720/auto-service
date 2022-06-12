@@ -22,7 +22,7 @@ for class-key, class-props in $classes-config-map
     if type(values) == 'object'
       for value-key, value in values
         .{class-key}-{value-key}
-          {property} value !important
+          {property} value
 
   if pseudos != null and type(pseudos) == 'string'
     .{class-key}

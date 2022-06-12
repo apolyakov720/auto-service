@@ -12,16 +12,16 @@ $font-size-base = 2rem
 
 // Схема множителей:
 // s - small (маленький)
-// m - medium small (средний - по умолчанию, создавать отдельный мофикатор не нужно)
+// m - medium small (средний - по умолчанию)
 // l - large (большой)
 // xl - extra large (очень большой)
 // xxl - extra extra large (очень очень большой)
 $scheme-size = {
-  "s": .8,
-  "m": 1,
-  "l": 1.2,
-  "xl": 1.4,
-  "xxl": 1.6
+  s: .8,
+  m: 1,
+  l: 1.2,
+  xl: 1.4,
+  xxl: 1.6,
 }
 
 $sizes = map-loop($scheme-size, get-size-by-base)
@@ -34,19 +34,13 @@ $font-family-regular = "Fira Code Regular"
 $font-family-bold = "Fira Code Bold"
 $font-family-safe = Tahoma, sans-serif
 
-// Палитра цветов:
-$colors = {
-  // theme primary light (пока не используется, может пригодиться в будущем)
-  blue: #5c67e6,
-
+// Палитра цветов (TODO: сделать отдельную настройку для пользователя):
+$color-palette = {
   // theme primary dark
-  darkBlue: #4952b8,
-
-  // theme secondary light (пока не используется, может пригодиться в будущем)
-  green: #0abf8a
+  blue: #4952b8,
 
   // theme secondary dark
-  darkGreen: #00bf79,
+  green: #00bf79,
 
   // theme info
   lightBlue: #51c5f5,
@@ -82,21 +76,55 @@ $colors = {
   black: #1e2225,
 }
 
-// Theme (тема элемента)
-// primary - основная (по умолчанию, создавать отдельный мофикатор не нужно)
-// secondary - вторичная
-// warning - предупреждение
-// error - ошибка
-// disable - отключенный
-
-$theme = {
-  primary: $colors.darkBlue,
-  secondary: $colors.darkGreen,
-  info: $colors.lightBlue,
-  warning: $colors.orange,
-  error: $colors.coral,
-  disable: (),
+// Функциональные цвета (TODO: сделать отдельную настройку для пользователя):
+$colors = {
+  // Theme (тема элемента)
+  // primary - основная (по умолчанию)
+  // secondary - вторичная
+  // warning - предупреждение
+  // error - ошибка
+  // disable - отключенный
+  theme: {
+    primary: $color-palette.blue,
+    secondary: $color-palette.green,
+    info: $color-palette.lightBlue,
+    warning: $color-palette.orange,
+    error: $color-palette.coral,
+  },
+  background: {
+    light: $color-palette.white,
+    default: $color-palette.gray100,
+    dark: $color-palette.black,
+  },
+  border: {
+    default: $color-palette.gray200,
+    dark: $color-palette.gray300,
+  },
+  text: {
+    light: $color-palette.white,
+    default: $color-palette.gray500,
+    dark: $color-palette.black,
+  },
+  element: {
+    header: $color-palette.gray600,
+    icon: $color-palette.gray400,
+    subheader: $color-palette.gray400,
+    placeholder: $color-palette.gray400,
+    label: $color-palette.gray600,
+    separator: $color-palette.gray400,
+    shadow-light: $color-palette.gray500,
+    shadow-default: $color-palette.gray600,
+    shadow-dark: $color-palette.black,
+  },
 }
+
+// Функциональные переменные
+// TODO: сделать проверку на наличие определенных полей и добавить по умолчанию если их нет
+$color-theme = $colors.theme;
+$color-background = $colors.background;
+$color-border = $colors.border;
+$color-text = $colors.text;
+$color-element = $colors.element;
 
 // Другое, используемой сейчас
 $max-width-application = 1200px

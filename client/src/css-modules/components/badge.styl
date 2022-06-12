@@ -2,31 +2,15 @@
   font-size 2rem
   font-weight bold
   display inline-block
-  color $theme.primary;
+  color $color-theme.primary;
   background-color lighten(@color, 90%);
   padding .5em 1em
   border-radius 1em
   text-transform uppercase
 
-  &--secondary
-    color $theme.secondary;
-    background-color lighten(@color, 90%)
-
-  &--info
-    color $theme.info;
-    background-color lighten(@color, 90%)
-
-  &--warning
-    color $theme.warning;
-    background-color lighten(@color, 90%)
-
-  &--error
-    color $theme.error;
-    background-color lighten(@color, 90%)
-
   &--squared
     border-radius $border-radius
-    
+
   &--circled
     display inline-flex
     border-radius 50%
@@ -40,3 +24,5 @@
       float left
       width auto
       padding-bottom 100%
+
+  theme-variant(variant-badge, ("primary"))

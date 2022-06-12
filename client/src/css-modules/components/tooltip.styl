@@ -21,10 +21,10 @@
     display inline-flex
     border-radius .3em
     padding .5em
-    color $colors.white;
-    background linear-gradient(90deg, #475259, #1e2225)
+    color $color-text.light;
+    background linear-gradient(90deg, $color-element.shadow-default, $color-element.shadow-dark)
     position relative
-    box-shadow 0 5px 8px rgba($colors.black, .35);
+    box-shadow 0 5px 8px rgba($color-element.shadow-dark, .35);
     min-width 4em
     min-height 1.8em
     white-space nowrap
@@ -45,8 +45,8 @@
 
       ^[0]--top &
         top 100%
-        border-top .3em solid mix(#475259, #1e2225)
+        border-top .3em solid mix($color-element.shadow-default, $color-element.shadow-dark)
 
       ^[0]--bottom &
         bottom 100%
-        border-bottom .3em solid mix(#475259, #1e2225)
+        border-bottom .3em solid mix($color-element.shadow-default, $color-element.shadow-dark)

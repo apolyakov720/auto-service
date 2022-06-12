@@ -1,5 +1,3 @@
-import App from './app';
-import Api from './api';
-
-export const AppConstants = App;
-export const ApiConstants = Api;
+export { default as AppConstants } from './app';
+export { default as APIConstants } from './api';
+export { default as CSSConstants } from './css';

@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { CSSUtils } from '@utils';
 import Icon from '@components/icon';
+import { CSSUtils } from '@utils';
+import { CSSConstants } from '@constants';
 
 class Avatar extends React.Component {
   render() {
@@ -13,8 +14,8 @@ class Avatar extends React.Component {
       content = <img src={source} alt="avatar-image" />;
     }
 
-    const avatarClass = CSSUtils.mergeModifiers('avatar', {
-      [`size-${size}`]: size,
+    const avatarClass = CSSUtils.mergeClasses('avatar', {
+      [CSSConstants.sizeClass[size]]: size,
     });
 
     return <div className={avatarClass}>{content}</div>;

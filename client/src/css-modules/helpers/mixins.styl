@@ -1,0 +1,21 @@
+theme-variant(variant, exclude = ())
+  for theme-name, theme-value in $color-theme
+    is-theme-exclude = false
+
+    if type(exclude) != null
+      for i in range(0, (length(exclude) - 1))
+        if theme-name == exclude[i]
+          is-theme-exclude = true
+
+    if !is-theme-exclude
+      &--{theme-name}
+        variant(theme-value)
+
+variant-badge(value-color)
+  color value-color
+  background-color lighten(@color, 90%)
+
+variant-button(value-color)
+  color $color-text.light;
+  background-color value-color
+  border-color @background-color

@@ -1,7 +1,7 @@
 .calendar
   font-size 2rem
   padding .25em
-  border $border-width solid $colors.gray200;
+  border $border-width solid $color-border.default;
   border-radius $border-radius
   display inline-block
 
@@ -33,9 +33,8 @@
     border-radius 50%
 
     &--selected
-      color $colors.white;
-      background-color $theme.primary;
-      box-shadow 0 1px 3px $colors.gray400;
+      color $color-text.light;
+      background-color $color-theme.primary;
 
     &--outside
-      color $colors.gray400;
+      color $color-element.placeholder;

@@ -1,16 +1,16 @@
 .input
   font-size inherit
-  font-family "Fira Code Light", $font-family-safe
+  font-family $font-family-light, $font-family-safe
   border none
   outline none
   display block
   width 100%
   appearance none
-  background-color $colors.white;
-  color $colors.gray400;
+  background-color $color-background.light;
+  color $color-element.placeholder;
 
   &--active
-    color $colors.gray600;
+    color $color-element.header;
 
   &::placeholder
     color @color

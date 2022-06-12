@@ -14,7 +14,7 @@ class FileLoader extends React.Component {
       <div className="file-loader">
         <div
           style={{ width: `${percent > 100 ? 100 : percent}%` }}
-          className="file-loader__loadline"
+          className="file-loader__load-line"
         />
       </div>
     );

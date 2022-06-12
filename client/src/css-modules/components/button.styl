@@ -3,12 +3,12 @@
   display inline-flex
   justify-content center
   align-items center
-  border $border-width solid $colors.gray200;
+  border $border-width solid $color-border.default;
   border-radius $border-radius
   outline none
   padding .25em
-  color $colors.black;
-  background-color $colors.white;
+  color $color-text.dark;
+  background-color $color-background.light;
   user-select none
 
   &__caption
@@ -24,3 +24,5 @@
 
   &--no-stroke
     border-color @background-color
+
+  theme-variant(variant-button)
