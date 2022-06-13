@@ -1,10 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import PaginationItem from './pagination-item';
 import Icon from '@components/icon';
 import { CommonUtils } from '@utils';
 import { CSSConstants } from '@constants';
 
+/** Компонент "Pagination" (Нумерация страниц) */
 class Pagination extends React.Component {
   constructor(props) {
     super(props);
@@ -151,5 +153,27 @@ class Pagination extends React.Component {
     );
   }
 }
+
+Pagination.propTypes = {
+  /**
+   * Количество элементов для постраничного распеделения.
+   * Должно быть больше нуля и больше размера страницы (см. свойство "size").
+   * */
+  quantity: PropTypes.number.isRequired,
+  /**
+   * Размер страницы.
+   * Максимальное количество элементов на странице.
+   * */
+  size: PropTypes.number,
+  /**
+   * Функция обработчик, вызывается при каждом изменении номера страницы.
+   * Принимает номер выбранной страницы в качестве единственного аргумента.
+   * */
+  onChange: PropTypes.func,
+};
+
+Pagination.defaultProps = {
+  size: 5,
+};
 
 export default Pagination;

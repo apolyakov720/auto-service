@@ -10,7 +10,7 @@ export default {
 
 export const Basic = (args) => <Alert {...args} />;
 Basic.args = {
-  content: 'Это компонент оповещения!',
+  content: 'Это компонент "Оповещение"',
   theme: CSSConstants.theme.PRIMARY,
   closable: true,
 };

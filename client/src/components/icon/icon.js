@@ -5,7 +5,7 @@ import baseIconSet from './sets/base';
 import { CSSConstants } from '@constants';
 import { CSSUtils } from '@utils';
 
-/** Компонент иконка */
+/** Компонент "Icon" (Иконка) */
 class Icon extends React.Component {
   isColor = (value) => CSS.supports('color', value);
 
@@ -42,14 +42,14 @@ class Icon extends React.Component {
 Icon.propTypes = {
   /**
    * Источник иконки.
-   * Поле обязательно для заполнения.
+   * Свойство обязательно для заполнения.
    * Валидное значение - допустимый React элемент
    * (т.к. используется загрузчик svgr, который преобразует каждую иконку в React элемент).
    * Все источники определяются в статической переменной класса Icon.sources.
    * */
   source: PropTypes.elementType.isRequired,
   /**
-   * Размер иконки.
+   * Размер компонента.
    * Определяется на основе размера шрифта для корня документа.
    * Примечание: по умолчанию размер иконки наследуются от родительского узла средствами CSS.
    * */

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Icon from '@components/icon';
 import { CSSUtils } from '@utils';
 
-/** Компонент оповещения */
+/** Компонент "Alert" (Оповещение) */
 class Alert extends React.Component {
   render() {
     const { content, theme, closable = true } = this.props;
@@ -28,13 +28,16 @@ class Alert extends React.Component {
 
 Alert.propTypes = {
   /**
-   * Содержимое оповещения.
+   * Содержимое компонента.
    * Свойство обязательно для заполнения.
-   * Принимает допустимый в качестве дочернего элемента React тип данных.
+   * Принимает React элемент, либо допустимый в качестве дочернего элемента React тип данных.
    * */
-  content: PropTypes.elementType.isRequired,
+  content: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.elementType,
+  ]),
   /**
-   * Тема оповещения.
+   * Тема компонента.
    * Определяет внешний вид компонента.
    * Примечание: основная тема устанавливается по умолчанию средствами CSS, передача свойства необязательна.
    * */
@@ -44,7 +47,6 @@ Alert.propTypes = {
 };
 
 Alert.defaultProps = {
-  theme: 'primary',
   closable: true,
 };
 

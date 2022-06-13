@@ -1,9 +1,11 @@
 import React from 'react';
+import PropsTypes from 'prop-types';
 
 import Input from '@components/input';
 import Icon from '@components/icon';
 import { CSSConstants } from '@constants';
 
+/** Компонент "SearchBar" (Панель поиска) */
 class SearchBar extends React.Component {
   state = {
     value: '',
@@ -61,5 +63,19 @@ class SearchBar extends React.Component {
     );
   }
 }
+
+SearchBar.propTypes = {
+  /** Текстовый подсказка поиска(что искать?) для пользователя. */
+  placeholder: PropsTypes.string,
+  /**
+   * Функция обработчик, вызывается при каждом изменении строки поиска.
+   * Принимает строку поиска в качестве единственного аргумента.
+   * */
+  onChange: PropsTypes.func,
+};
+
+SearchBar.defaultProps = {
+  placeholder: 'Поиск...',
+};
 
 export default SearchBar;
