@@ -1,8 +1,8 @@
-map-loop(map, function)
+map-loop(map, function, args...)
   result-map = {}
 
   for map-key, map-value in map
-    result-map[map-key] = function(map-value)
+    result-map[map-key] = function(map-value, args)
 
   return result-map
 

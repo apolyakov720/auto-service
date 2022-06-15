@@ -3,21 +3,28 @@ import PropTypes from 'prop-types';
 
 import Icon from '@components/icon';
 import { CSSUtils } from '@utils';
+import { CSSConstants } from "@constants";
 
 /** Компонент "Alert" (Оповещение) */
 class Alert extends React.Component {
   render() {
-    const { content, theme, closable = true } = this.props;
+    const { content, theme, textual, size, onClose, closable } = this.props;
 
-    const alertClass = CSSUtils.mergeModifiers('alert', {
-      [theme]: theme,
-    });
+    const alertClass = CSSUtils.mergeClasses(
+      CSSUtils.mergeModifiers('alert', {
+        textual,
+        [theme]: theme,
+      }),
+      {
+        [CSSConstants.sizeClass[size]]: size,
+      }
+    );
 
     return (
       <div className={alertClass}>
         <div className="alert__content">{content}</div>
         {closable && (
-          <div className="alert__effect">
+          <div className="alert__effect" onClick={onClose}>
             <Icon source={Icon.sources.base.cross} bold />
           </div>
         )}

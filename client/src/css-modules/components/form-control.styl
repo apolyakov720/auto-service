@@ -1,5 +1,5 @@
 .form-control
-  font-size 2rem
+  font-size $font-size-base
   color $color-palette.gray200;
   border-width $border-width
   border-color @color
@@ -38,6 +38,8 @@
   &__container
     flex 1
 
-  &--primary
-    color $color-theme.primary;
-    border-color @color
+  &--dropdown
+    border-bottom none
+    border-radius @border-radius @border-radius 0 0
+
+  theme-variant(variant-form-control)

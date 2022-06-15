@@ -1,5 +1,5 @@
 .alert
-  font-size 2rem
+  font-size $font-size-base
   border-radius $border-radius
   padding 1em
   color $color-theme.primary;
@@ -15,5 +15,8 @@
     justify-content center
     margin-left .5em
     line-height 0
+
+  &--textual
+    padding .5em
 
   theme-variant(variant-badge, ("primary" "info"))

@@ -1,5 +1,8 @@
 import React from 'react';
 
+import { Badge } from "@components/badge";
+import { CSSConstants } from "@constants";
+
 class FormField extends React.Component {
   render() {
     const { children, label, required, hints = [], errors = [] } = this.props;
@@ -9,15 +12,24 @@ class FormField extends React.Component {
 
     return (
       <div className="form-field">
-        {label && (
-          <div className="form-field__label">
-            {label}
-            {required && '*'}
+        {(label || required) && (
+          <div className="form-field__header">
+            {label && <div className="form-field__label">{label}</div>}
+            {required && (
+              <div className="form-field__required">
+                <Badge
+                  content="Обязательный"
+                  size={CSSConstants.size.S}
+                  theme={CSSConstants.theme.SECONDARY}
+                  squared
+                />
+              </div>
+            )}
           </div>
         )}
         <div className="form-field__content">{children}</div>
-        <ul className="form-field__hints">{resultHints}</ul>
-        <ul className="form-field__errors">{resultErrors}</ul>
+        {hints.length > 0 && <ul className="form-field__hints">{resultHints}</ul>}
+        {errors.length > 0 && <ul className="form-field__errors">{resultErrors}</ul>}
       </div>
     );
   }

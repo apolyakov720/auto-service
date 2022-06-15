@@ -7,12 +7,16 @@ const FormControl = ({
   effect,
   theme,
   children,
+  dropdown,
   additionalProps = {
     onExtraClick: null,
     onEffectClick: null,
   },
 }) => {
-  const formControlClass = CSSUtils.mergeModifiers('form-control', { [theme]: theme });
+  const formControlClass = CSSUtils.mergeModifiers('form-control', {
+    dropdown,
+    [theme]: theme,
+  });
 
   const onExtraClick = () => {
     additionalProps.onExtraClick && additionalProps.onExtraClick();

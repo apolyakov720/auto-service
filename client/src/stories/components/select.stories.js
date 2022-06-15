@@ -9,6 +9,8 @@ export default {
 
 export const Default = (args) => <Select {...args} />;
 Default.args = {
+  searchable: true,
+  multiple: false,
   items: [
     {
       id: 1,

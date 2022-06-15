@@ -2,16 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { CSSUtils, CommonUtils } from '@utils';
+import { CSSConstants } from "@constants";
 
 /** Компонент "Badge" (Значок) */
 class Badge extends React.Component {
   render() {
-    const { theme, content, squared, circled } = this.props;
-    const badgeClass = CSSUtils.mergeModifiers('badge', {
-      circled,
-      squared,
-      [theme]: theme,
-    });
+    const { theme, content, squared, circled, size } = this.props;
+
+    const badgeClass = CSSUtils.mergeClasses(
+      CSSUtils.mergeModifiers('badge', {
+        circled,
+        squared,
+        [theme]: theme,
+      }),
+      {
+        [CSSConstants.sizeClass[size]]: size,
+      }
+    );
 
     return (
       <div className={badgeClass}>{!CommonUtils.isEmpty(content) && <span>{content}</span>}</div>

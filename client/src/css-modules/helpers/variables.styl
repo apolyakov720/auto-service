@@ -17,14 +17,14 @@ $font-size-base = 2rem
 // xl - extra large (очень большой)
 // xxl - extra extra large (очень очень большой)
 $scheme-size = {
-  s: .8,
+  s: .6,
   m: 1,
   l: 1.2,
   xl: 1.4,
   xxl: 1.6,
 }
 
-$sizes = map-loop($scheme-size, get-size-by-base)
+$sizes = map-loop($scheme-size, get-size-by-base, $font-size-base)
 
 // Типография:
 // Основной шрифт - "Fira Code" (без засечек - sans-serif).
@@ -90,6 +90,7 @@ $colors = {
     info: $color-palette.lightBlue,
     warning: $color-palette.orange,
     error: $color-palette.coral,
+    disabled: $color-palette.gray500,
   },
   background: {
     light: $color-palette.white,

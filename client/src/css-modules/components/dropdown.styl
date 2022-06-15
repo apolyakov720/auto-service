@@ -1,0 +1,22 @@
+.dropdown
+  position absolute
+  left 0
+  top 100%
+  width 100%
+  border $border-width solid $color-theme.primary;
+  border-radius 0 0 $border-radius $border-radius
+  overflow hidden
+
+  &__search
+    padding .25em .25em 0 .25em
+
+  &__footer
+    border-top $border-width solid $color-border.default;
+    padding .25em
+    text-align right
+
+    > *
+      margin-left .25em
+
+      &:first-child
+        margin-left 0

@@ -1,5 +1,6 @@
 import React from 'react';
 
+/** Компонент "Loader" (Индикатор загрузки) */
 const Loader = () => (
   <div className="loader">
     <div className="loader__circle">

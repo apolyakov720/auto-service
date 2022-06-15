@@ -1,28 +1,51 @@
 import React from 'react';
 
-import Button from '@components/button';
-import Icon from '@components/icon';
+import Select from "@components/select";
+
+const items = [
+  {
+    id: "1",
+    title: 'Honda',
+  },
+  {
+    id: "2",
+    title: 'Ford',
+  },
+  {
+    id: "3",
+    title: 'Lada',
+  },
+  {
+    id: "4",
+    title: 'Mazda',
+  },
+  {
+    id: "5",
+    title: 'Subaru',
+  },
+  {
+    id: "7",
+    title: 'BMW',
+  },
+  {
+    id: "8",
+    title: 'Mercedes',
+  },
+  {
+    id: "9",
+    title: 'Audi',
+  },
+  {
+    id: "10",
+    title: 'Saab',
+  },
+];
 
 const DevelopmentPage = () => {
   return (
     <>
       <div>
-        <Button />
-        <br />
-        <br />
-        <Button caption="This button" />
-        <br />
-        <br />
-        <Button caption="This button" extra={<Icon source={Icon.sources.base.cross} />} />
-        <br />
-        <br />
-        <Button extra={<Icon source={Icon.sources.base.cross} />} />
-        <br />
-        <br />
-        <Button extra={<Icon source={Icon.sources.base.cross} />} noStroke />
-        <br />
-        <br />
-        <Button extra={<Icon source={Icon.sources.base.cross} bold />} circled size="xxl" />
+        <Select items={items} label="Марка машины" required />
       </div>
     </>
   );
