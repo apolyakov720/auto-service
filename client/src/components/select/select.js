@@ -19,38 +19,43 @@ class Select extends React.Component {
     accumulatedList: [],
   };
 
-  addToSelectedList = (id) => {
-    this.setState({
-      selectedList: [id],
-    });
+  componentDidUpdate(_, prevState) {
+    const { open, selectedList } = this.state;
 
-    this.toggleOpen();
-  };
+    if (!prevState.open && open) {
+      this.setState({
+        accumulatedList: selectedList,
+      });
+    }
+  }
 
   mergeAccumulatorList = (onApplyFlag) => {
-    const { selectedList, accumulatedList } = this.state;
-
-    this.setState({
-      selectedList: selectedList.concat(onApplyFlag ? accumulatedList : []),
+    this.setState(({ accumulatedList, selectedList }) => ({
       accumulatedList: [],
-    });
+      selectedList: onApplyFlag ? accumulatedList : selectedList,
+    }));
   };
 
   toggleInAccumulatedList = (id) => {
+    const { multiple } = this.props;
     const { accumulatedList } = this.state;
-    let shallowCopy = [...accumulatedList];
+    let shallow = multiple ? [...accumulatedList] : [];
 
-    const isContained = accumulatedList.includes(id);
+    const isContained = shallow.includes(id);
 
     if (isContained) {
-      shallowCopy = shallowCopy.filter((item) => item !== id);
+      shallow = shallow.filter((item) => item !== id);
     } else {
-      shallowCopy.push(id);
+      shallow.push(id);
     }
 
     this.setState({
-      accumulatedList: shallowCopy,
+      accumulatedList: shallow,
     });
+
+    if (!multiple) {
+      this.onApplyList();
+    }
   };
 
   toggleOpen = () => {
@@ -69,11 +74,10 @@ class Select extends React.Component {
   };
 
   onCloseItem = (id) => {
-    const { selectedList } = this.state;
-
-    this.setState({
+    this.setState(({ selectedList, accumulatedList }) => ({
       selectedList: selectedList.filter((value) => value !== id),
-    });
+      accumulatedList: accumulatedList.filter((value) => value !== id),
+    }));
   };
 
   onSearchOption = (value) => {
@@ -142,12 +146,12 @@ class Select extends React.Component {
   }
 
   get list() {
-    const { items, multiple } = this.props;
-    const { filter, selectedList, accumulatedList } = this.state;
+    const { items } = this.props;
+    const { filter, accumulatedList } = this.state;
 
-    const resultItems = items
+    const preparedItems = items
       .map(({ id, title }) => {
-        const isSelected = selectedList.concat(accumulatedList).includes(id);
+        const isSelected = accumulatedList.includes(id);
         const isHighlighted = filter instanceof RegExp && filter.test(title);
 
         return {
@@ -160,7 +164,7 @@ class Select extends React.Component {
       })
       .sort((a, b) => a.order - b.order);
 
-    return resultItems.map(({ id, title, isSelected, isHighlighted }) => {
+    return preparedItems.map(({ id, title, isSelected, isHighlighted }) => {
       const listItemClass = CSSUtils.mergeModifiers('select__list-item', {
         selected: isSelected,
         highlighted: isHighlighted,
@@ -172,11 +176,7 @@ class Select extends React.Component {
           className={listItemClass}
           key={id}
           onClick={() => {
-            if (multiple) {
-              this.toggleInAccumulatedList(id);
-            } else {
-              !isSelected && this.addToSelectedList(id);
-            }
+            this.toggleInAccumulatedList(id);
           }}>
           <div>{title}</div>
           <Icon source={Icon.sources.base.check} color={iconColor} />
@@ -254,10 +254,13 @@ Select.propTypes = {
       title: PropTypes.string.isRequired,
     }),
   ).isRequired,
+  /** Заголовок. */
   label: PropTypes.string,
+  /** Флаг обязательного заполнения. */
   required: PropTypes.bool,
   /** Текстовый подсказка выбора (какие элементы в этом списке?) для пользователя. */
   placeholder: PropTypes.string,
+  /** Текстовый подсказка при пустом списке. */
   placeholderEmpty: PropTypes.string,
   /** Флаг, указывающий на то, что можно выполнить поиск элементов списка */
   searchable: PropTypes.bool,
