@@ -47,10 +47,7 @@ Button.propTypes = {
    * Дополнительное содержимое компонента.
    * Принимает React элемент, либо допустимый в качестве дочернего элемента React тип данных.
    * */
-  extra: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.elementType,
-  ]),
+  extra: PropTypes.oneOfType([PropTypes.element, PropTypes.elementType]),
   /** Флаг для придания компоненту округленного внешенего вида. */
   circled: PropTypes.bool,
   /** Флаг для скрытия границ кнопки, путем установления цвета границ в цвет фона. */

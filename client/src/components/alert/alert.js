@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Icon from '@components/icon';
 import { CSSUtils } from '@utils';
-import { CSSConstants } from "@constants";
+import { CSSConstants } from '@constants';
 
 /** Компонент "Alert" (Оповещение) */
 class Alert extends React.Component {
@@ -17,7 +17,7 @@ class Alert extends React.Component {
       }),
       {
         [CSSConstants.sizeClass[size]]: size,
-      }
+      },
     );
 
     return (
@@ -39,10 +39,7 @@ Alert.propTypes = {
    * Свойство обязательно для заполнения.
    * Принимает React элемент, либо допустимый в качестве дочернего элемента React тип данных.
    * */
-  content: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.elementType,
-  ]),
+  content: PropTypes.oneOfType([PropTypes.element, PropTypes.elementType]),
   /**
    * Тема компонента.
    * Определяет внешний вид компонента.

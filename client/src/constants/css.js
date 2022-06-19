@@ -1,4 +1,5 @@
 const size = {
+  XS: 'XS',
   S: 'S',
   M: 'M',
   L: 'L',
@@ -12,6 +13,7 @@ export default {
     MODIFIER: '--',
   },
   sizeClass: {
+    [size.XS]: 'size-xs',
     [size.S]: 'size-s',
     [size.M]: 'size-m',
     [size.L]: 'size-l',

@@ -4,6 +4,9 @@
   position relative
   width 20em
 
+  &__sample-sheet
+    display flex
+
   &__placeholder
     padding .5em 0
 
@@ -11,17 +14,28 @@
     margin-right .25em
     display inline-block
 
+    &--collapse
+      margin-left auto
+
     &:last-child
       margin-right 0
 
-  &__dropdown
-    position absolute
-    left 0
-    top 100%
-    width 100%
-    border $border-width solid $color-theme.primary;
-    border-radius 0 0 $border-radius $border-radius
-    overflow hidden
-
   &__list-item
+    display flex
+    align-items center
     padding .25em
+    margin-bottom .25em
+    border-radius $border-radius
+
+    &--selected
+      color $color-theme.primary;
+
+    &--highlighted
+      background linear-gradient(90deg, $color-theme.warning, transparent 90%)
+
+    &:last-child
+      margin-bottom 0
+
+    > *
+      &:last-child
+        margin-left auto

@@ -12,10 +12,17 @@ class SearchBar extends React.Component {
     theme: '',
   };
 
+  sanitizeValue = (value) =>
+    String(value)
+      .replace(/[.?*+^$[\]\\(){}|-]/g, '\\$&')
+      .trim();
+
   setValue = (value = '') => {
     this.setState({
       value,
     });
+
+    this.onChange(value);
   };
 
   setTheme = () => {
@@ -30,14 +37,29 @@ class SearchBar extends React.Component {
     });
   };
 
-  onChangeHandler = (event) => {
+  onChange = (value) => {
     const { onChange } = this.props;
 
-    const value = event?.target?.value;
+    if (onChange) {
+      let searchValue = null;
+      const searchParts = [];
 
-    this.setValue(value);
+      if (value) {
+        value.split(/\s+/).forEach((token) => {
+          const sanitizedValue = this.sanitizeValue(token);
 
-    onChange && onChange(value);
+          searchParts.push(`(?=(.*${sanitizedValue}.*))`);
+        });
+
+        searchValue = new RegExp(searchParts.join(''), 'ig');
+      }
+
+      onChange(searchValue);
+    }
+  };
+
+  onChangeValue = (event) => {
+    this.setValue(event?.target?.value);
   };
 
   render() {
@@ -57,7 +79,7 @@ class SearchBar extends React.Component {
         placeholder={placeholder}
         onFocus={this.setTheme}
         onBlur={this.unsetTheme}
-        onChange={this.onChangeHandler}
+        onChange={this.onChangeValue}
         value={value}
       />
     );

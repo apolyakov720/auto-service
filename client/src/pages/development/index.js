@@ -1,42 +1,42 @@
 import React from 'react';
 
-import Select from "@components/select";
+import Select from '@components/select';
 
 const items = [
   {
-    id: "1",
+    id: '1',
     title: 'Honda',
   },
   {
-    id: "2",
+    id: '2',
     title: 'Ford',
   },
   {
-    id: "3",
+    id: '3',
     title: 'Lada',
   },
   {
-    id: "4",
+    id: '4',
     title: 'Mazda',
   },
   {
-    id: "5",
+    id: '5',
     title: 'Subaru',
   },
   {
-    id: "7",
+    id: '7',
     title: 'BMW',
   },
   {
-    id: "8",
+    id: '8',
     title: 'Mercedes',
   },
   {
-    id: "9",
+    id: '9',
     title: 'Audi',
   },
   {
-    id: "10",
+    id: '10',
     title: 'Saab',
   },
 ];
@@ -45,7 +45,7 @@ const DevelopmentPage = () => {
   return (
     <>
       <div>
-        <Select items={items} label="Марка машины" required />
+        <Select items={items} label="Марка машины" required multiple />
       </div>
     </>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { CSSUtils, CommonUtils } from '@utils';
-import { CSSConstants } from "@constants";
+import { CSSConstants } from '@constants';
 
 /** Компонент "Badge" (Значок) */
 class Badge extends React.Component {
@@ -17,7 +17,7 @@ class Badge extends React.Component {
       }),
       {
         [CSSConstants.sizeClass[size]]: size,
-      }
+      },
     );
 
     return (
@@ -32,10 +32,7 @@ Badge.propTypes = {
    * Свойство обязательно для заполнения.
    * Принимает React элемент, либо допустимый в качестве дочернего элемента React тип данных.
    * */
-  content: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.elementType,
-  ]),
+  content: PropTypes.oneOfType([PropTypes.element, PropTypes.elementType]),
   /**
    * Тема компонента.
    * Определяет внешний вид компонента.

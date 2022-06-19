@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Badge } from "@components/badge";
-import { CSSConstants } from "@constants";
+import { Badge } from '@components/badge';
+import { CSSConstants } from '@constants';
 
 class FormField extends React.Component {
   render() {
@@ -19,7 +19,7 @@ class FormField extends React.Component {
               <div className="form-field__required">
                 <Badge
                   content="Обязательный"
-                  size={CSSConstants.size.S}
+                  size={CSSConstants.size.XS}
                   theme={CSSConstants.theme.SECONDARY}
                   squared
                 />
