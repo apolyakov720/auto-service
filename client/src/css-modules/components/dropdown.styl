@@ -2,18 +2,25 @@
   position absolute
   left 0
   top 100%
-  width 100%
+  min-width 100%
   border $border-width solid $color-theme.primary;
   border-radius 0 0 $border-radius $border-radius
   overflow hidden
+  z-index $z-index-dropdown
+  background-color $color-background.light;
 
+  &__main
   &__header
-    padding .25em .25em 0 .25em
+  &__footer
+    padding .25em
+
+  &__main
+    text-align center
 
   &__footer
+    display flex
+    justify-content flex-end
     border-top $border-width solid $color-border.default;
-    padding .25em
-    text-align right
 
     > *
       margin-left .25em

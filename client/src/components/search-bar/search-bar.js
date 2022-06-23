@@ -63,7 +63,7 @@ class SearchBar extends React.Component {
   };
 
   render() {
-    const { placeholder = 'Поиск...' } = this.props;
+    const { placeholder = 'Поиск...', mask } = this.props;
     const { value, theme } = this.state;
 
     const effectIconColor = value ? '' : 'white';
@@ -81,6 +81,7 @@ class SearchBar extends React.Component {
         onBlur={this.unsetTheme}
         onChange={this.onChangeValue}
         value={value}
+        mask={mask}
       />
     );
   }

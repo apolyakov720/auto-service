@@ -3,7 +3,7 @@ import React from 'react';
 import Button from '@components/button';
 import Icon from '@components/icon';
 import Week from './week';
-import { DateUtils } from '@utils';
+import { DateUtils, CSSUtils } from '@utils';
 import { CSSConstants } from '@constants';
 
 class Calendar extends React.Component {
@@ -35,7 +35,11 @@ class Calendar extends React.Component {
       );
     });
 
-    return <ul className="calendar__week-days">{weekDays}</ul>;
+    const weekDaysClass = CSSUtils.mergeModifiers('calendar__week', {
+      'day-of-week': true,
+    });
+
+    return <ul className={weekDaysClass}>{weekDays}</ul>;
   }
 
   get weeks() {

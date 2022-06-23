@@ -4,6 +4,8 @@
   border $border-width solid $color-border.default;
   border-radius $border-radius
   display inline-block
+  width 100%
+  max-width 20em
 
   &__header
     display flex
@@ -14,14 +16,15 @@
     text-transform capitalize
     user-select none
 
-  &__week-days
   &__week
+    display flex
+    justify-content space-between
     margin 0 -.1em
 
-  &__week-days
-    font-weight bold
-    text-transform capitalize
-    user-select none
+    &--day-of-week
+      font-weight bold
+      text-transform capitalize
+      user-select none
 
   &__day
     display inline-block

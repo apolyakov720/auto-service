@@ -1,51 +1,29 @@
 import React from 'react';
 
+import DatePicker from '@components/date-picker';
 import Select from '@components/select';
-
-const items = [
-  {
-    id: '1',
-    title: 'Honda',
-  },
-  {
-    id: '2',
-    title: 'Ford',
-  },
-  {
-    id: '3',
-    title: 'Lada',
-  },
-  {
-    id: '4',
-    title: 'Mazda',
-  },
-  {
-    id: '5',
-    title: 'Subaru',
-  },
-  {
-    id: '7',
-    title: 'BMW',
-  },
-  {
-    id: '8',
-    title: 'Mercedes',
-  },
-  {
-    id: '9',
-    title: 'Audi',
-  },
-  {
-    id: '10',
-    title: 'Saab',
-  },
-];
 
 const DevelopmentPage = () => {
   return (
     <>
       <div>
-        <Select items={items} label="Марка машины" required multiple />
+        <Select
+          items={[
+            { id: 1, title: 'hello' },
+            { id: 2, title: 'world' },
+            { id: 3, title: 'hello' },
+            { id: 4, title: 'hello' },
+            { id: 5, title: 'hello' },
+            { id: 6, title: 'hello' },
+            { id: 7, title: 'hello' },
+          ]}
+          multiple
+        />
+        <br />
+        <br />
+        <DatePicker />
+        <br />
+        <br />
       </div>
     </>
   );

@@ -1,14 +1,18 @@
+import { NormalizerConstants } from '@constants';
+
 class Normalizer {
-  maskChars = {
-    '*': '[0-9A-Za-zА-ЯЁа-яё]',
-    '9': '[0-9]',
-    'a': '[A-Za-zА-ЯЁа-яё]',
-    'l': '[A-Za-z]',
-    'c': '[А-ЯЁа-яё]',
+  masks = {
+    [NormalizerConstants.mask.PHONE]: '+7 (999) 999-99-99',
+    [NormalizerConstants.mask.DATE]: '99.99.9999',
   };
 
-  masks = {
-    phone: '+ 7 (999) 999-99-99',
+  maskChar = {
+    [NormalizerConstants.mask.PHONE]: '9',
+  };
+
+  formatChars = {
+    '*': '[0-9A-Za-zА-ЯЁа-яё]',
+    '9': '[0-9]',
   };
 }
 
