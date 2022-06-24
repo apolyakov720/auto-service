@@ -8,6 +8,8 @@ import {
   startOfMonth,
   isSameDay,
   format,
+  parseISO,
+  isValid,
 } from 'date-fns';
 import ru from 'date-fns/locale/ru';
 
@@ -21,8 +23,8 @@ const formatDisplayedDate = (date) => {
   return format(date, 'LLLL yyyy', { locale: ru });
 };
 
-const formatSelectedDate = (date) => {
-  return format(date, 'DD.MM.YYYY', { locale: ru });
+const formatSelectedDate = (date, formatValue = 'dd.MM.yyyy') => {
+  return format(date, formatValue, { locale: ru });
 };
 
 const formatWeekDay = (date) => {
@@ -41,4 +43,6 @@ export default {
   formatDisplayedDate,
   formatSelectedDate,
   formatWeekDay,
+  parseISO,
+  isValid,
 };

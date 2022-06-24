@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Button from '@components/button';
 import Icon from '@components/icon';
@@ -6,12 +7,20 @@ import Week from './week';
 import { DateUtils, CSSUtils } from '@utils';
 import { CSSConstants } from '@constants';
 
+/** Компонент "Calendar" (Календарь) */
 class Calendar extends React.Component {
   constructor(props) {
     super(props);
 
+    let current = DateUtils.parseISO(props.originalISODate);
+
+    if (!DateUtils.isValid(current)) {
+      current = new Date();
+    }
+
     this.state = {
-      date: new Date(),
+      date: current,
+      selected: current,
     };
   }
 
@@ -43,7 +52,7 @@ class Calendar extends React.Component {
   }
 
   get weeks() {
-    const { date } = this.state;
+    const { date, selected } = this.state;
 
     const weeks = [];
     let startWeek = DateUtils.getStartOfWeekMonth(date);
@@ -54,7 +63,7 @@ class Calendar extends React.Component {
           key={value}
           start={startWeek}
           month={DateUtils.getMonth(date)}
-          selected={date}
+          selected={selected}
           onSelectDate={this.onSelectDate}
         />,
       );
@@ -66,19 +75,30 @@ class Calendar extends React.Component {
   }
 
   setDate = (date) => {
-    this.setState({ date });
+    this.setState(date);
   };
 
   setNextMonth = () => {
-    this.setDate(DateUtils.addMonths(this.state.date, 1));
+    this.setDate({
+      date: DateUtils.addMonths(this.state.date, 1),
+    });
   };
 
   setPreviousMonth = () => {
-    this.setDate(DateUtils.addMonths(this.state.date, -1));
+    this.setDate({
+      date: DateUtils.addMonths(this.state.date, -1),
+    });
   };
 
   onSelectDate = (date) => {
-    this.setDate(date);
+    const { onSelect, formatReturnValue } = this.props;
+
+    this.setDate({
+      date,
+      selected: date,
+    });
+
+    onSelect && onSelect(DateUtils.formatSelectedDate(date, formatReturnValue));
   };
 
   render() {
@@ -105,5 +125,24 @@ class Calendar extends React.Component {
     );
   }
 }
+
+Calendar.propTypes = {
+  /**
+   * Начальая дата в формате ISO 8601.
+   * Если дата недействительна, то значение будет сегодняшнее число.
+   * */
+  originalISODate: PropTypes.instanceOf(Date),
+  /** Формат возвращаемой даты. */
+  formatReturnValue: PropTypes.string,
+  /**
+   * Функция обработчик, вызывается при каждом выборе даты.
+   * Принимает значение даты в качестве единственного аргумента в формате, указанном в свойстве formatReturnValue.
+   * */
+  onSelect: PropTypes.func,
+};
+
+Calendar.defaultProps = {
+  formatReturnValue: 'dd.MM.yyyy',
+};
 
 export default Calendar;

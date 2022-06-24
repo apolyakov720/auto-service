@@ -6,8 +6,7 @@ import FormControl from '@components/form-control';
 import FormField from '@components/form-field';
 import Icon from '@components/icon';
 import SearchBar from '@components/search-bar';
-import ScrollBox from '@components/scroll-box';
-import Button from '@components/button';
+import Dropdown from "@components/dropdown";
 import { CSSUtils } from '@utils';
 import { CSSConstants } from '@constants';
 
@@ -205,28 +204,15 @@ class Select extends React.Component {
             </FormControl>
           </FormField>
         </div>
-        {open && (
-          <div className="dropdown">
-            {searchable && (
-              <div className="dropdown__header">
-                <SearchBar onChange={this.onSearchOption} />
-              </div>
-            )}
-            <ul className="dropdown__main">
-              <ScrollBox>{this.list}</ScrollBox>
-            </ul>
-            {multiple && (
-              <div className="dropdown__footer">
-                <Button caption="Отмена" onClick={this.onCancelList} />
-                <Button
-                  caption="Применить"
-                  theme={CSSConstants.theme.PRIMARY}
-                  onClick={this.onApplyList}
-                />
-              </div>
-            )}
-          </div>
-        )}
+        <Dropdown open={open}>
+          <Dropdown.Header>
+            {searchable && (<SearchBar onChange={this.onSearchOption} />)}
+          </Dropdown.Header>
+          <Dropdown.Main>
+            {this.list}
+          </Dropdown.Main>
+          {multiple && <Dropdown.Footer onApply={this.onApplyList} onCancel={this.onCancelList} />}
+        </Dropdown>
       </div>
     );
   }

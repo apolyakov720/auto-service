@@ -2,6 +2,7 @@ import React from 'react';
 
 import DatePicker from '@components/date-picker';
 import Select from '@components/select';
+import Calendar from "@components/calendar";
 
 const DevelopmentPage = () => {
   return (
@@ -24,6 +25,7 @@ const DevelopmentPage = () => {
         <DatePicker />
         <br />
         <br />
+        <Calendar originalISODate="1994-06-22" onSelect={(value) => console.log(value)} formatReturnValue="dd.MM.yyyy" />
       </div>
     </>
   );

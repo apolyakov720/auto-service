@@ -2,6 +2,7 @@ import React from 'react';
 
 import { CSSUtils } from '@utils';
 
+// TODO: возможно нужно добавить статические методы отрисовки, чтобы не передавать большое количесво свойств
 const FormControl = ({
   extra,
   effect,

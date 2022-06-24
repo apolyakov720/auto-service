@@ -4,8 +4,9 @@ import FormField from '@components/form-field';
 import Input from '@components/input';
 import Icon from '@components/icon';
 import Calendar from '@components/calendar';
-import Button from '@components/button';
-import { CSSConstants } from '@constants';
+import Dropdown from "@components/dropdown";
+import { NormalizerService } from "@services";
+import { CSSConstants, NormalizerConstants } from '@constants';
 
 class DatePicker extends React.Component {
   state = {
@@ -30,27 +31,25 @@ class DatePicker extends React.Component {
 
     return (
       <div className="date-picker">
-        <div className="date-picker__control" onClick={this.toggleOpen}>
+        <div className="date-picker__control">
           <FormField label={label} required={required}>
             <Input
               effect={<Icon source={Icon.sources.base.calendar} />}
+              additionalProps={{
+                onEffectClick: this.toggleOpen,
+              }}
               theme={theme}
               dropdown={open}
+              mask={NormalizerConstants.mask.DATE}
             />
           </FormField>
         </div>
-        {open && (
-          <div className="dropdown">
-            <div className="dropdown__main">
-              <Calendar />
-            </div>
-            <div className="dropdown__footer">
-              <Input />
-              <Button caption="Отмена" />
-              <Button caption="Применить" theme={CSSConstants.theme.PRIMARY} />
-            </div>
-          </div>
-        )}
+        <Dropdown open={open}>
+          <Dropdown.Header>
+            <Calendar onSelect={() => {}} />
+          </Dropdown.Header>
+          <Dropdown.Footer />
+        </Dropdown>
       </div>
     );
   }
