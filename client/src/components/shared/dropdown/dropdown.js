@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Button from '@components/shared/button';
-import ScrollBox from '@components/composite/suspense/scroll-box';
+import ScrollBox from '@components/shared/scroll-box';
 // TODO: пока оставить контекст, по итогу удалить, либо оставить
 import { DropdownProvider, DropdownConsumer } from './dropdown-context';
 import { CSSConstants } from '@constants';

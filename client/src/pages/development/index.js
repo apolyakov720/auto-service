@@ -1,7 +1,7 @@
 import React from 'react';
 
 import DatePicker from '@components/shared/date-picker';
-import Select from '@components/composite/suspense/select';
+import Select from '@components/shared/select';
 import Calendar from '@components/shared/calendar';
 
 const DevelopmentPage = () => {

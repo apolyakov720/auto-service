@@ -5,7 +5,7 @@ import Alert from '@components/shared/alert';
 import FormControl from '@components/shared/form-control';
 import FormField from '@components/shared/form-field';
 import Icon from '@components/shared/icon';
-import SearchBar from '@components/composite/suspense/search-bar';
+import SearchBar from '@components/shared/search-bar';
 import Dropdown from '@components/shared/dropdown';
 import { CSSUtils } from '@utils';
 import { CSSConstants } from '@constants';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SearchBar from '@components/composite/suspense/search-bar';
+import SearchBar from '@components/shared/search-bar';
 
 export default {
   title: 'Components/SearchBar',
