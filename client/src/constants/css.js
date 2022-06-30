@@ -1,4 +1,4 @@
-const size = {
+const SIZES = {
   XS: 'XS',
   S: 'S',
   M: 'M',
@@ -8,19 +8,19 @@ const size = {
 };
 
 export default {
-  size,
-  delimiter: {
+  SIZES,
+  DELIMITERS: {
     MODIFIER: '--',
   },
-  sizeClass: {
-    [size.XS]: 'size-xs',
-    [size.S]: 'size-s',
-    [size.M]: 'size-m',
-    [size.L]: 'size-l',
-    [size.XL]: 'size-xl',
-    [size.XXL]: 'size-xxl',
+  SIZE_CLASSES: {
+    [SIZES.XS]: 'size-xs',
+    [SIZES.S]: 'size-s',
+    [SIZES.M]: 'size-m',
+    [SIZES.L]: 'size-l',
+    [SIZES.XL]: 'size-xl',
+    [SIZES.XXL]: 'size-xxl',
   },
-  theme: {
+  THEMES: {
     PRIMARY: 'primary',
     SECONDARY: 'secondary',
     INFO: 'info',

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import DatePicker from '@components/date-picker';
-import Select from '@components/select';
-import Calendar from "@components/calendar";
+import DatePicker from '@components/shared/date-picker';
+import Select from '@components/composite/suspense/select';
+import Calendar from '@components/shared/calendar';
 
 const DevelopmentPage = () => {
   return (
@@ -25,7 +25,11 @@ const DevelopmentPage = () => {
         <DatePicker />
         <br />
         <br />
-        <Calendar originalISODate="1994-06-22" onSelect={(value) => console.log(value)} formatReturnValue="dd.MM.yyyy" />
+        <Calendar
+          originalISODate="1994-06-22"
+          onSelect={(value) => console.log(value)}
+          formatReturnValue="dd.MM.yyyy"
+        />
       </div>
     </>
   );

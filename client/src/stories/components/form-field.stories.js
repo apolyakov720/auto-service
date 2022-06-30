@@ -1,7 +1,7 @@
 import React from 'react';
 
-import FormField from '@components/form-field';
-import Input from '@components/input';
+import FormField from '@components/shared/form-field';
+import Input from '@components/shared/input';
 
 export default {
   title: 'Components/FormField',

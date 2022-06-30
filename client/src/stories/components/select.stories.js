@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Select from '@components/select';
+import Select from '@components/composite/suspense/select';
 
 export default {
   title: 'Components/Select',

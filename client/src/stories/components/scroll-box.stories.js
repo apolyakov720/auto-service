@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ScrollBox from '@components/scroll-box';
+import ScrollBox from '@components/composite/suspense/scroll-box';
 
 export default {
   title: 'Components/ScrollBox',

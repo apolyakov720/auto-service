@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Input from '@components/input/input';
-import Button from '@components/button';
+import Input from '@components/shared/input/input';
+import Button from '@components/shared/button';
 
-import Icon from '@components/icon';
+import Icon from '@components/shared/icon';
 
 const LoginPage = () => {
   return (

@@ -10,9 +10,7 @@ class Normalizer {
     [NormalizerConstants.mask.PHONE]: '9',
   };
 
-  formats = {
-
-  };
+  formats = {};
 
   formatChars = {
     '*': '[0-9A-Za-zА-ЯЁа-яё]',

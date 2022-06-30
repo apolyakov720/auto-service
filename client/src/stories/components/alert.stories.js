@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Alert from '@/components/alert';
+import Alert from '@/components/shared/alert';
 import { CSSConstants } from '@constants';
 
 export default {
@@ -11,6 +11,6 @@ export default {
 export const Basic = (args) => <Alert {...args} />;
 Basic.args = {
   content: 'Это компонент "Оповещение"',
-  theme: CSSConstants.theme.PRIMARY,
+  theme: CSSConstants.THEMES.PRIMARY,
   closable: true,
 };

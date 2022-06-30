@@ -1,5 +1,5 @@
 import React from 'react';
-import { CountBadge } from '@components/badge';
+import { CountBadge } from '@components/shared/badges';
 
 export default {
   title: 'Components/Badge/CountBadge',

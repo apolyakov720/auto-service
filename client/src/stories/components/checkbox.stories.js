@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Checkbox } from '@components/switch';
+import { Checkbox } from '@components/shared/switches';
 
 export default {
   title: 'Components/Switch/Checkbox',

@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { CSSConstants } from '@constants';
-import Icon from '@components/icon';
-import Button from '@components/button';
+import Icon from '@components/shared/icon';
+import Button from '@components/shared/button';
 
 export default {
   title: 'Components/Button',
@@ -20,19 +20,19 @@ Default.args = {
 
 export const Theme = () => (
   <>
-    <Button caption="Primary" theme={CSSConstants.theme.PRIMARY} />
+    <Button caption="Primary" theme={CSSConstants.THEMES.PRIMARY} />
     <br />
     <br />
-    <Button caption="Secondary" theme={CSSConstants.theme.SECONDARY} />
+    <Button caption="Secondary" theme={CSSConstants.THEMES.SECONDARY} />
     <br />
     <br />
-    <Button caption="Info" theme={CSSConstants.theme.INFO} />
+    <Button caption="Info" theme={CSSConstants.THEMES.INFO} />
     <br />
     <br />
-    <Button caption="Warning" theme={CSSConstants.theme.WARNING} />
+    <Button caption="Warning" theme={CSSConstants.THEMES.WARNING} />
     <br />
     <br />
-    <Button caption="Error" theme={CSSConstants.theme.ERROR} />
+    <Button caption="Error" theme={CSSConstants.THEMES.ERROR} />
   </>
 );
 

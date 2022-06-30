@@ -1,5 +1,5 @@
 import React from 'react';
-import DatePicker from '@components/date-picker';
+import DatePicker from '@components/shared/date-picker';
 
 export default {
   title: 'Components/DatePicker',

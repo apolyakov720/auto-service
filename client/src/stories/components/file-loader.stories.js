@@ -1,6 +1,6 @@
 import React from 'react';
 
-import FileLoader from '@components/file-loader';
+import FileLoader from '@components/shared/file-loader';
 
 export default {
   title: 'Components/FileLoader',

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Toggle } from '@components/switch';
+import { Toggle } from '@components/shared/switches';
 
 export default {
   title: 'Components/Switch/Toggle',

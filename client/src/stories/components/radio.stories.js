@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Radio } from '@components/switch';
+import { Radio } from '@components/shared/switches';
 
 export default {
   title: 'Components/Switch/Radio',

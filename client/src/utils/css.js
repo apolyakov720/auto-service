@@ -36,7 +36,7 @@ const mergeModifiers = (baseClass = '', modifiers = {}) => {
         const [key, value] = modifier;
 
         if (value) {
-          accumulator.push(`${baseClass}${CSSConstants.delimiter.MODIFIER}${key}`);
+          accumulator.push(`${baseClass}${CSSConstants.DELIMITERS.MODIFIER}${key}`);
         }
 
         return accumulator;

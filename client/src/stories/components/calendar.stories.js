@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Calendar from '@components/calendar';
+import Calendar from '@components/shared/calendar';
 
 export default {
   title: 'Components/Calendar',

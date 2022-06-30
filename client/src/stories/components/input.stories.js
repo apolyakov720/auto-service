@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Input from '@components/input';
+import Input from '@components/shared/input';
 
 export default {
   title: 'Components/Input',
