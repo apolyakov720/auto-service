@@ -3,22 +3,10 @@
   "version": "0.0.0",
   "description": "auto service client",
   "scripts": {
+    "prepare": "cd .. && husky install client/configs/husky",
     "lint": "eslint . --ext .js,.jsx --ignore-pattern node_modules --config ./configs/eslint.js --fix",
     "dev-server": "cd dev-server && node prepare-server && node --require dotenv/config server dotenv_config_path=../configs/.environment",
     "storybook": "start-storybook -c configs/storybook -p 6006"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "linters": {
-      "src/**/*.{js,jsx}": [
-        "npm run lint",
-        "git add"
-      ]
-    }
   },
   "author": "Polyakov Alexey",
   "devDependencies": {
