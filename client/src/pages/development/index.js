@@ -3,6 +3,8 @@ import React from 'react';
 import DatePicker from '@components/shared/date-picker';
 import Select from '@components/shared/select';
 import Calendar from '@components/shared/calendar';
+import SearchBar from '@components/shared/search-bar';
+import Input from '@components/shared/input';
 
 const DevelopmentPage = () => {
   return (
@@ -19,10 +21,12 @@ const DevelopmentPage = () => {
             { id: 7, title: 'hello' },
           ]}
           multiple
+          label="Choose options"
+          hints={['Укажите одно или несколько свойств']}
         />
         <br />
         <br />
-        <DatePicker />
+        <DatePicker required label="Выберите дату" />
         <br />
         <br />
         <Calendar
@@ -30,6 +34,12 @@ const DevelopmentPage = () => {
           onSelect={(value) => console.log(value)}
           formatReturnValue="dd.MM.yyyy"
         />
+        <br />
+        <br />
+        <SearchBar />
+        <br />
+        <br />
+        <Input onChange={(val) => console.log('new_val: ', val)} mask="phone" />
       </div>
     </>
   );

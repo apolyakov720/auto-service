@@ -1,6 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import FormField from '@components/shared/form-field';
 import Input from '@components/shared/input';
 import Icon from '@components/shared/icon';
 import Calendar from '@components/shared/calendar';
@@ -8,9 +8,12 @@ import Dropdown from '@components/shared/dropdown';
 // import { NormalizerService } from '@services';
 import { CSSConstants, NormalizerConstants } from '@constants';
 
-class DatePicker extends React.Component {
+/** Компонент "DatePicker" (Выбор даты) */
+class DatePicker extends React.PureComponent {
   state = {
     open: false,
+    selectedDate: '',
+    calendarDate: '',
   };
 
   toggleOpen = () => {
@@ -23,36 +26,61 @@ class DatePicker extends React.Component {
     });
   };
 
-  render() {
-    const { open } = this.state;
-    const { label, required } = this.props;
+  onChangeDate = (date) => {
+    console.log(date);
+  };
 
-    const theme = open ? CSSConstants.THEMES.PRIMARY : '';
+  onSelectCalendarDate = (calendarDate) => {
+    this.setState({
+      calendarDate,
+    });
+  };
+
+  onApplyCalendarDate = () => {
+    this.setState(({ calendarDate }) => ({
+      open: false,
+      selectedDate: calendarDate,
+    }));
+  };
+
+  onCancelPick = () => {
+    this.setOpen(false);
+  };
+
+  render() {
+    const { open, selectedDate } = this.state;
+
+    let theme = null;
+
+    if (open) {
+      theme = CSSConstants.THEMES.PRIMARY;
+    }
 
     return (
       <div className="date-picker">
-        <div className="date-picker__control">
-          <FormField label={label} required={required}>
-            <Input
-              effect={<Icon source={Icon.sources.base.calendar} />}
-              additionalProps={{
-                onEffectClick: this.toggleOpen,
-              }}
-              theme={theme}
-              dropdown={open}
-              mask={NormalizerConstants.mask.DATE}
-            />
-          </FormField>
-        </div>
+        <Input
+          theme={theme}
+          dropdown={open}
+          mask={NormalizerConstants.MASKS.DATE}
+          onChange={this.onChangeDate}
+          value={selectedDate}>
+          <Input.Effect onClick={this.toggleOpen}>
+            <Icon source={Icon.sources.base.calendar} />
+          </Input.Effect>
+        </Input>
         <Dropdown open={open}>
           <Dropdown.Header>
-            <Calendar onSelect={() => {}} />
+            <Calendar onSelect={this.onSelectCalendarDate} />
           </Dropdown.Header>
-          <Dropdown.Footer />
+          <Dropdown.Footer onApply={this.onApplyCalendarDate} onCancel={this.onCancelPick} />
         </Dropdown>
       </div>
     );
   }
 }
+
+DatePicker.propTypes = {
+  onPick: PropTypes.func,
+};
 
 export default DatePicker;

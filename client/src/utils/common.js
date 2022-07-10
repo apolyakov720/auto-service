@@ -60,9 +60,13 @@ const isEmpty = (value) =>
 /** Значение - это число */
 const isNumeric = (value) => !isNaN(parseFloat(value)) && isFinite(parseFloat(value));
 
+/** Значение - это функция */
+const isFunction = (value) => typeof value === 'function';
+
 export default {
   debounce,
   isNumeric,
   isNull,
   isEmpty,
+  isFunction,
 };

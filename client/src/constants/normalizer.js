@@ -1,5 +1,5 @@
 export default {
-  mask: {
+  MASKS: {
     PHONE: 'phone',
     DATE: 'date',
   },

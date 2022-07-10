@@ -6,10 +6,10 @@ import Icon from '@components/shared/icon';
 import { CSSConstants } from '@constants';
 
 /** Компонент "SearchBar" (Панель поиска) */
-class SearchBar extends React.Component {
+class SearchBar extends React.PureComponent {
   state = {
     value: '',
-    theme: '',
+    theme: null,
   };
 
   sanitizeValue = (value) =>
@@ -33,7 +33,7 @@ class SearchBar extends React.Component {
 
   unsetTheme = () => {
     this.setState({
-      theme: '',
+      theme: null,
     });
   };
 
@@ -58,12 +58,13 @@ class SearchBar extends React.Component {
     }
   };
 
-  onChangeValue = (event) => {
-    this.setValue(event?.target?.value);
+  onClear = (event) => {
+    event.stopPropagation();
+    this.setValue();
   };
 
   render() {
-    const { placeholder = 'Поиск...', mask } = this.props;
+    const { placeholder, mask } = this.props;
     const { value, theme } = this.state;
 
     const effectIconColor = value ? '' : 'white';
@@ -71,18 +72,19 @@ class SearchBar extends React.Component {
     return (
       <Input
         theme={theme}
-        extra={<Icon source={Icon.sources.base.search} />}
-        effect={<Icon source={Icon.sources.base.cross} color={effectIconColor} />}
-        additionalProps={{
-          onEffectClick: this.setValue,
-        }}
         placeholder={placeholder}
         onFocus={this.setTheme}
         onBlur={this.unsetTheme}
-        onChange={this.onChangeValue}
+        onChange={this.setValue}
         value={value}
-        mask={mask}
-      />
+        mask={mask}>
+        <Input.Extra>
+          <Icon source={Icon.sources.base.search} />
+        </Input.Extra>
+        <Input.Effect onClick={this.onClear}>
+          <Icon source={Icon.sources.base.cross} color={effectIconColor} />
+        </Input.Effect>
+      </Input>
     );
   }
 }

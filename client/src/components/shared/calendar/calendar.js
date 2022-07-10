@@ -8,7 +8,7 @@ import { DateUtils, CSSUtils } from '@utils';
 import { CSSConstants } from '@constants';
 
 /** Компонент "Calendar" (Календарь) */
-class Calendar extends React.Component {
+class Calendar extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -22,6 +22,10 @@ class Calendar extends React.Component {
       date: current,
       selected: current,
     };
+  }
+
+  componentDidMount() {
+    this.onSelectDate(this.state.selected);
   }
 
   get header() {

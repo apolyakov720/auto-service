@@ -2,11 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Icon from '@components/shared/icon';
-import { CSSUtils } from '@utils';
+import { CSSUtils, CommonUtils } from '@utils';
 import { CSSConstants } from '@constants';
 
 /** Компонент "Alert" (Оповещение) */
 class Alert extends React.PureComponent {
+  onClose = (event) => {
+    const { id, onClose } = this.props;
+
+    onClose(event, id);
+  };
+
   render() {
     const { content, theme, textual, size, onClose } = this.props;
 
@@ -23,8 +29,8 @@ class Alert extends React.PureComponent {
     return (
       <div className={alertClass}>
         <div className="alert__content">{content}</div>
-        {typeof onClose === 'function' && (
-          <div className="alert__effect" onClick={onClose}>
+        {CommonUtils.isFunction(onClose) && (
+          <div className="alert__effect" onClick={this.onClose}>
             <Icon source={Icon.sources.base.cross} bold />
           </div>
         )}
@@ -41,6 +47,11 @@ Alert.propTypes = {
    * */
   content: PropTypes.oneOfType([PropTypes.element, PropTypes.elementType]).isRequired,
   /**
+   * Необязательный идентификатор.
+   * Передается в качестве второго аргумента в функцию обработчика onClose.
+   * */
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
    * Тема компонента.
    * Определяет внешний вид компонента.
    * Примечание: основная тема устанавливается по умолчанию средствами CSS, передача свойства необязательна.
@@ -56,7 +67,7 @@ Alert.propTypes = {
   textual: PropTypes.bool,
   /**
    * Функция обработчик закрытия компонента.
-   * Принимает событие клика в качестве единственного аргумента.
+   * Принимает событие клика и необязательный идентификатор в качестве аргументов.
    * Если свойство отсутствует, то закрытие недоступно.
    * */
   onClose: PropTypes.func,

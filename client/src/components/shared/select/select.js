@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import Alert from '@components/shared/alert';
 import FormControl from '@components/shared/form-control';
-import FormField from '@components/shared/form-field';
 import Icon from '@components/shared/icon';
 import SearchBar from '@components/shared/search-bar';
 import Dropdown from '@components/shared/dropdown';
@@ -72,7 +71,9 @@ class Select extends React.Component {
     });
   };
 
-  onCloseItem = (id) => {
+  onCloseItem = (event, id) => {
+    event.stopPropagation();
+
     this.setState(({ selectedList, accumulatedList }) => ({
       selectedList: selectedList.filter((value) => value !== id),
       accumulatedList: accumulatedList.filter((value) => value !== id),
@@ -112,19 +113,12 @@ class Select extends React.Component {
     const visibleList = selectedList.slice(0, 2);
     const collapse = selectedList.slice(2).length;
 
-    const resultList = visibleList.map((id, index) => {
+    const resultList = visibleList.map((id) => {
       const item = items.find((value) => value.id === id);
 
       return (
-        <li key={index} className="select__sample-item">
-          <Alert
-            textual
-            content={item.title}
-            onClose={(event) => {
-              event.stopPropagation();
-              this.onCloseItem(id);
-            }}
-          />
+        <li key={id} className="select__sample-item">
+          <Alert textual id={id} content={item.title} onClose={this.onCloseItem} />
         </li>
       );
     });
@@ -136,7 +130,7 @@ class Select extends React.Component {
 
       resultList.push(
         <li key="select-collapse-item" className={collapseItemClass}>
-          <Alert textual content={`+${collapse}`} closable={false} />
+          <Alert textual content={`+${collapse}`} />
         </li>,
       );
     }
@@ -186,24 +180,24 @@ class Select extends React.Component {
 
   render() {
     const { open } = this.state;
-    const { label, searchable, required, multiple } = this.props;
+    const { searchable, multiple } = this.props;
 
-    const theme = open ? CSSConstants.THEMES.PRIMARY : '';
-    const chevron = open ? (
-      <Icon source={Icon.sources.base.chevronUp} />
-    ) : (
-      <Icon source={Icon.sources.base.chevronDown} />
-    );
+    let theme = null;
+    let chevron = <Icon source={Icon.sources.base.chevronDown} />;
+
+    if (open) {
+      theme = CSSConstants.THEMES.PRIMARY;
+      chevron = <Icon source={Icon.sources.base.chevronUp} />;
+    }
 
     return (
       <div className="select">
-        <div className="select__control" onClick={this.toggleOpen}>
-          <FormField label={label} required={required}>
-            <FormControl effect={chevron} theme={theme} dropdown={open}>
-              <ul className="select__sample-sheet">{this.sampleSheet}</ul>
-            </FormControl>
-          </FormField>
-        </div>
+        <FormControl theme={theme} dropdown={open} onClick={this.toggleOpen}>
+          <FormControl.Effect>{chevron}</FormControl.Effect>
+          <FormControl.Control>
+            <ul className="select__sample-sheet">{this.sampleSheet}</ul>
+          </FormControl.Control>
+        </FormControl>
         <Dropdown open={open}>
           <Dropdown.Header>
             {searchable && <SearchBar onChange={this.onSearchOption} />}
@@ -238,11 +232,6 @@ Select.propTypes = {
       title: PropTypes.string.isRequired,
     }),
   ).isRequired,
-  /** Заголовок. */
-  label: PropTypes.string,
-  /** Флаг обязательного заполнения. */
-  required: PropTypes.bool,
-  /** Текстовый подсказка выбора (какие элементы в этом списке?) для пользователя. */
   placeholder: PropTypes.string,
   /** Текстовый подсказка при пустом списке. */
   placeholderEmpty: PropTypes.string,
@@ -262,7 +251,6 @@ Select.defaultProps = {
   placeholder: 'Выберите значение из списка',
   placeholderEmpty: 'Элементы списка отсутствуют',
   searchable: true,
-  required: false,
 };
 
 export default Select;

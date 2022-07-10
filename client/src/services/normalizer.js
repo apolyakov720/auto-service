@@ -2,12 +2,12 @@ import { NormalizerConstants } from '@constants';
 
 class Normalizer {
   masks = {
-    [NormalizerConstants.mask.PHONE]: '+7 (999) 999-99-99',
-    [NormalizerConstants.mask.DATE]: '99.99.9999',
+    [NormalizerConstants.MASKS.PHONE]: '+7 (999) 999-99-99',
+    [NormalizerConstants.MASKS.DATE]: '99.99.9999',
   };
 
-  maskChar = {
-    [NormalizerConstants.mask.PHONE]: '9',
+  maskChars = {
+    [NormalizerConstants.MASKS.PHONE]: '9',
   };
 
   formats = {};

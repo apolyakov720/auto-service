@@ -5,7 +5,7 @@ import { CSSUtils, CommonUtils } from '@utils';
 import { CSSConstants } from '@constants';
 
 /** Компонент "Badge" (Значок) */
-class Badge extends React.Component {
+class Badge extends React.PureComponent {
   render() {
     const { theme, content, squared, circled, size } = this.props;
 

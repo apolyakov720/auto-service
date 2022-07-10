@@ -3,22 +3,21 @@ import InputMask from 'react-input-mask';
 
 import FormControl from '@components/shared/form-control';
 import { NormalizerService } from '@services';
-import { CSSUtils } from '@utils';
+import { CSSUtils, CommonUtils } from '@utils';
 
-class Input extends React.Component {
+class Input extends React.PureComponent {
+  static Extra = FormControl.Extra;
+
+  static Effect = FormControl.Effect;
+
+  onChangeValue = (event) => {
+    const { onChange } = this.props;
+
+    CommonUtils.isFunction(onChange) && onChange(event?.target?.value);
+  };
+
   render() {
-    const {
-      extra,
-      effect,
-      additionalProps,
-      theme,
-      onChange,
-      mask,
-      alwaysShowMask,
-      dropdown,
-      type = 'text',
-      ...inputProps
-    } = this.props;
+    const { theme, mask, dropdown, children, ...inputProps } = this.props;
 
     const themeKey = theme === 'primary' ? 'active' : theme;
     const inputClass = CSSUtils.mergeModifiers('input', {
@@ -26,25 +25,25 @@ class Input extends React.Component {
     });
 
     return (
-      <FormControl
-        extra={extra}
-        effect={effect}
-        theme={theme}
-        additionalProps={additionalProps}
-        dropdown={dropdown}>
-        <InputMask
-          className={inputClass}
-          type={type}
-          onChange={onChange}
-          mask={NormalizerService.masks[mask]}
-          maskChar={NormalizerService.maskChar[mask] || undefined}
-          formatChars={NormalizerService.formatChars}
-          alwaysShowMask={alwaysShowMask}
-          {...inputProps}
-        />
+      <FormControl theme={theme} dropdown={dropdown}>
+        {children}
+        <FormControl.Control>
+          <InputMask
+            {...inputProps}
+            className={inputClass}
+            onChange={this.onChangeValue}
+            mask={NormalizerService.masks[mask]}
+            maskChar={NormalizerService.maskChars[mask]}
+            formatChars={NormalizerService.formatChars}
+          />
+        </FormControl.Control>
       </FormControl>
     );
   }
 }
+
+Input.defaultProps = {
+  type: 'text',
+};
 
 export default Input;
