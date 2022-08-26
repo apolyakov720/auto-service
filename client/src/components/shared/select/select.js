@@ -6,26 +6,20 @@ import FormControl from '@components/shared/form-control';
 import Icon from '@components/shared/icon';
 import SearchBar from '@components/shared/search-bar';
 import Dropdown from '@components/shared/dropdown';
+import { SelectListItem } from '@components/shared/list-items';
 import { CSSUtils } from '@utils';
 import { CSSConstants } from '@constants';
 
 class Select extends React.Component {
   state = {
-    open: false,
     filter: null,
     selectedList: [],
     accumulatedList: [],
   };
 
-  componentDidUpdate(_, prevState) {
-    const { open, selectedList } = this.state;
+  chevronDown = (<Icon source={Icon.sources.base.chevronDown} />);
 
-    if (!prevState.open && open) {
-      this.setState({
-        accumulatedList: selectedList,
-      });
-    }
-  }
+  chevronUp = (<Icon source={Icon.sources.base.chevronUp} />);
 
   mergeAccumulatorList = (onApplyFlag) => {
     this.setState(({ accumulatedList, selectedList }) => ({
@@ -56,21 +50,6 @@ class Select extends React.Component {
     }
   };
 
-  toggleOpen = () => {
-    if (!this.props.items.length) {
-      return;
-    }
-
-    this.setOpen(!this.state.open);
-  };
-
-  setOpen = (value) => {
-    this.setState({
-      open: value,
-      filter: null,
-    });
-  };
-
   onCloseItem = (event, id) => {
     event.stopPropagation();
 
@@ -88,12 +67,10 @@ class Select extends React.Component {
 
   onCancelList = () => {
     this.mergeAccumulatorList();
-    this.setOpen(false);
   };
 
   onApplyList = () => {
     this.mergeAccumulatorList(true);
-    this.setOpen(false);
   };
 
   get sampleSheet() {
@@ -138,11 +115,11 @@ class Select extends React.Component {
     return resultList;
   }
 
-  get list() {
+  listItems = () => {
     const { items } = this.props;
     const { filter, accumulatedList } = this.state;
 
-    const preparedItems = items
+    return items
       .map(({ id, title }) => {
         const isSelected = accumulatedList.includes(id);
         const isHighlighted = filter instanceof RegExp && filter.test(title);
@@ -150,60 +127,60 @@ class Select extends React.Component {
         return {
           id,
           title,
-          isSelected,
-          isHighlighted,
+          selected: isSelected,
+          highlighted: isHighlighted,
           order: isHighlighted ? 0 : 1,
         };
       })
       .sort((a, b) => a.order - b.order);
-
-    return preparedItems.map(({ id, title, isSelected, isHighlighted }) => {
-      const listItemClass = CSSUtils.mergeModifiers('select__list-item', {
-        selected: isSelected,
-        highlighted: isHighlighted,
-      });
-      const iconColor = isSelected ? '' : 'white';
-
-      return (
-        <li
-          className={listItemClass}
-          key={id}
-          onClick={() => {
-            this.toggleInAccumulatedList(id);
-          }}>
-          <div>{title}</div>
-          <Icon source={Icon.sources.base.check} color={iconColor} />
-        </li>
-      );
-    });
-  }
+  };
 
   render() {
-    const { open } = this.state;
+    const { selectedList } = this.state;
     const { searchable, multiple } = this.props;
 
-    let theme = null;
-    let chevron = <Icon source={Icon.sources.base.chevronDown} />;
-
-    if (open) {
-      theme = CSSConstants.THEMES.PRIMARY;
-      chevron = <Icon source={Icon.sources.base.chevronUp} />;
-    }
+    const listItems = this.listItems();
+    const dropdownHeader = (searchable && <SearchBar onChange={this.onSearchOption} />) || null;
 
     return (
       <div className="select">
-        <FormControl theme={theme} dropdown={open} onClick={this.toggleOpen}>
-          <FormControl.Effect>{chevron}</FormControl.Effect>
-          <FormControl.Control>
-            <ul className="select__sample-sheet">{this.sampleSheet}</ul>
-          </FormControl.Control>
-        </FormControl>
-        <Dropdown open={open}>
-          <Dropdown.Header>
-            {searchable && <SearchBar onChange={this.onSearchOption} />}
-          </Dropdown.Header>
-          <Dropdown.Main>{this.list}</Dropdown.Main>
-          {multiple && <Dropdown.Footer onApply={this.onApplyList} onCancel={this.onCancelList} />}
+        <Dropdown
+          items={listItems}
+          itemComponent={SelectListItem}
+          itemProps={{
+            onClick: this.toggleInAccumulatedList,
+          }}
+          notCloseClicked={multiple}
+          header={dropdownHeader}
+          onApply={this.onApplyList}
+          onCancel={this.onCancelList}>
+          {(onToggleOpen, openState) => {
+            let theme = null;
+            let chevron = this.chevronDown;
+
+            if (openState) {
+              theme = CSSConstants.THEMES.PRIMARY;
+              chevron = this.chevronUp;
+            }
+
+            const onOpen = (event) => {
+              this.setState({
+                filter: null,
+                accumulatedList: selectedList,
+              });
+
+              onToggleOpen(event);
+            };
+
+            return (
+              <FormControl theme={theme} dropdown={openState} onClick={onOpen}>
+                <FormControl.Effect>{chevron}</FormControl.Effect>
+                <FormControl.Control>
+                  <ul className="select__sample-sheet">{this.sampleSheet}</ul>
+                </FormControl.Control>
+              </FormControl>
+            );
+          }}
         </Dropdown>
       </div>
     );

@@ -1,0 +1,32 @@
+import React from 'react';
+
+import Icon from '@components/shared/icon';
+import { CommonUtils, CSSUtils } from '@utils';
+
+class SelectListItem extends React.PureComponent {
+  onClick = () => {
+    const { id, onClick } = this.props;
+
+    CommonUtils.isFunction(onClick) && onClick(id);
+  };
+
+  render() {
+    const { id, title, selected, highlighted } = this.props;
+
+    const listItemClass = CSSUtils.mergeModifiers('select__list-item', {
+      selected,
+      highlighted,
+    });
+
+    const iconColor = selected ? '' : 'white';
+
+    return (
+      <li className={listItemClass} key={id} onClick={this.onClick}>
+        <div>{title}</div>
+        <Icon source={Icon.sources.base.check} color={iconColor} />
+      </li>
+    );
+  }
+}
+
+export default SelectListItem;

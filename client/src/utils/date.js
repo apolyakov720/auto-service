@@ -7,9 +7,10 @@ import {
   startOfWeek,
   startOfMonth,
   isSameDay,
-  format,
-  parseISO,
   isValid,
+  format,
+  parse,
+  toDate,
 } from 'date-fns';
 import ru from 'date-fns/locale/ru';
 
@@ -19,17 +20,20 @@ const getStartOfWeek = (date = new Date()) => startOfWeek(date, { weekStartsOn: 
 /** Возвращает дату начала недели для текущего месяца от заданной даты */
 const getStartOfWeekMonth = (date = new Date()) => getStartOfWeek(startOfMonth(date));
 
-const formatDisplayedDate = (date) => {
-  return format(date, 'LLLL yyyy', { locale: ru });
+const formatDisplayedDate = (date) => format(date, 'LLLL yyyy', { locale: ru });
+
+const formatSelectedDate = (date, formatValue = 'dd.MM.yyyy') =>
+  format(date, formatValue, { locale: ru });
+
+const formatWeekDay = (date) => format(date, 'eee', { locale: ru }).substring(0, 2);
+
+const getWeekDays = () => {
+  const startWeek = new Date();
+
+  return [0, 1, 2, 3, 4, 5, 6].map((value) => formatWeekDay(addDays(startWeek, value)));
 };
 
-const formatSelectedDate = (date, formatValue = 'dd.MM.yyyy') => {
-  return format(date, formatValue, { locale: ru });
-};
-
-const formatWeekDay = (date) => {
-  return format(date, 'eee', { locale: ru }).substring(0, 2);
-};
+const parseStringDate = (value) => toDate(Date.parse(value));
 
 export default {
   addMonths,
@@ -39,10 +43,12 @@ export default {
   getMonth,
   getStartOfWeek,
   getStartOfWeekMonth,
+  getWeekDays,
   isSameDay,
+  isValid,
   formatDisplayedDate,
   formatSelectedDate,
   formatWeekDay,
-  parseISO,
-  isValid,
+  parse,
+  parseStringDate,
 };

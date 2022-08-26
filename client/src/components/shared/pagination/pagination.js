@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import PaginationItem from './pagination-item';
+import { PaginationListItem } from '@components/shared/list-items';
 import Icon from '@components/shared/icon';
 import { CommonUtils } from '@utils';
 import { CSSConstants } from '@constants';
@@ -101,7 +101,7 @@ class Pagination extends React.Component {
 
         if (visiblePages.has(index)) {
           accumulator.pages.push(
-            <PaginationItem
+            <PaginationListItem
               id={index}
               key={index}
               content={content}
@@ -138,13 +138,13 @@ class Pagination extends React.Component {
 
     return (
       <ul className="pagination">
-        <PaginationItem
+        <PaginationListItem
           content={leftChevron}
           onClick={this.setPreviousPage}
           disabled={selected === 0}
         />
         {this.pages}
-        <PaginationItem
+        <PaginationListItem
           content={rightChevron}
           onClick={this.setNextPage}
           disabled={selected === countPages - 1}

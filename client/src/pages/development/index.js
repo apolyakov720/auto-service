@@ -26,13 +26,10 @@ const DevelopmentPage = () => {
         />
         <br />
         <br />
-        <DatePicker required label="Выберите дату" />
-        <br />
-        <br />
         <Calendar
-          originalISODate="1994-06-22"
-          onSelect={(value) => console.log(value)}
-          formatReturnValue="dd.MM.yyyy"
+          original="22.06.1994"
+          // onSelect={(value) => console.log(value)}
+          format="dd.MM.yyyy"
         />
         <br />
         <br />
@@ -40,6 +37,9 @@ const DevelopmentPage = () => {
         <br />
         <br />
         <Input onChange={(val) => console.log('new_val: ', val)} mask="phone" />
+        <br />
+        <br />
+        <DatePicker required label="Выберите дату" />
       </div>
     </>
   );

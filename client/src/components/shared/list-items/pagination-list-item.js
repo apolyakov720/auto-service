@@ -2,7 +2,7 @@ import React from 'react';
 
 import { CSSUtils } from '@utils';
 
-class PaginationItem extends React.Component {
+class PaginationListItem extends React.Component {
   onItemClick = () => {
     const { onClick, id, disabled } = this.props;
 
@@ -33,4 +33,4 @@ class PaginationItem extends React.Component {
   }
 }
 
-export default PaginationItem;
+export default PaginationListItem;

@@ -1,16 +1,16 @@
 import React from 'react';
 
-import { CSSUtils, DateUtils } from '@utils';
+import { CSSUtils, CommonUtils, DateUtils } from '@utils';
 
-class Day extends React.Component {
-  onClickDay = () => {
-    const { onClick, date } = this.props;
+class Day extends React.PureComponent {
+  onClick = () => {
+    const { onSelect, date } = this.props;
 
-    onClick && onClick(date);
+    CommonUtils.isFunction(onSelect) && onSelect(DateUtils.parseStringDate(date));
   };
 
   render() {
-    const { date, selected, outside } = this.props;
+    const { day, selected, outside } = this.props;
 
     const dayClass = CSSUtils.mergeModifiers('calendar__day', {
       selected,
@@ -18,8 +18,8 @@ class Day extends React.Component {
     });
 
     return (
-      <li className={dayClass} onClick={this.onClickDay}>
-        {DateUtils.getDay(date)}
+      <li className={dayClass} onClick={this.onClick}>
+        {day}
       </li>
     );
   }

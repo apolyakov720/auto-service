@@ -16,7 +16,7 @@ class Icon extends React.PureComponent {
       return null;
     }
 
-    const Svg = source;
+    const SVG = source;
 
     const isThemeColor = Object.values(CSSConstants.THEMES).includes(color);
     const styleColor = (!isThemeColor && this.isColor(color) && { color: color }) || {};
@@ -33,7 +33,7 @@ class Icon extends React.PureComponent {
 
     return (
       <div className={iconClass} style={styleColor}>
-        <Svg />
+        <SVG />
       </div>
     );
   }
