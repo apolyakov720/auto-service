@@ -88,8 +88,6 @@ class Calendar extends React.PureComponent {
   onSelectDate = (date) => {
     const { onSelect, format } = this.props;
 
-    console.log('date:', DateUtils.formatSelectedDate(date, format));
-
     this.setDate({
       date,
       selected: date,

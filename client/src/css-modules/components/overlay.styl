@@ -1,0 +1,16 @@
+.overlay
+  position fixed
+  top 0
+  right 0
+  bottom 0
+  left 0
+  overflow auto
+  display flex
+  z-index $z-index-overlay
+  background-color rgba($color-element.shadow-dark, .8);
+  padding 1rem
+
+  &__light-box
+    background-color $color-background.light;
+    max-width 60rem
+    margin auto
