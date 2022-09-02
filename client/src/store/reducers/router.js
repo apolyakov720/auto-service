@@ -1,5 +1,6 @@
 const initialState = {
-  state: false,
+  routes: [],
+  allRoutes: [],
 };
 
 export default (state = initialState, action) => {
