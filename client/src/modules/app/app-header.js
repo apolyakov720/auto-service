@@ -1,12 +1,12 @@
 import React from 'react';
 
-import Avatar from '@components/shared/avatar';
+import UserProfileCard from '@modules/user';
 
 class AppHeader extends React.Component {
   render() {
     return (
       <div className="header">
-        <Avatar />
+        <UserProfileCard />
       </div>
     );
   }

@@ -1,13 +1,13 @@
 import React from 'react';
 
 import Icon from '@components/shared/icon';
-import { CommonUtils, CSSUtils } from '@utils';
+import { commonUtils, CSSUtils } from '@utils';
 
 class SelectListItem extends React.PureComponent {
   onClick = () => {
     const { id, onClick } = this.props;
 
-    CommonUtils.isFunction(onClick) && onClick(id);
+    commonUtils.isFunction(onClick) && onClick(id);
   };
 
   render() {

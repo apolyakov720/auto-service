@@ -9,6 +9,9 @@ import chevronRight from '@assets/icons/chevron-right.svg';
 import chevronDown from '@assets/icons/chevron-down.svg';
 import chevronUp from '@assets/icons/chevron-up.svg';
 import calendar from '@assets/icons/calendar.svg';
+import bell from '@assets/icons/bell.svg';
+import eye from '@assets/icons/eye.svg';
+import eyeSlash from '@assets/icons/eye-slash.svg';
 
 export default {
   person,
@@ -22,4 +25,7 @@ export default {
   chevronDown,
   chevronUp,
   calendar,
+  bell,
+  eye,
+  eyeSlash,
 };

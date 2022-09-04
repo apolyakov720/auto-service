@@ -3,7 +3,7 @@ import InputMask from 'react-input-mask';
 
 import FormControl from '@components/shared/form-control';
 import { NormalizerService } from '@services';
-import { CSSUtils, CommonUtils } from '@utils';
+import { CSSUtils, commonUtils } from '@utils';
 
 class Input extends React.PureComponent {
   static Extra = FormControl.Extra;
@@ -13,7 +13,7 @@ class Input extends React.PureComponent {
   onChangeValue = (event) => {
     const { onChange } = this.props;
 
-    CommonUtils.isFunction(onChange) && onChange(event?.target?.value);
+    commonUtils.isFunction(onChange) && onChange(event?.target?.value);
   };
 
   render() {

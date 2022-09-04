@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CSSUtils, DateUtils } from '@utils';
+import { CSSUtils, dateUtils } from '@utils';
 
 class WeekDays extends React.PureComponent {
   render() {
@@ -10,7 +10,7 @@ class WeekDays extends React.PureComponent {
 
     return (
       <ul className={weekClass}>
-        {DateUtils.getWeekDays().map((weekDay) => (
+        {dateUtils.getWeekDays().map((weekDay) => (
           <li className="calendar__day" key={weekDay}>
             {weekDay}
           </li>

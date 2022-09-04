@@ -4,7 +4,7 @@ import Button from '@components/shared/button';
 import ScrollBox from '@components/shared/scroll-box';
 import OutsideClick from '@components/functional/outside-click';
 import { CSSConstants } from '@constants';
-import { CommonUtils } from '@utils';
+import { commonUtils } from '@utils';
 
 class Dropdown extends React.Component {
   constructor(props) {
@@ -16,13 +16,13 @@ class Dropdown extends React.Component {
   }
 
   componentDidMount() {
-    document.addEventListener('scroll', CommonUtils.debounce(this.onClose));
-    window.addEventListener('resize', CommonUtils.debounce(this.onClose));
+    document.addEventListener('scroll', commonUtils.debounce(this.onClose));
+    window.addEventListener('resize', commonUtils.debounce(this.onClose));
   }
 
   componentWillUnmount() {
-    document.removeEventListener('scroll', CommonUtils.debounce(this.onClose));
-    window.removeEventListener('resize', CommonUtils.debounce(this.onClose));
+    document.removeEventListener('scroll', commonUtils.debounce(this.onClose));
+    window.removeEventListener('resize', commonUtils.debounce(this.onClose));
   }
 
   setOpen = (value) => {
@@ -57,7 +57,7 @@ class Dropdown extends React.Component {
       itemProps: { onClick },
     } = this.props;
 
-    CommonUtils.isFunction(onClick) && onClick(...args);
+    commonUtils.isFunction(onClick) && onClick(...args);
 
     if (!notCloseClicked) {
       this.onClose();
@@ -74,7 +74,7 @@ class Dropdown extends React.Component {
         {open && (
           <div className="dropdown">
             {header && <div className="dropdown__header">{header}</div>}
-            {!(CommonUtils.isEmpty(items) || CommonUtils.isNull(Component)) && (
+            {!(commonUtils.isEmpty(items) || commonUtils.isNull(Component)) && (
               <div className="dropdown__main">
                 <ScrollBox>
                   {items.map((props) => (
@@ -83,7 +83,7 @@ class Dropdown extends React.Component {
                 </ScrollBox>
               </div>
             )}
-            {(CommonUtils.isFunction(onApply) || CommonUtils.isFunction(onCancel)) && (
+            {(commonUtils.isFunction(onApply) || commonUtils.isFunction(onCancel)) && (
               <div className="dropdown__footer">
                 <Button caption="Отмена" onClick={this.onCancel} />
                 <Button

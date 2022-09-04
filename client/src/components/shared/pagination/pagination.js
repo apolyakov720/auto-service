@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { PaginationListItem } from '@components/shared/list-items';
 import Icon from '@components/shared/icon';
-import { CommonUtils } from '@utils';
+import { commonUtils } from '@utils';
 import { CSSConstants } from '@constants';
 
 /** Компонент "Pagination" (Нумерация страниц) */
@@ -26,10 +26,10 @@ class Pagination extends React.Component {
     const { quantity, size } = this.props;
     let pageSize = null;
     let countPages = null;
-    const isAvailable = CommonUtils.isNumeric(quantity) && quantity > 0 && quantity > size;
+    const isAvailable = commonUtils.isNumeric(quantity) && quantity > 0 && quantity > size;
 
     if (isAvailable) {
-      pageSize = CommonUtils.isNumeric(size) && size > 0 ? size : 5;
+      pageSize = commonUtils.isNumeric(size) && size > 0 ? size : 5;
       countPages = Math.floor(quantity / pageSize) + (quantity % pageSize > 0 ? 1 : 0);
     }
 

@@ -1,20 +1,34 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Layout from './layout';
 import Suspense from '@components/functional/suspense';
-import { CommonUtils } from '@utils';
+import { commonUtils } from '@utils';
+import startup from './startup';
 
-import config from './config';
+import { loaders } from './config';
 
 class Router extends React.Component {
+  componentDidMount() {
+    startup();
+  }
+
   render() {
+    const { routes } = this.props;
+
+    if (commonUtils.isEmpty(routes)) {
+      return null;
+    }
+
     return (
       <BrowserRouter>
-        <Layout>
+        <Layout routes={routes}>
           <Routes>
-            {config.map(({ path, loader, ...props }) => {
-              if (!path || !CommonUtils.isFunction(loader)) {
+            {routes.map(({ path, ...props }) => {
+              const loader = loaders[path];
+
+              if (!path || !loader) {
                 return null;
               }
 
@@ -29,4 +43,10 @@ class Router extends React.Component {
   }
 }
 
-export default Router;
+const mapStateToProps = (state) => {
+  return {
+    routes: state.router.routes,
+  };
+};
+
+export default connect(mapStateToProps)(Router);

@@ -1,0 +1,40 @@
+.user-profile-card
+  font-size $font-size-base
+  display inline-flex
+  flex-direction column
+  align-items center
+
+  > *
+    margin-bottom .5em
+
+    &:last-child
+      margin-bottom 0
+
+.personal-notification-button
+  position relative
+
+  &__badge
+    position absolute
+    right 0
+    top 0
+    transform translate(50%, -50%)
+
+.personal-data-card
+  font-size $font-size-base
+  display inline-flex
+  flex-direction column
+  text-align center
+
+  &__general
+  &__additional
+    display inline-flex
+    flex-direction column
+
+  &__general
+    font-family $font-family-bold
+
+  &__additional
+    font-family $font-family-light
+    color $color-element.subheader;
+    margin-top .7em
+    font-size .75em

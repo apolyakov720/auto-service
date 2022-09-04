@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { CSSUtils, CommonUtils } from '@utils';
+import { CSSUtils, commonUtils } from '@utils';
 import { CSSConstants } from '@constants';
 
 /** Компонент "Badge" (Значок) */
@@ -21,7 +21,7 @@ class Badge extends React.PureComponent {
     );
 
     return (
-      <div className={badgeClass}>{!CommonUtils.isEmpty(content) && <span>{content}</span>}</div>
+      <div className={badgeClass}>{!commonUtils.isEmpty(content) && <span>{content}</span>}</div>
     );
   }
 }
@@ -32,7 +32,8 @@ Badge.propTypes = {
    * Свойство обязательно для заполнения.
    * Принимает React элемент, либо допустимый в качестве дочернего элемента React тип данных.
    * */
-  content: PropTypes.oneOfType([PropTypes.element, PropTypes.elementType]).isRequired,
+  content: PropTypes.oneOfType([PropTypes.element, PropTypes.elementType, PropTypes.number])
+    .isRequired,
   /**
    * Тема компонента.
    * Определяет внешний вид компонента.

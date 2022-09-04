@@ -5,7 +5,7 @@ import Button from '@components/shared/button';
 import Icon from '@components/shared/icon';
 import Week from './week';
 import WeekDays from './week-days';
-import { CommonUtils, DateUtils } from '@utils';
+import { commonUtils, dateUtils } from '@utils';
 import { CSSConstants } from '@constants';
 
 /** Компонент "Calendar" (Календарь) */
@@ -34,9 +34,9 @@ class Calendar extends React.PureComponent {
   getInitDate = (props) => {
     const { original, format } = props || this.props;
 
-    let current = DateUtils.parse(original, format, new Date());
+    let current = dateUtils.parse(original, format, new Date());
 
-    if (!DateUtils.isValid(current)) {
+    if (!dateUtils.isValid(current)) {
       current = new Date();
     }
 
@@ -48,20 +48,20 @@ class Calendar extends React.PureComponent {
 
     const weeks = [];
 
-    let startWeek = DateUtils.getStartOfWeekMonth(date);
+    let startWeek = dateUtils.getStartOfWeekMonth(date);
 
     [0, 1, 2, 3, 4, 5].forEach((value) => {
       weeks.push(
         <Week
           key={value}
           start={startWeek}
-          month={DateUtils.getMonth(date)}
+          month={dateUtils.getMonth(date)}
           selected={selected}
           onSelectDay={this.onSelectDate}
         />,
       );
 
-      startWeek = DateUtils.addWeeks(startWeek, 1);
+      startWeek = dateUtils.addWeeks(startWeek, 1);
     });
 
     return weeks;
@@ -73,7 +73,7 @@ class Calendar extends React.PureComponent {
 
   setMonth = (value) => {
     this.setDate({
-      date: DateUtils.addMonths(this.state.date, value),
+      date: dateUtils.addMonths(this.state.date, value),
     });
   };
 
@@ -93,7 +93,7 @@ class Calendar extends React.PureComponent {
       selected: date,
     });
 
-    CommonUtils.isFunction(onSelect) && onSelect(DateUtils.formatSelectedDate(date, format));
+    commonUtils.isFunction(onSelect) && onSelect(dateUtils.formatSelectedDate(date, format));
   };
 
   render() {
@@ -101,7 +101,7 @@ class Calendar extends React.PureComponent {
       <div className="calendar">
         <div className="calendar__header">
           <Button extra={this.leftChevron} onClick={this.setPreviousMonth} noStroke />
-          <div className="calendar__month">{DateUtils.formatDisplayedDate(this.state.date)}</div>
+          <div className="calendar__month">{dateUtils.formatDisplayedDate(this.state.date)}</div>
           <Button extra={this.rightChevron} onClick={this.setNextMonth} noStroke />
         </div>
         <div className="calendar__daily-planner">

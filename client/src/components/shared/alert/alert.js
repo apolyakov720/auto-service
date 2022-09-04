@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Icon from '@components/shared/icon';
-import { CSSUtils, CommonUtils } from '@utils';
+import { CSSUtils, commonUtils } from '@utils';
 import { CSSConstants } from '@constants';
 
 /** Компонент "Alert" (Оповещение) */
@@ -29,7 +29,7 @@ class Alert extends React.PureComponent {
     return (
       <div className={alertClass}>
         <div className="alert__content">{content}</div>
-        {CommonUtils.isFunction(onClose) && (
+        {commonUtils.isFunction(onClose) && (
           <div className="alert__effect" onClick={this.onClose}>
             <Icon source={Icon.sources.base.cross} bold />
           </div>

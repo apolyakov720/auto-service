@@ -26,7 +26,8 @@ const mergeClasses = (...classes) => {
 
       return accumulator;
     }, [])
-    .join(' ');
+    .join(' ')
+    .trim();
 };
 
 const mergeModifiers = (baseClass = '', modifiers = {}) => {

@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { CSSUtils, CommonUtils, DateUtils } from '@utils';
+import { CSSUtils, commonUtils, dateUtils } from '@utils';
 
 class Day extends React.PureComponent {
   onClick = () => {
     const { onSelect, date } = this.props;
 
-    CommonUtils.isFunction(onSelect) && onSelect(DateUtils.parseStringDate(date));
+    commonUtils.isFunction(onSelect) && onSelect(dateUtils.parseStringDate(date));
   };
 
   render() {

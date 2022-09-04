@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Badge from './badge';
-import { CommonUtils } from '@utils';
+import { commonUtils } from '@utils';
 
 /** Компонент "CountBadge" (Числовой значок) */
 class CountBadge extends React.PureComponent {
   get value() {
     const { count, limit } = this.props;
 
-    if (CommonUtils.isNumeric(count) && count > -1) {
+    if (commonUtils.isNumeric(count) && count > -1) {
       const digitNumber = String(count).length;
 
       if (digitNumber > limit) {
@@ -23,9 +23,9 @@ class CountBadge extends React.PureComponent {
   }
 
   render() {
-    const { theme } = this.props;
+    const { theme, size } = this.props;
 
-    return <Badge content={this.value} theme={theme} circled />;
+    return <Badge content={this.value} theme={theme} size={size} circled />;
   }
 }
 
@@ -44,6 +44,12 @@ CountBadge.propTypes = {
    * Примечание: основная тема устанавливается по умолчанию средствами CSS, передача свойства необязательна.
    * */
   theme: PropTypes.oneOf(['primary', 'secondary', 'info', 'warning', 'error', 'disabled']),
+  /**
+   * Размер компонента.
+   * Определяется на основе размера шрифта для корня документа.
+   * Примечание: размер "M" устанавливается по умолчанию средствами CSS, передача свойства необязательна.
+   * */
+  size: PropTypes.oneOf(['XS', 'S', 'M', 'L', 'XL', 'XXL']),
 };
 
 CountBadge.defaultProps = {

@@ -1,4 +1,4 @@
-import Constants from './constants';
+import constants from './constants';
 
 // path* - путь по которому доступен роут
 // loader* - содержимое роута, которое будет загружено динамически при переходе
@@ -8,21 +8,27 @@ import Constants from './constants';
 // isEnabled - доступность роута, может быть функцией, которая принимает состояние приложения
 // * - обязательно для заполнения
 
+// TODO сделать нормальный конфиг
+
 const login = {
   path: '/',
-  isUnauthorizedZone: true,
-  zoneType: Constants.ZONE_TYPES.LOGIN,
-  loader: () => import('@pages/login'),
+  zoneType: constants.ZONE_TYPES.UNAUTHORIZED,
 };
 
 const main = {
   path: '/main',
-  loader: () => import('@pages/main'),
 };
 
 const dev = {
-  path: '/main',
-  loader: () => import('@pages/development'),
+  path: '/dev',
 };
 
-export default [dev, login, main];
+const routerTree = [login, main, dev];
+
+export const loaders = {
+  [login.path]: () => import('@pages/login'),
+  [main.path]: () => import('@pages/main'),
+  [dev.path]: () => import('@pages/development'),
+};
+
+export default routerTree;

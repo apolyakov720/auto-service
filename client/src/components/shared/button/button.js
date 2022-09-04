@@ -7,11 +7,12 @@ import { CSSConstants } from '@constants';
 /** Компонент "Button" (Кнопка) */
 class Button extends React.PureComponent {
   render() {
-    const { caption, theme, size, extra, circled, noStroke, onClick } = this.props;
+    const { caption, theme, size, extra, circled, noStroke, full, onClick } = this.props;
 
     const buttonClass = CSSUtils.mergeClasses(
       CSSUtils.mergeModifiers('button', {
         circled,
+        full,
         [theme]: theme,
         'no-stroke': noStroke,
       }),

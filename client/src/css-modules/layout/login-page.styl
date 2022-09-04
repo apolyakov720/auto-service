@@ -1,39 +1,42 @@
 .login-page
-  font-size 2rem
-  height 100%
-  width 100%
-  display flex
-  flex-direction column
-  align-items center
-  justify-content center
-  background-color transparent
+  font-size $font-size-base
 
-.reg-auth-form
-  width 80%
-  max-width 25em
-  min-width 15em
+.login-header
+  margin-bottom 2em
+  text-align center
 
-  &__tabs
-    display flex
+  &__greeting
+    font-family $font-family-bold
+    letter-spacing .1em
 
-    > .tab
-      flex 1
-      text-align center
-      padding .5em 0
-      cursor pointer
+  // TODO повторяется в user-profile-card
+  &__instructions
+    font-family $font-family-light
+    color $color-element.subheader;
+    margin-top .7em
+    font-size .75em
 
-      &--active
-        background-color #eee
+.login-form-fields
+  margin-bottom 1em
 
-  &__content
-    // height 300px
-    background-color #eee
-    padding .5em
+  > *
+    margin-bottom 1em
 
-.form-fields
-  > *:not(:last-child)
-    margin-bottom .5em
+.login-form-controls
+  margin-bottom 2em
 
-.form-controls
-  display flex
-  justify-content center
+  &__forgot-password
+    font-size .75em
+    text-align right
+
+  > *
+    margin-bottom 1em
+
+    &:last-child
+      margin-bottom 0
+
+.login-footer
+  font-family $font-family-light
+  color $color-element.subheader;
+  font-size .75em
+  text-align center

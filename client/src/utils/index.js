@@ -1,3 +1,3 @@
-export { default as CommonUtils } from './common';
+export { default as commonUtils } from './common';
 export { default as CSSUtils } from './css';
-export { default as DateUtils } from './date';
+export { default as dateUtils } from './date';

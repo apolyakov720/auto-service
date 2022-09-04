@@ -1,31 +1,21 @@
 import React from 'react';
 
-import Input from '@components/shared/input/input';
-import Button from '@components/shared/button';
+import LoginHeader from './login-header';
+import LoginFormFields from './login-form-fields';
+import LoginFormControls from './login-form-controls';
+import LoginFooter from './login-footer';
 
-import Icon from '@components/shared/icon';
-
-const LoginPage = () => {
-  return (
-    <div className="login-page">
-      <div className="reg-auth-form">
-        <div className="reg-auth-form__tabs">
-          <div className="tab tab--active">Вход</div>
-          <div className="tab">Регистрация</div>
-        </div>
-        <div className="reg-auth-form__content">
-          <div className="form-fields">
-            <Input label={<Icon source={Icon.sources.base.check} />} />
-            <Input label="Пароль" />
-          </div>
-          <div style={{ margin: '10px 0' }}></div>
-          <div className="form-controls">
-            <Button name="Войти" />
-          </div>
-        </div>
+class LoginPage extends React.Component {
+  render() {
+    return (
+      <div className="login-page">
+        <LoginHeader />
+        <LoginFormFields />
+        <LoginFormControls />
+        <LoginFooter />
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default LoginPage;

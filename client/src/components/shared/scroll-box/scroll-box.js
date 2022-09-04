@@ -1,6 +1,6 @@
 import React, { useRef, useState, useLayoutEffect, useEffect } from 'react';
 
-import { CommonUtils, CSSUtils } from '@utils';
+import { commonUtils, CSSUtils } from '@utils';
 
 const ScrollBox = ({ children, hideVerticalTrack = false, hideVerticalBar = false }) => {
   const [markerStats, setVerticalMarkerStats] = useState({ top: 0, height: 25 });
@@ -77,10 +77,10 @@ const ScrollBox = ({ children, hideVerticalTrack = false, hideVerticalBar = fals
   }, []);
 
   useEffect(() => {
-    window.addEventListener('resize', CommonUtils.debounce(updateVerticalMarkerStats));
+    window.addEventListener('resize', commonUtils.debounce(updateVerticalMarkerStats));
 
     return () => {
-      window.removeEventListener('resize', CommonUtils.debounce(updateVerticalMarkerStats));
+      window.removeEventListener('resize', commonUtils.debounce(updateVerticalMarkerStats));
     };
   }, []);
 
@@ -89,7 +89,7 @@ const ScrollBox = ({ children, hideVerticalTrack = false, hideVerticalBar = fals
       <div
         className="scroll-box__content"
         ref={refElementContent}
-        onScroll={CommonUtils.debounce(handleScroll, { immediate: true })}>
+        onScroll={commonUtils.debounce(handleScroll, { immediate: true })}>
         {children}
       </div>
       {!hideVerticalBar && markerStats.baseUnit < 1 && (

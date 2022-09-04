@@ -1,4 +1,4 @@
-import appTypes from '../action-types/app';
+import appTypes from '../types/app';
 
 const initialState = {
   loader: {

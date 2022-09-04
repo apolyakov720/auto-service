@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { CommonUtils } from '@utils';
+import { commonUtils } from '@utils';
 
 class FileLoader extends React.Component {
   render() {
     const { percent } = this.props;
 
-    if (!CommonUtils.isNumeric(percent)) {
+    if (!commonUtils.isNumeric(percent)) {
       return null;
     }
 
