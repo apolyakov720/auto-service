@@ -1,6 +1,7 @@
 Клиент:
 - Stylus
 - React
+-- React Final Form - для управления состоянием форм
 - Webpack
 
 State manager - Redux

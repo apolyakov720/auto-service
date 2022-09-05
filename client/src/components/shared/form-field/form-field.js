@@ -5,10 +5,9 @@ import { CSSConstants } from '@constants';
 
 class FormField extends React.Component {
   render() {
-    const { children, label, required, hints = [], errors = [] } = this.props;
+    const { children, label, required, error, hints = [] } = this.props;
 
     const resultHints = hints.map((hint, index) => <li key={index}>{hint}</li>);
-    const resultErrors = errors.map((error, index) => <li key={index}>{error}</li>);
 
     return (
       <div className="form-field">
@@ -29,7 +28,11 @@ class FormField extends React.Component {
         )}
         <div className="form-field__content">{children}</div>
         {hints.length > 0 && <ul className="form-field__hints">{resultHints}</ul>}
-        {errors.length > 0 && <ul className="form-field__errors">{resultErrors}</ul>}
+        {error && (
+          <ul className="form-field__errors">
+            <li>{error}</li>
+          </ul>
+        )}
       </div>
     );
   }

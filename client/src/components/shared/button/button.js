@@ -7,7 +7,7 @@ import { CSSConstants } from '@constants';
 /** Компонент "Button" (Кнопка) */
 class Button extends React.PureComponent {
   render() {
-    const { caption, theme, size, extra, circled, noStroke, full, onClick } = this.props;
+    const { caption, theme, size, extra, circled, noStroke, full, onClick, ...props } = this.props;
 
     const buttonClass = CSSUtils.mergeClasses(
       CSSUtils.mergeModifiers('button', {
@@ -22,7 +22,7 @@ class Button extends React.PureComponent {
     );
 
     return (
-      <button className={buttonClass} onClick={onClick}>
+      <button className={buttonClass} onClick={onClick} {...props}>
         {caption && <span className="button__caption">{caption}</span>}
         {extra && <span className="button__extra">{extra}</span>}
       </button>

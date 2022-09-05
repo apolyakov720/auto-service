@@ -1,14 +1,15 @@
 import React from 'react';
 
 import Button from '@components/shared/button';
-import { CSSConstants } from '@constants';
 
 class LoginFormControls extends React.PureComponent {
   render() {
+    const { themeSubmitControl } = this.props;
+
     return (
       <div className="login-form-controls">
         <div className="a login-form-controls__forgot-password">Забыли пароль?</div>
-        <Button caption="Войти" theme={CSSConstants.THEMES.PRIMARY} full />
+        <Button type="submit" caption="Войти" theme={themeSubmitControl} full />
       </div>
     );
   }

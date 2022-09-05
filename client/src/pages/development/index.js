@@ -5,7 +5,6 @@ import Select from '@components/shared/select';
 import Calendar from '@components/shared/calendar';
 import SearchBar from '@components/shared/search-bar';
 import Input from '@components/shared/input';
-import Overlay from '@components/shared/overlay';
 
 const DevelopmentPage = () => {
   return (

@@ -3,13 +3,11 @@ import PropsTypes from 'prop-types';
 
 import Input from '@components/shared/input';
 import Icon from '@components/shared/icon';
-import { CSSConstants } from '@constants';
 
 /** Компонент "SearchBar" (Панель поиска) */
 class SearchBar extends React.PureComponent {
   state = {
     value: '',
-    theme: null,
   };
 
   sanitizeValue = (value) =>
@@ -23,18 +21,6 @@ class SearchBar extends React.PureComponent {
     });
 
     this.onChange(value);
-  };
-
-  setTheme = () => {
-    this.setState({
-      theme: CSSConstants.THEMES.PRIMARY,
-    });
-  };
-
-  unsetTheme = () => {
-    this.setState({
-      theme: null,
-    });
   };
 
   onChange = (value) => {
@@ -60,24 +46,18 @@ class SearchBar extends React.PureComponent {
 
   onClear = (event) => {
     event.stopPropagation();
+
     this.setValue();
   };
 
   render() {
     const { placeholder, mask } = this.props;
-    const { value, theme } = this.state;
+    const { value } = this.state;
 
     const effectIconColor = value ? '' : 'white';
 
     return (
-      <Input
-        theme={theme}
-        placeholder={placeholder}
-        onFocus={this.setTheme}
-        onBlur={this.unsetTheme}
-        onChange={this.setValue}
-        value={value}
-        mask={mask}>
+      <Input placeholder={placeholder} onChange={this.setValue} value={value} mask={mask}>
         <Input.Extra>
           <Icon source={Icon.sources.base.search} />
         </Input.Extra>

@@ -4,11 +4,28 @@ import InputMask from 'react-input-mask';
 import FormControl from '@components/shared/form-control';
 import { NormalizerService } from '@services';
 import { CSSUtils, commonUtils } from '@utils';
+import { CSSConstants } from '@constants';
 
 class Input extends React.PureComponent {
+  state = {
+    theme: null,
+  };
+
   static Extra = FormControl.Extra;
 
   static Effect = FormControl.Effect;
+
+  setTheme = () => {
+    this.setState({
+      theme: CSSConstants.THEMES.PRIMARY,
+    });
+  };
+
+  unsetTheme = () => {
+    this.setState({
+      theme: null,
+    });
+  };
 
   onChangeValue = (event) => {
     const { onChange } = this.props;
@@ -16,12 +33,28 @@ class Input extends React.PureComponent {
     commonUtils.isFunction(onChange) && onChange(event?.target?.value);
   };
 
-  render() {
-    const { theme, mask, dropdown, children, ...inputProps } = this.props;
+  onBlur = () => {
+    this.unsetTheme();
+    this.props.onBlur && this.props.onBlur();
+  };
 
-    const themeKey = theme === 'primary' ? 'active' : theme;
+  onFocus = () => {
+    this.setTheme();
+    this.props.onFocus && this.props.onFocus();
+  };
+
+  render() {
+    const { theme: externalTheme, mask, dropdown, children, ...inputProps } = this.props;
+    const { theme: internalTheme } = this.state;
+
+    let theme = internalTheme;
+
+    if (externalTheme) {
+      theme = externalTheme;
+    }
+
     const inputClass = CSSUtils.mergeModifiers('input', {
-      [themeKey]: theme,
+      [theme]: theme,
     });
 
     return (
@@ -32,6 +65,8 @@ class Input extends React.PureComponent {
             {...inputProps}
             className={inputClass}
             onChange={this.onChangeValue}
+            onBlur={this.onBlur}
+            onFocus={this.onFocus}
             mask={NormalizerService.masks[mask]}
             maskChar={NormalizerService.maskChars[mask]}
             formatChars={NormalizerService.formatChars}

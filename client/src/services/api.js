@@ -1,4 +1,14 @@
-class Api {
+class API {
+  token = null;
+
+  getToken() {
+    return this.token;
+  }
+
+  setToken(token) {
+    this.token = token;
+  }
+
   get path() {
     if (USE_MOCK_API) {
       return 'http://localhost:3001/api/';
@@ -12,7 +22,7 @@ class Api {
   }
 
   post(url, data) {
-    this._makeRequest({
+    return this._makeRequest({
       method: 'POST',
       url,
       data,
@@ -37,11 +47,21 @@ class Api {
         },
       });
 
-      console.log('response: ', response);
+      return await response.json();
     } catch (e) {
-      //
+      // Будет отклонён только при сбое сети или если что-то помешало запросу выполниться.
     }
+  }
+
+  login(url, data) {
+    return this._makeRequest({ url, data }).then(({ token, ...response }) => {
+      if (token) {
+        this.setToken(token);
+      }
+
+      return response;
+    });
   }
 }
 
-export default new Api();
+export default new API();

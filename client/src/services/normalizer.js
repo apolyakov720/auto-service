@@ -1,5 +1,6 @@
 import { NormalizerConstants } from '@constants';
 
+// TODO сделать как в Validator, константы содержать в одном файле и экспортировать их оттуда
 class Normalizer {
   masks = {
     [NormalizerConstants.MASKS.PHONE]: '+7 (999) 999-99-99',
