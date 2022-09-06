@@ -4,17 +4,45 @@ import { Field } from 'react-final-form';
 import FormField from '@components/shared/form-field';
 import Input from '@components/shared/input';
 import Icon from '@components/shared/icon';
+import { CSSConstants } from '@constants';
+import Validator, { types } from '@services/validator';
+
+const fieldNames = {
+  login: 'login',
+  password: 'password',
+};
+
+const validateConfig = {
+  [fieldNames.login]: [
+    {
+      handler: types.required,
+    },
+  ],
+  [fieldNames.password]: [
+    {
+      handler: types.required,
+    },
+  ],
+};
+
+const validate = (values) => Validator.validate(validateConfig, values);
 
 class LoginFormFields extends React.PureComponent {
   render() {
     return (
       <div className="login-form-fields">
-        <Field name="login">
-          {({ input, meta }) => {
-            const error = meta.touched && meta.error ? meta.error : null;
+        <Field name={fieldNames.login}>
+          {({ input, meta: { touched, error } }) => {
+            let theme;
+            const errors = touched && error ? error : null;
+
+            if (errors) {
+              theme = CSSConstants.THEMES.ERROR;
+            }
+
             return (
-              <FormField label="Логин" error={error}>
-                <Input {...input}>
+              <FormField label="Логин" error={errors}>
+                <Input theme={theme} {...input}>
                   <Input.Extra>
                     <Icon source={Icon.sources.base.person} />
                   </Input.Extra>
@@ -23,11 +51,18 @@ class LoginFormFields extends React.PureComponent {
             );
           }}
         </Field>
-        <Field name="password">
-          {({ meta }) => {
+        <Field name={fieldNames.password}>
+          {({ input, meta: { touched, error } }) => {
+            let theme;
+            const errors = touched && error ? error : null;
+
+            if (errors) {
+              theme = CSSConstants.THEMES.ERROR;
+            }
+
             return (
-              <FormField label="Пароль" error={meta.error}>
-                <Input type="password">
+              <FormField label="Пароль" error={errors}>
+                <Input type="password" theme={theme} {...input}>
                   <Input.Extra>
                     <Icon source={Icon.sources.base.key} />
                   </Input.Extra>
@@ -44,4 +79,5 @@ class LoginFormFields extends React.PureComponent {
   }
 }
 
+export { validate };
 export default LoginFormFields;

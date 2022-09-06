@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { commonUtils } from '@utils';
+import commonUtils from '@utils/common';
 
 class PersonalDataCard extends React.PureComponent {
   render() {

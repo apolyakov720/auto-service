@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 
 import app from './app';
-import user from './user';
+import data from './data';
 import router from './router';
 
 const rootReducer = combineReducers({
   app,
-  user,
+  data,
   router,
 });
 

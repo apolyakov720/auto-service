@@ -3,7 +3,6 @@ import React from 'react';
 import AppLoader from './app-loader';
 import Router from '../router';
 import startup from './startup';
-import appActions from '@/store/actions/app';
 
 class App extends React.Component {
   constructor(props) {
@@ -15,15 +14,9 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    appActions.showLoader();
-
-    startup()
-      .then(() => {
-        this.setState({ ready: true });
-      })
-      .finally(() => {
-        appActions.hideLoader();
-      });
+    startup().then(() => {
+      this.setState({ ready: true });
+    });
   }
 
   render() {

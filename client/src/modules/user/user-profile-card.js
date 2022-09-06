@@ -22,7 +22,7 @@ class UserProfileCard extends React.PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
+    user: state.data.user.data,
   };
 };
 

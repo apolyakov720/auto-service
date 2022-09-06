@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { CSSUtils, commonUtils, dateUtils } from '@utils';
+import CSSUtils from '@utils/css';
+import commonUtils from '@utils/common';
+import dateUtils from '@utils/date';
 
 class Day extends React.PureComponent {
   onClick = () => {

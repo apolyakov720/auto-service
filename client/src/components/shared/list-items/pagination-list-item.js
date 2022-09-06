@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CSSUtils } from '@utils';
+import CSSUtils from '@utils/css';
 
 class PaginationListItem extends React.Component {
   onItemClick = () => {

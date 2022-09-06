@@ -27,12 +27,12 @@ class FormField extends React.Component {
           </div>
         )}
         <div className="form-field__content">{children}</div>
-        {hints.length > 0 && <ul className="form-field__hints">{resultHints}</ul>}
         {error && (
           <ul className="form-field__errors">
             <li>{error}</li>
           </ul>
         )}
+        {hints.length > 0 && <ul className="form-field__hints">{resultHints}</ul>}
       </div>
     );
   }

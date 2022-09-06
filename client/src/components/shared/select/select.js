@@ -7,7 +7,7 @@ import Icon from '@components/shared/icon';
 import SearchBar from '@components/shared/search-bar';
 import Dropdown from '@components/shared/dropdown';
 import { SelectListItem } from '@components/shared/list-items';
-import { CSSUtils } from '@utils';
+import CSSUtils from '@utils/css';
 import { CSSConstants } from '@constants';
 
 class Select extends React.Component {

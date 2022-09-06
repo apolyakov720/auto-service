@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Icon from '@components/shared/icon';
-import { CSSUtils, commonUtils } from '@utils';
+import CSSUtils from '@utils/css';
+import commonUtils from '@utils/common';
 import { CSSConstants } from '@constants';
 
 /** Компонент "Alert" (Оповещение) */

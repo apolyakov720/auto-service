@@ -1,7 +1,8 @@
 import React from 'react';
 
 import Icon from '@components/shared/icon';
-import { commonUtils, CSSUtils } from '@utils';
+import commonUtils from '@utils/common';
+import CSSUtils from '@utils/css';
 
 class SelectListItem extends React.PureComponent {
   onClick = () => {

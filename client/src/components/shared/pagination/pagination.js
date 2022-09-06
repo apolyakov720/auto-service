@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { PaginationListItem } from '@components/shared/list-items';
 import Icon from '@components/shared/icon';
-import { commonUtils } from '@utils';
+import commonUtils from '@utils/common';
 import { CSSConstants } from '@constants';
 
 /** Компонент "Pagination" (Нумерация страниц) */

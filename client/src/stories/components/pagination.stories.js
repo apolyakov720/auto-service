@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Pagination from '@/components/shared/pagination';
+import Pagination from '@components/shared/pagination';
 
 export default {
   title: 'Components/Pagination',

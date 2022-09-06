@@ -1,14 +1,16 @@
-import { NormalizerConstants } from '@constants';
+const masks = {
+  phone: 'phone',
+  date: 'date',
+};
 
-// TODO сделать как в Validator, константы содержать в одном файле и экспортировать их оттуда
 class Normalizer {
   masks = {
-    [NormalizerConstants.MASKS.PHONE]: '+7 (999) 999-99-99',
-    [NormalizerConstants.MASKS.DATE]: '99.99.9999',
+    [masks.phone]: '+7 (999) 999-99-99',
+    [masks.date]: '99.99.9999',
   };
 
   maskChars = {
-    [NormalizerConstants.MASKS.PHONE]: '9',
+    [masks.phone]: '9',
   };
 
   formatChars = {
@@ -17,4 +19,5 @@ class Normalizer {
   };
 }
 
+export { masks };
 export default new Normalizer();

@@ -2,8 +2,9 @@ import React from 'react';
 import InputMask from 'react-input-mask';
 
 import FormControl from '@components/shared/form-control';
-import { NormalizerService } from '@services';
-import { CSSUtils, commonUtils } from '@utils';
+import NormalizerService from '@services/normalizer';
+import CSSUtils from '@utils/css';
+import commonUtils from '@utils/common';
 import { CSSConstants } from '@constants';
 
 class Input extends React.PureComponent {
@@ -33,14 +34,16 @@ class Input extends React.PureComponent {
     commonUtils.isFunction(onChange) && onChange(event?.target?.value);
   };
 
-  onBlur = () => {
+  onBlur = (event) => {
     this.unsetTheme();
-    this.props.onBlur && this.props.onBlur();
+
+    this.props.onBlur && this.props.onBlur(event);
   };
 
-  onFocus = () => {
+  onFocus = (event) => {
     this.setTheme();
-    this.props.onFocus && this.props.onFocus();
+
+    this.props.onFocus && this.props.onFocus(event);
   };
 
   render() {

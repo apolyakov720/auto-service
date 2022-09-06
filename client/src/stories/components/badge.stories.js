@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Badge } from '@/components/shared/badges';
+import { Badge } from '@components/shared/badges';
 import { CSSConstants } from '@constants';
 
 export default {

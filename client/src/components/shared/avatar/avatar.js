@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Icon from '@components/shared/icon';
-import { CSSUtils } from '@utils';
+import CSSUtils from '@utils/css';
 import { CSSConstants } from '@constants';
 
 /** Компонент "Avatar" (Графическое представление профиля) */

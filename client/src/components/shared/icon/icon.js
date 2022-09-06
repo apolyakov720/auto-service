@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import baseIconSet from './sets/base';
 import { CSSConstants } from '@constants';
-import { CSSUtils } from '@utils';
+import CSSUtils from '@utils/css';
 
 /** Компонент "Icon" (Иконка) */
 class Icon extends React.PureComponent {

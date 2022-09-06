@@ -4,7 +4,7 @@ import Button from '@components/shared/button';
 import ScrollBox from '@components/shared/scroll-box';
 import OutsideClick from '@components/functional/outside-click';
 import { CSSConstants } from '@constants';
-import { commonUtils } from '@utils';
+import commonUtils from '@utils/common';
 
 class Dropdown extends React.Component {
   constructor(props) {

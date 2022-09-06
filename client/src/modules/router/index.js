@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Layout from './layout';
 import Suspense from '@components/functional/suspense';
-import { commonUtils } from '@utils';
+import commonUtils from '@utils/common';
 import startup from './startup';
 
 import { loaders } from './config';

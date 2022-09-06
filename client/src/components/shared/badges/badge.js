@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { CSSUtils, commonUtils } from '@utils';
+import CSSUtils from '@utils/css';
+import commonUtils from '@utils/common';
 import { CSSConstants } from '@constants';
 
 /** Компонент "Badge" (Значок) */

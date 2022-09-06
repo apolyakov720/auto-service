@@ -1,7 +1,8 @@
 import React from 'react';
 
 import Day from './day';
-import { dateUtils, commonUtils } from '@utils';
+import dateUtils from '@utils/date';
+import commonUtils from '@utils/common';
 
 class Week extends React.PureComponent {
   get days() {

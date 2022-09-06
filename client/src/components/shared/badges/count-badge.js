@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Badge from './badge';
-import { commonUtils } from '@utils';
+import commonUtils from '@utils/common';
 
 /** Компонент "CountBadge" (Числовой значок) */
 class CountBadge extends React.PureComponent {

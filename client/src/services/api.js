@@ -18,7 +18,7 @@ class API {
   }
 
   get(url) {
-    this._makeRequest(url);
+    return this._makeRequest({ url });
   }
 
   post(url, data) {

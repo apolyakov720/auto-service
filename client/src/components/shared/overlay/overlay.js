@@ -1,5 +1,5 @@
 import React from 'react';
-import { CSSUtils } from '@utils';
+import CSSUtils from '@utils/css';
 
 class Overlay extends React.PureComponent {
   render() {

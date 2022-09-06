@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { CSSUtils } from '@utils';
+import CSSUtils from '@utils/css';
 import { componentsConstants } from '@constants';
 
 const { FORM_CONTROL_DISPLAY_EXTRA, FORM_CONTROL_DISPLAY_CONTROL, FORM_CONTROL_DISPLAY_EFFECT } =

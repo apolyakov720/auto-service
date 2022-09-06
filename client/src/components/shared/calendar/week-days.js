@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { CSSUtils, dateUtils } from '@utils';
+import CSSUtils from '@utils/css';
+import dateUtils from '@utils/date';
 
 class WeekDays extends React.PureComponent {
   render() {

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { CSSUtils } from '@utils';
+import CSSUtils from '@utils/css';
 import { CSSConstants } from '@constants';
 
 /** Компонент "Button" (Кнопка) */

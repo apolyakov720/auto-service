@@ -5,7 +5,8 @@ import Button from '@components/shared/button';
 import Icon from '@components/shared/icon';
 import Week from './week';
 import WeekDays from './week-days';
-import { commonUtils, dateUtils } from '@utils';
+import commonUtils from '@utils/common';
+import dateUtils from '@utils/date';
 import { CSSConstants } from '@constants';
 
 /** Компонент "Calendar" (Календарь) */

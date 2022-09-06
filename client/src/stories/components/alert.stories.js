@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Alert from '@/components/shared/alert';
+import Alert from '@components/shared/alert';
 import { CSSConstants } from '@constants';
 
 export default {

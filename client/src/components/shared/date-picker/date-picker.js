@@ -5,7 +5,8 @@ import Input from '@components/shared/input';
 import Icon from '@components/shared/icon';
 import Calendar from '@components/shared/calendar';
 import Dropdown from '@components/shared/dropdown';
-import { CSSConstants, NormalizerConstants } from '@constants';
+import { masks } from '@services/normalizer';
+import { CSSConstants } from '@constants';
 
 /** Компонент "DatePicker" (Выбор даты) */
 class DatePicker extends React.PureComponent {
@@ -72,7 +73,7 @@ class DatePicker extends React.PureComponent {
               <Input
                 theme={theme}
                 dropdown={openState}
-                mask={NormalizerConstants.MASKS.DATE}
+                mask={masks.date}
                 onChange={this.onChangeDate}
                 value={selectedDate}>
                 <Input.Effect onClick={onToggleOpen}>

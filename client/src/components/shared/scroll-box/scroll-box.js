@@ -1,6 +1,7 @@
 import React, { useRef, useState, useLayoutEffect, useEffect } from 'react';
 
-import { commonUtils, CSSUtils } from '@utils';
+import commonUtils from '@utils/common';
+import CSSUtils from '@utils/css';
 
 const ScrollBox = ({ children, hideVerticalTrack = false, hideVerticalBar = false }) => {
   const [markerStats, setVerticalMarkerStats] = useState({ top: 0, height: 25 });

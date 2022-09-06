@@ -1,4 +1,4 @@
-import { commonUtils } from '@utils';
+import commonUtils from '@utils/common';
 
 const types = {
   required: 'required',
