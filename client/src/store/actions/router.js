@@ -1,5 +1,7 @@
+import commonUtils from '@utils/common';
+import routerConfig from '@modules/router/config';
 import routerTypes from '../types/router';
-import { dispatch } from '../';
+import { getState, dispatch } from '../';
 
 const setRoutes = (payload) => {
   dispatch({
@@ -8,6 +10,31 @@ const setRoutes = (payload) => {
   });
 };
 
+const calculateRoutes = () => {
+  const state = getState();
+
+  const preparedRoutes = Object.entries(routerConfig).reduce(
+    (accumulator, [key, { isEnabled, ...value }]) => {
+      let isRouteEnabled;
+
+      if (commonUtils.isFunction(isEnabled)) {
+        isRouteEnabled = isEnabled(state);
+      } else {
+        isRouteEnabled = isEnabled;
+      }
+
+      if (isRouteEnabled) {
+        accumulator.push({ key, ...value });
+      }
+
+      return accumulator;
+    },
+    [],
+  );
+
+  setRoutes(preparedRoutes);
+};
+
 export default {
-  setRoutes,
+  calculateRoutes,
 };

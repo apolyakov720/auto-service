@@ -1,34 +1,42 @@
-import constants from './constants';
-
 // path* - путь по которому доступен роут
 // loader* - содержимое роута, которое будет загружено динамически при переходе
-// title - заголовок роута, используется, например, для кнопок меню
-// isUnauthorizedZone - роут доступен в неавторизованной зоне
+// isEnabled* - доступность роута, может быть функцией, которая принимает состояние приложения
 // zoneType - имя зоны, используется для кастомной отризовки зон
-// isEnabled - доступность роута, может быть функцией, которая принимает состояние приложения
 // * - обязательно для заполнения
 
-// TODO сделать нормальный конфиг
-
-const login = {
-  path: '/',
-  zoneType: constants.ZONE_TYPES.UNAUTHORIZED,
+const routes = {
+  login: 'login',
+  main: 'main',
+  dev: 'dev',
 };
 
-const main = {
-  path: '/main',
+const zoneTypes = {
+  unauthorized: 'unauthorized',
 };
 
-const dev = {
-  path: '/dev',
+const loaders = {
+  [routes.login]: () => import('@pages/login'),
+  [routes.main]: () => import('@pages/main'),
+  [routes.dev]: () => import('@pages/development'),
 };
 
-const routerTree = [login, main, dev];
-
-export const loaders = {
-  [login.path]: () => import('@pages/login'),
-  [main.path]: () => import('@pages/main'),
-  [dev.path]: () => import('@pages/development'),
+const full = {
+  [routes.login]: {
+    path: '/',
+    zoneType: zoneTypes.unauthorized,
+    isIndex: true,
+    isEnabled: true,
+  },
+  [routes.main]: {
+    path: '/main',
+    isDefault: true,
+    isEnabled: (state) => state.app.isAuthorized,
+  },
+  [routes.dev]: {
+    path: '/dev',
+    isEnabled: false,
+  },
 };
 
-export default routerTree;
+export { routes, zoneTypes, loaders };
+export default full;

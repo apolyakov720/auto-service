@@ -44,23 +44,15 @@ class API {
         body: JSON.stringify(data),
         headers: {
           'Content-Type': 'application/json',
+          'token': this.getToken(),
         },
       });
 
       return await response.json();
     } catch (e) {
       // Будет отклонён только при сбое сети или если что-то помешало запросу выполниться.
+      return Promise.reject();
     }
-  }
-
-  login(url, data) {
-    return this._makeRequest({ url, data }).then(({ token, ...response }) => {
-      if (token) {
-        this.setToken(token);
-      }
-
-      return response;
-    });
   }
 }
 

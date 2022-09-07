@@ -94,7 +94,7 @@ const fetch = (keys) => {
   _pushFetchRequests(ready);
 
   return new Promise((resolve) => {
-    Promise.all(_getFetchRequests(ready)).then(resolve);
+    return Promise.all(_getFetchRequests(ready)).then(resolve);
   });
 };
 

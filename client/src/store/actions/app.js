@@ -13,7 +13,14 @@ const hideLoader = () => {
   });
 };
 
+const authorize = () => {
+  dispatch({
+    type: appTypes.AUTHORIZE,
+  });
+};
+
 export default {
   showLoader,
   hideLoader,
+  authorize,
 };

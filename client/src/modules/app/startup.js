@@ -7,7 +7,7 @@ export default function () {
 
   return new Promise((resolve) => {
     return dataActions
-      .fetch([keys.configs, keys.user])
+      .fetch([keys.configs])
       .then(() => resolve())
       .finally(() => {
         appActions.hideLoader();

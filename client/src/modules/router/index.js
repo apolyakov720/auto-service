@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 
 import Layout from './layout';
 import Suspense from '@components/functional/suspense';
@@ -14,6 +14,21 @@ class Router extends React.Component {
     startup();
   }
 
+  redirectUnknownRoute() {
+    const { app, routes } = this.props;
+
+    const defaultRoute = routes.find((route) => route.isDefault);
+    const indexRoute = routes.find((route) => route.isIndex);
+
+    if (app.isAuthorized && defaultRoute) {
+      return <Navigate to={defaultRoute.path} replace />;
+    }
+
+    if (!app.isAuthorized && indexRoute) {
+      return <Navigate to={indexRoute.path} replace />;
+    }
+  }
+
   render() {
     const { routes } = this.props;
 
@@ -25,17 +40,18 @@ class Router extends React.Component {
       <BrowserRouter>
         <Layout routes={routes}>
           <Routes>
-            {routes.map(({ path, ...props }) => {
-              const loader = loaders[path];
+            {routes.map(({ key, path, ...props }) => {
+              const loader = loaders[key];
 
               if (!path || !loader) {
                 return null;
               }
 
               return (
-                <Route key={path} path={path} element={<Suspense loader={loader} {...props} />} />
+                <Route key={key} path={path} element={<Suspense loader={loader} {...props} />} />
               );
             })}
+            <Route path="*" element={this.redirectUnknownRoute()} />
           </Routes>
         </Layout>
       </BrowserRouter>
@@ -45,6 +61,7 @@ class Router extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    app: state.app,
     routes: state.router.routes,
   };
 };

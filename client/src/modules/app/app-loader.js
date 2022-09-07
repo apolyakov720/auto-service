@@ -6,9 +6,9 @@ import Loader from '@components/shared/loader';
 
 class AppLoader extends React.PureComponent {
   render() {
-    const { show } = this.props;
+    const { isShow } = this.props;
 
-    if (show) {
+    if (isShow) {
       return (
         <Overlay transparent>
           <Loader />
@@ -22,7 +22,7 @@ class AppLoader extends React.PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    show: state.app.loader.show,
+    isShow: state.app.loader.isShow,
   };
 };
 
