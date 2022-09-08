@@ -20,7 +20,7 @@ const calculateRoutes = () => {
       if (commonUtils.isFunction(isEnabled)) {
         isRouteEnabled = isEnabled(state);
       } else {
-        isRouteEnabled = isEnabled;
+        isRouteEnabled = isEnabled || value.isIndex || value.isDefault;
       }
 
       if (isRouteEnabled) {

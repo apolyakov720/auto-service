@@ -1,12 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-const MainPage = () => {
-  return (
-    <Link to="/">
-      <div>MainPage</div>
-    </Link>
-  );
-};
+class MainPage extends React.Component {
+  render() {
+    return <div>Main Page</div>;
+  }
+}
 
 export default MainPage;

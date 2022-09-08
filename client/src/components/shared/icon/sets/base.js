@@ -12,6 +12,8 @@ import calendar from '@assets/icons/calendar.svg';
 import bell from '@assets/icons/bell.svg';
 import eye from '@assets/icons/eye.svg';
 import eyeSlash from '@assets/icons/eye-slash.svg';
+import arrowLeft from '@assets/icons/arrow-left.svg';
+import arrowRight from '@assets/icons/arrow-right.svg';
 
 export default {
   person,
@@ -28,4 +30,6 @@ export default {
   bell,
   eye,
   eyeSlash,
+  arrowLeft,
+  arrowRight,
 };

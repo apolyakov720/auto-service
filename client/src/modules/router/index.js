@@ -14,44 +14,59 @@ class Router extends React.Component {
     startup();
   }
 
-  redirectUnknownRoute() {
-    const { app, routes } = this.props;
+  getRedirectPaths() {
+    const { routes } = this.props;
 
     const defaultRoute = routes.find((route) => route.isDefault);
     const indexRoute = routes.find((route) => route.isIndex);
 
-    if (app.isAuthorized && defaultRoute) {
-      return <Navigate to={defaultRoute.path} replace />;
-    }
-
-    if (!app.isAuthorized && indexRoute) {
-      return <Navigate to={indexRoute.path} replace />;
-    }
+    return {
+      default: defaultRoute.path,
+      index: indexRoute.path,
+    };
   }
 
   render() {
-    const { routes } = this.props;
+    const { routes, app } = this.props;
 
     if (commonUtils.isEmpty(routes)) {
       return null;
     }
 
+    const redirects = this.getRedirectPaths();
+
+    // Если пользователь переходит по роуту, которого не существует, то он будет перенаправлен:
+    // 1. На индексную страницу, если он не авторизован
+    // 2. На страницу по умолчанию, если авторизован
+    const unknowns = app.isAuthorized ? redirects.default : redirects.index;
+
     return (
       <BrowserRouter>
         <Layout routes={routes}>
           <Routes>
-            {routes.map(({ key, path, ...props }) => {
+            {routes.map(({ key, path, isDefault, isIndex, ...props }) => {
               const loader = loaders[key];
 
               if (!path || !loader) {
                 return null;
               }
 
-              return (
-                <Route key={key} path={path} element={<Suspense loader={loader} {...props} />} />
-              );
+              let element = <Suspense loader={loader} {...props} />;
+
+              // Когда пользователь авторизовался, ему становиться не доступна индексная страница
+              // Происходит подмена роута
+              if (app.isAuthorized && isIndex) {
+                element = <Navigate to={redirects.default} replace />;
+              }
+
+              // Если пользователь неавторизован, ему не доступна страница по умолчанию
+              if (!app.isAuthorized && isDefault) {
+                element = <Navigate to={redirects.index} replace />;
+              }
+
+              return <Route key={key} path={path} element={element} />;
             })}
-            <Route path="*" element={this.redirectUnknownRoute()} />
+            <Route key="*" path="*" element={<Navigate to={unknowns} replace />} />
           </Routes>
         </Layout>
       </BrowserRouter>

@@ -21,6 +21,9 @@ class Layout extends React.Component {
           </div>
         );
 
+      case zoneTypes.registration:
+        return children;
+
       default:
         return (
           <>
