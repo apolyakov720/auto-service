@@ -1,5 +1,5 @@
 :root
-  font-family $font-family-regular, $font-family-safe
+  font-family $font-family-regular
   font-size $font-size-root
   box-sizing border-box
   color $color-text.dark;
@@ -38,7 +38,18 @@ body
   padding 1rem
 
 // TODO вынести в classes
+.text-center
+  text-align center
+
+.text-right
+  text-align right
+
+.subheader
+  font-family $font-family-light
+  color $color-element.subheader;
+  font-size .75em
+
 .a
-  font-size 1em
   color $color-theme.primary;
-  font-family $font-family-bold
+  font-family $font-family-regular
+  text-decoration none

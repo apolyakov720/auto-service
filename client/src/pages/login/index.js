@@ -1,32 +1,15 @@
 import React from 'react';
-import { Form } from 'react-final-form';
 
 import LoginHeader from './login-header';
-import LoginFormFields, { validate } from './login-form-fields';
-import LoginFormControls from './login-form-controls';
+import LoginMain from './login-main';
 import LoginFooter from './login-footer';
-import authorize from './authorize';
-import { CSSConstants } from '@constants';
 
 class LoginPage extends React.Component {
   render() {
     return (
-      <div className="login-page">
+      <div className="page">
         <LoginHeader />
-        <Form onSubmit={authorize} validate={validate}>
-          {({ handleSubmit, valid }) => {
-            const themeSubmitControl = valid
-              ? CSSConstants.THEMES.PRIMARY
-              : CSSConstants.THEMES.DISABLED;
-
-            return (
-              <form onSubmit={handleSubmit}>
-                <LoginFormFields />
-                <LoginFormControls themeSubmitControl={themeSubmitControl} />
-              </form>
-            );
-          }}
-        </Form>
+        <LoginMain />
         <LoginFooter />
       </div>
     );

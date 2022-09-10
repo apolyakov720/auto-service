@@ -22,10 +22,16 @@ class Select extends React.Component {
   chevronUp = (<Icon source={Icon.sources.base.chevronUp} />);
 
   mergeAccumulatorList = (onApplyFlag) => {
-    this.setState(({ accumulatedList, selectedList }) => ({
-      accumulatedList: [],
-      selectedList: onApplyFlag ? accumulatedList : selectedList,
-    }));
+    this.setState(({ accumulatedList, selectedList }) => {
+      const finalList = onApplyFlag ? accumulatedList : selectedList;
+
+      this.props.onSelect(finalList);
+
+      return {
+        selectedList: finalList,
+        accumulatedList: [],
+      };
+    });
   };
 
   toggleInAccumulatedList = (id) => {
@@ -95,7 +101,7 @@ class Select extends React.Component {
 
       return (
         <li key={id} className="select__sample-item">
-          <Alert textual id={id} content={item.title} onClose={this.onCloseItem} />
+          <Alert textual id={id} content={item.title} onClose={this.onCloseItem} theme="disabled" />
         </li>
       );
     });

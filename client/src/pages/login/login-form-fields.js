@@ -4,8 +4,8 @@ import { Field } from 'react-final-form';
 import FormField from '@components/shared/form-field';
 import Input from '@components/shared/input';
 import Icon from '@components/shared/icon';
-import { CSSConstants } from '@constants';
 import Validator, { types } from '@services/validator';
+import { CSSConstants } from '@constants';
 
 const fieldNames = {
   login: 'login',
@@ -30,7 +30,7 @@ const validate = (values) => Validator.validate(validateConfig, values);
 class LoginFormFields extends React.PureComponent {
   render() {
     return (
-      <div className="login-form-fields">
+      <div className="form__fields">
         <Field name={fieldNames.login}>
           {({ input, meta: { touched, error } }) => {
             let theme;
@@ -74,6 +74,9 @@ class LoginFormFields extends React.PureComponent {
             );
           }}
         </Field>
+        <FormField>
+          <div className="a subheader text-right">Забыли пароль?</div>
+        </FormField>
       </div>
     );
   }

@@ -31,10 +31,10 @@ $sizes = map-loop($scheme-size, get-size-by-base, $font-size-base)
 // Типография:
 // Основной шрифт - "Fira Code" (без засечек - sans-serif).
 // Запасной шрифт или безопасный шрифт - Tahoma (без засечек).
-$font-family-light = "Fira Code Light"
-$font-family-regular = "Fira Code Regular"
-$font-family-bold = "Fira Code Bold"
 $font-family-safe = Tahoma, sans-serif
+$font-family-light = "Fira Code Light", $font-family-safe
+$font-family-regular = "Fira Code Regular", $font-family-safe
+$font-family-bold = "Fira Code Bold", $font-family-safe
 
 // Палитра цветов (TODO: сделать отдельную настройку для пользователя):
 $color-palette = {
@@ -138,3 +138,4 @@ $max-width-application = 1200px
 $max-width-form-element = 50em
 $border-radius = .3em
 $border-width = .09em
+$input-line-height = 1.15

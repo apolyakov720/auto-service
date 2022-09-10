@@ -1,37 +1,28 @@
 import React from 'react';
-import { Form } from 'react-final-form';
+import { connect } from 'react-redux';
 
 import PageHeader from './page-header';
-import FormField from '@components/shared/form-field';
-import Input from '@components/shared/input';
-import Button from '@components/shared/button';
+import RegistrationHeader from './registration-header';
+import RegistrationMain from './registration-main';
 
 class RegistrationPage extends React.Component {
   render() {
+    const { configs } = this.props;
+
     return (
-      <div className="registration-page">
+      <div className="page">
         <PageHeader />
-        <Form onSubmit={() => {}}>
-          {({ handleSubmit }) => {
-            return (
-              <form onSubmit={handleSubmit}>
-                <FormField label="Логин">
-                  <Input placeholder="Придумайте логин" />
-                </FormField>
-                <FormField label="Пароль">
-                  <Input placeholder="Придумайте пароль" />
-                </FormField>
-                <FormField label="Подтверждение пароля">
-                  <Input placeholder="Подтвердите пароль" />
-                </FormField>
-                <Button caption="Зарегистироваться" />
-              </form>
-            );
-          }}
-        </Form>
+        <RegistrationHeader />
+        <RegistrationMain configs={configs} />
       </div>
     );
   }
 }
 
-export default RegistrationPage;
+const mapStateToProps = (state) => {
+  return {
+    configs: state.data.configs.data,
+  };
+};
+
+export default connect(mapStateToProps)(RegistrationPage);

@@ -3,7 +3,7 @@ import React from 'react';
 import Button from '@components/shared/button';
 import { CSSConstants } from '@constants';
 
-class LoginFormControls extends React.PureComponent {
+class RegistrationFormControls extends React.PureComponent {
   render() {
     const { valid } = this.props;
 
@@ -11,10 +11,10 @@ class LoginFormControls extends React.PureComponent {
 
     return (
       <div className="form__controls">
-        <Button type="submit" caption="Войти" theme={theme} full />
+        <Button type="submit" caption="Зарегистироваться" theme={theme} full />
       </div>
     );
   }
 }
 
-export default LoginFormControls;
+export default RegistrationFormControls;
