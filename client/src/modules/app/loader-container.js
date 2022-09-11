@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Overlay from '@components/shared/overlay';
 import Loader from '@components/shared/loader';
 
-class AppLoader extends React.PureComponent {
+class LoaderContainer extends React.PureComponent {
   render() {
     const { isShow } = this.props;
 
@@ -22,8 +22,8 @@ class AppLoader extends React.PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    isShow: state.app.loader.isShow,
+    isShow: state.loader.isShow,
   };
 };
 
-export default connect(mapStateToProps)(AppLoader);
+export default connect(mapStateToProps)(LoaderContainer);

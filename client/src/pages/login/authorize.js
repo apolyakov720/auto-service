@@ -1,11 +1,12 @@
 import APIService from '@services/api';
 import appActions from '@store/actions/app';
+import loaderActions from '@store/actions/loader';
 import dataActions from '@store/actions/data';
 import routerActions from '@store/actions/router';
 import { keys } from '@store/data.config';
 
 export default (values) => {
-  appActions.showLoader();
+  loaderActions.showLoader();
 
   APIService.post('v1/auth', values)
     .then(({ result, token }) => {
@@ -22,6 +23,6 @@ export default (values) => {
     })
     .finally(() => {
       routerActions.calculateRoutes();
-      appActions.hideLoader();
+      loaderActions.hideLoader();
     });
 };

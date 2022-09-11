@@ -1,15 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+
+import { routes } from '@modules/router/config';
+import modalActions from '@store/actions/modal';
 
 class LoginFooter extends React.PureComponent {
+  onRegistrationClick = () => {
+    modalActions.openModal({ id: routes.registration });
+  };
+
   render() {
     return (
       <div className="page__footer">
         <div className="subheader text-center">
           У вас нет учетной записи?&nbsp;
-          <Link to="/registration" className="a">
+          <span className="a" onClick={this.onRegistrationClick}>
             Зарегистироваться
-          </Link>
+          </span>
         </div>
       </div>
     );

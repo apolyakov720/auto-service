@@ -51,7 +51,7 @@ class Router extends React.Component {
                 return null;
               }
 
-              let element = <Suspense loader={loader} {...props} />;
+              let element = <Suspense loader={loader} keyPage={key} {...props} />;
 
               // Когда пользователь авторизовался, ему становиться не доступна индексная страница
               // Происходит подмена роута

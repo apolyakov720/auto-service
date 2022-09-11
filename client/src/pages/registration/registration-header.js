@@ -6,7 +6,7 @@ import { CSSConstants } from '@constants';
 class RegistrationHeader extends React.PureComponent {
   render() {
     return (
-      <div className="page-header">
+      <div className="page__header">
         <Alert
           theme={CSSConstants.THEMES.INFO}
           content="Пожалуйста, заполните необходимые данные, чтобы зарегистрировать нового пользователя."

@@ -1,16 +1,16 @@
-import appActions from '@store/actions/app';
+import loaderActions from '@store/actions/loader';
 import dataActions from '@store/actions/data';
 import { keys } from '@store/data.config';
 
 export default function () {
-  appActions.showLoader();
+  loaderActions.showLoader();
 
   return new Promise((resolve) => {
     return dataActions
       .fetch([keys.configs])
       .then(() => resolve())
       .finally(() => {
-        appActions.hideLoader();
+        loaderActions.hideLoader();
       });
   });
 }

@@ -1,9 +1,6 @@
 import appTypes from '../types/app';
 
 const initialState = {
-  loader: {
-    isShow: false,
-  },
   isAuthorized: false,
 };
 

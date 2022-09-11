@@ -1,6 +1,7 @@
 import React from 'react';
 
-import AppLoader from './app-loader';
+import LoaderContainer from './loader-container';
+import ModalContainer from './modal-container';
 import Router from '../router';
 import startup from './startup';
 
@@ -25,7 +26,8 @@ class App extends React.Component {
     return (
       <div className="application">
         {ready && <Router />}
-        <AppLoader />
+        <LoaderContainer />
+        <ModalContainer />
       </div>
     );
   }

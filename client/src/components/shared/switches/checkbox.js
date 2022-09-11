@@ -12,7 +12,7 @@ class Checkbox extends React.PureComponent {
 
     return (
       <Switch type="checkbox" baseClass="checkbox" caption={caption} {...inputProps}>
-        <Icon source={Icon.sources.base.check} size={CSSConstants.SIZES.S} />
+        <Icon source={Icon.sources.base.check} size={CSSConstants.SIZES.L} />
       </Switch>
     );
   }

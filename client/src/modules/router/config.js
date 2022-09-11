@@ -7,6 +7,8 @@
 // ** - в конфиге должны быть заданы: одна страница как индексная и одна как по умолчанию, при этом флаг isEnabled будет игнорироваться
 // Примечание: необходимо также указать loader для роута в отдельном объекте
 
+// Этот конфиг кандидат на вынос за пределы модуля
+
 const routes = {
   login: 'login',
   registration: 'registration',
@@ -16,8 +18,6 @@ const routes = {
 
 const zoneTypes = {
   unauthorized: 'unauthorized',
-  // Временно
-  registration: 'registration',
 };
 
 // Содержимое роута, которое будет загружено динамически
@@ -33,11 +33,6 @@ const full = {
     path: '/',
     zoneType: zoneTypes.unauthorized,
     isIndex: true,
-  },
-  [routes.registration]: {
-    path: '/registration',
-    zoneType: zoneTypes.registration,
-    isEnabled: true,
   },
   [routes.main]: {
     path: '/main',

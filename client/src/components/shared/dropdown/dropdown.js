@@ -85,11 +85,12 @@ class Dropdown extends React.Component {
             )}
             {(commonUtils.isFunction(onApply) || commonUtils.isFunction(onCancel)) && (
               <div className="dropdown__footer">
-                <Button caption="Отмена" onClick={this.onCancel} />
+                <Button caption="Отмена" onClick={this.onCancel} size={CSSConstants.SIZES.S} />
                 <Button
                   caption="Применить"
                   theme={CSSConstants.THEMES.PRIMARY}
                   onClick={this.onApply}
+                  size={CSSConstants.SIZES.S}
                 />
               </div>
             )}
