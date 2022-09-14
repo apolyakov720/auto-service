@@ -26,8 +26,8 @@ class App extends React.Component {
     return (
       <div className="application">
         {ready && <Router />}
-        <LoaderContainer />
         <ModalContainer />
+        <LoaderContainer />
       </div>
     );
   }

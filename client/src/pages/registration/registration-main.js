@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form } from 'react-final-form';
 
+import registration from './registration';
 import RegistrationFormFields, { validate } from './registration-form-fields';
 import RegistrationFormControls from './registration-form-controls';
 
@@ -16,7 +17,7 @@ class RegistrationMain extends React.PureComponent {
 
     return (
       <div className="page__main">
-        <Form onSubmit={() => {}} validate={this.validateFields}>
+        <Form onSubmit={registration} validate={this.validateFields}>
           {({ handleSubmit, valid }) => {
             return (
               <form className="form" onSubmit={handleSubmit}>
