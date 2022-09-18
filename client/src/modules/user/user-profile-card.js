@@ -12,9 +12,10 @@ class UserProfileCard extends React.PureComponent {
 
     return (
       <div className="user-profile-card">
-        <Avatar size={CSSConstants.SIZES.XXL} />
-        <PersonalNotificationButton />
+
         <PersonalDataCard user={user} />
+        <Avatar size={CSSConstants.SIZES.L} />
+
       </div>
     );
   }

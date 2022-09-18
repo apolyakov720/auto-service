@@ -5,23 +5,17 @@ import commonUtils from '@utils/common';
 class PersonalDataCard extends React.PureComponent {
   render() {
     const { user = {} } = this.props;
-    const { firstName, secondName, lastName, job } = user;
+    const { firstName, middleName, lastName, job } = user;
 
     const isAvailableAdditional = !commonUtils.isEmpty(job);
 
     return (
+
       <div className="personal-data-card">
-        <div className="personal-data-card__general">
-          <span>{firstName}</span>
-          <span>
-            {secondName} {lastName}
-          </span>
-        </div>
-        {isAvailableAdditional && (
-          <div className="personal-data-card__additional">
-            <span>{job}</span>
-          </div>
-        )}
+        <span>
+          {firstName} {lastName}
+        </span>
+        {isAvailableAdditional &&  <span className="subheader">{job}</span>}
       </div>
     );
   }

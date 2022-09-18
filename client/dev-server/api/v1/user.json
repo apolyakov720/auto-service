@@ -1,7 +1,17 @@
 {
   "id": "629dca05efc74f85563f62e3",
-  "login": "client",
-  "firstName": "Alexey",
-  "lastName": "Polyakov",
-  "job": "Программист"
+  "login": "lomakin777",
+  "firstName": "Vladimir",
+  "middleName": "Vasilievich",
+  "lastName": "Lomakin",
+  "job": "Заведующий",
+  "role": 8,
+  "birthday": "07.10.1960",
+  "contacts": {
+    "email": "lomakin@bsu.edu.ru",
+    "phoneNumber": "89006543489",
+    "workSpace": "201"
+  },
+  "responsible": [],
+  "creationDate": "07.09.2022"
 }
