@@ -9,6 +9,7 @@ class LoginFooter extends React.PureComponent {
   };
 
   render() {
+    console.log('render1');
     return (
       <div className="page__footer">
         <div className="subheader text-center">

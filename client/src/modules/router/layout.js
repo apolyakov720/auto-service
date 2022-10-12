@@ -1,4 +1,5 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 
 import withLocationHOC from './with-location-hoc';
 import AppHeader from '@modules/app/app-header';
@@ -6,9 +7,11 @@ import Logotype from '@components/shared/logotype';
 import { zoneTypes } from './config';
 import CSSUtils from '@utils/css';
 
+import Page from '@components/layout/page';
+
 class Layout extends React.Component {
   render() {
-    const { children, location, routes } = this.props;
+    const { location, routes } = this.props;
 
     const currentRoute = routes.find(({ path }) => path === location.pathname) || {};
     const zoneType = currentRoute.zoneType;
@@ -17,25 +20,27 @@ class Layout extends React.Component {
       [zoneType]: zoneType,
     });
 
-    switch (zoneType) {
-      case zoneTypes.unauthorized:
-        return (
-          <div className={zoneTypeClass}>
-            <div className="page__header">
-              <Logotype caption="Добро пожаловать в Auto Service!" />
-            </div>
-            <div className="page__main">{children}</div>
+    if (zoneType === zoneTypes.unauthorized) {
+      return (
+        <div className={zoneTypeClass}>
+          <div className="page__header">
+            <Logotype caption="Добро пожаловать в Auto Service!" />
           </div>
-        );
-
-      default:
-        return (
-          <>
-            <AppHeader />
-            {children}
-          </>
-        );
+          <div className="page__main">
+            <Outlet />
+          </div>
+        </div>
+      );
     }
+
+    return (
+      <Page>
+        <Page.Header>
+          <AppHeader />
+        </Page.Header>
+        <Outlet />
+      </Page>
+    );
   }
 }
 

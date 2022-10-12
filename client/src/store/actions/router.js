@@ -14,7 +14,7 @@ const calculateRoutes = () => {
   const state = getState();
 
   const preparedRoutes = Object.entries(routerConfig).reduce(
-    (accumulator, [key, { isEnabled, ...value }]) => {
+    (accumulator, [id, { isEnabled, ...value }]) => {
       let isRouteEnabled;
 
       if (commonUtils.isFunction(isEnabled)) {
@@ -24,7 +24,7 @@ const calculateRoutes = () => {
       }
 
       if (isRouteEnabled) {
-        accumulator.push({ key, ...value });
+        accumulator.push({ id, ...value });
       }
 
       return accumulator;

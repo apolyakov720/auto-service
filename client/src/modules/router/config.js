@@ -33,6 +33,7 @@ const full = {
     path: '/',
     zoneType: zoneTypes.unauthorized,
     isIndex: true,
+    isAuthNoRequired: true,
   },
   [routes.main]: {
     path: '/main',

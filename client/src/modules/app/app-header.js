@@ -1,7 +1,7 @@
 import React from 'react';
 
 import UserProfileCard from '@modules/user';
-import Logotype from "@components/shared/logotype";
+import Logotype from '@components/shared/logotype';
 
 class AppHeader extends React.Component {
   render() {

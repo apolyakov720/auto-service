@@ -10,12 +10,11 @@ class PersonalDataCard extends React.PureComponent {
     const isAvailableAdditional = !commonUtils.isEmpty(job);
 
     return (
-
       <div className="personal-data-card">
         <span>
           {firstName} {lastName}
         </span>
-        {isAvailableAdditional &&  <span className="subheader">{job}</span>}
+        {isAvailableAdditional && <span className="subheader">{job}</span>}
       </div>
     );
   }
