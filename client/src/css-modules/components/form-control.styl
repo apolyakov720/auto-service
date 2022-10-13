@@ -1,15 +1,12 @@
 .form-control
   font-size $font-size-base
-  color $color-palette.gray200;
-  border-width $border-width
-  border-color @color
-  border-style solid
-  background-color $color-background.light;
-  border-radius $border-radius
   display flex
-  align-items stretch
+  align-items center
+  color $color-palette.gray200;
+  border $border-width solid @color
+  border-radius $border-radius
+  background-color $color-background.light;
   width 100%
-  // max-width $max-width-form-element
   overflow hidden
 
   &__extra
@@ -17,26 +14,17 @@
     display inline-flex
     align-items center
     justify-content center
+    padding .5em
 
   &__extra
     background-color $color-background.default;
-    padding 0 .5em
-    border-right-width @border-width
-    border-right-style @border-style
+    border-right @border
     border-color currentColor
-
-  &__effect
-    margin-left .5em
 
   &__component
     width 100%
-    padding .35em .5em
-    display inline-flex
-    align-items center
-    justify-content space-between
-
-  &__container
-    flex 1
+    margin .425em
+    height $input-line-height * $font-size-base
 
   theme-variant(variant-form-control)
 
