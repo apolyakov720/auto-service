@@ -14,6 +14,9 @@ import eye from '@assets/icons/eye.svg';
 import eyeSlash from '@assets/icons/eye-slash.svg';
 import arrowLeft from '@assets/icons/arrow-left.svg';
 import arrowRight from '@assets/icons/arrow-right.svg';
+import envelope from '@assets/icons/envelope.svg';
+import house from '@assets/icons/house.svg';
+import gear from '@assets/icons/gear.svg';
 
 export default {
   person,
@@ -32,4 +35,7 @@ export default {
   eyeSlash,
   arrowLeft,
   arrowRight,
+  envelope,
+  house,
+  gear,
 };

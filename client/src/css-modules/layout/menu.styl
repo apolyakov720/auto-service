@@ -1,0 +1,41 @@
+.menu
+  font-size $font-size-base
+  background-color $color-background.light;
+  display flex
+  // TODO Вынести в переменные
+  box-shadow 0 2px 8px 0 rgba(15, 18, 26, .05)
+
+  &--vertical
+    flex-direction column
+
+    & ^[0]__link
+      justify-content start
+      border-bottom none
+      border-left 3px solid transparent
+
+  &__content
+    display flex
+    flex-wrap wrap
+    justify-content center
+    margin -5px
+
+    > *
+      padding 5px
+
+  &__link
+    flex 1
+    display flex
+    align-items center
+    justify-content center
+    text-decoration none
+    color $color-theme.disabled;
+    padding 1em
+    border-bottom 3px solid transparent
+
+    ^[0] &--active
+      color $color-theme.primary;
+      background-color $color-background.default;
+      border-color @color
+
+  &__label
+    text-align center
