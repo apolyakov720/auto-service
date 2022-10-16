@@ -1,7 +1,7 @@
 import appTypes from '../types/app';
 
 const initialState = {
-  isAuthorized: true,
+  isAuthorized: false,
 };
 
 export default (state = initialState, action) => {

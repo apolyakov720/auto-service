@@ -1,0 +1,23 @@
+@media screen and (max-width: $layout-breakpoint-1) {
+  .layout {
+    &__panel {
+      &--right {
+        display none
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $layout-breakpoint-2) {
+  .layout {
+    height 100vh
+
+    &__main {
+      overflow-y auto
+    }
+
+    &__panel {
+      display none
+    }
+  }
+}

@@ -5,7 +5,7 @@ import ModalContainer from './modal-container';
 import Router from '../router';
 import startup from './startup';
 
-class App extends React.Component {
+class Application extends React.Component {
   constructor(props) {
     super(props);
 
@@ -33,4 +33,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default Application;
