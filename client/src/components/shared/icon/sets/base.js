@@ -17,6 +17,9 @@ import arrowRight from '@assets/icons/arrow-right.svg';
 import envelope from '@assets/icons/envelope.svg';
 import house from '@assets/icons/house.svg';
 import gear from '@assets/icons/gear.svg';
+import boxArrowInLeft from '@assets/icons/box-arrow-in-left.svg';
+import boxArrowInRight from '@assets/icons/box-arrow-in-right.svg';
+import clipboard from '@assets/icons/clipboard.svg';
 
 export default {
   person,
@@ -38,4 +41,7 @@ export default {
   envelope,
   house,
   gear,
+  boxArrowInLeft,
+  boxArrowInRight,
+  clipboard,
 };

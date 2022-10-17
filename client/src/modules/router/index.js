@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Layout from './layout';
-import AuthRequired from './auth-required';
+import RerouteRequired from './reroute-required';
 import startup from './startup';
 import Suspense from '@components/functional/suspense';
 import commonUtils from '@utils/common';
@@ -17,8 +17,8 @@ class Router extends React.Component {
 
   render() {
     const {
-      routes: { allRoutes, redirects },
-      app,
+      routes: { allRoutes },
+      app: { isAuthorized },
     } = this.props;
 
     if (commonUtils.isEmpty(allRoutes)) {
@@ -30,7 +30,7 @@ class Router extends React.Component {
         <Routes>
           <Route path="/" element={<Layout routes={allRoutes} />}>
             {allRoutes.map((route) => {
-              const { id, path, isIndex, ...props } = route;
+              const { id, path, isIndex, isAuthNoRequired, ...props } = route;
 
               const loader = loaders[id];
 
@@ -44,14 +44,15 @@ class Router extends React.Component {
                   path={path}
                   index={isIndex}
                   element={
-                    <AuthRequired app={app} redirects={redirects} route={route}>
+                    <RerouteRequired state={isAuthorized} isNotRequired={isAuthNoRequired}>
                       <Suspense loader={loader} id={id} {...props} />
-                    </AuthRequired>
+                    </RerouteRequired>
                   }
                 />
               );
             })}
           </Route>
+          <Route path="*" element={<RerouteRequired state={isAuthorized} force />} />
         </Routes>
       </BrowserRouter>
     );

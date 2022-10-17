@@ -5,10 +5,9 @@ import Icon from '@components/shared/icon';
 import CSSUtils from '@utils/css';
 import commonUtils from '@utils/common';
 
-// TODO добавить логику дл определения активной ссылки
-class Menu extends React.Component {
+class Menu extends React.PureComponent {
   render() {
-    const { list, vertical } = this.props;
+    const { list, vertical, toActive } = this.props;
 
     if (commonUtils.isEmpty(list)) {
       return null;
@@ -21,8 +20,12 @@ class Menu extends React.Component {
     return (
       <div className={menuClass}>
         {list.map(({ to, icon, label }) => {
+          const menuLinkClass = CSSUtils.mergeModifiers('menu__link', {
+            active: toActive === to,
+          });
+
           return (
-            <Link key={to} to={to} className="menu__link">
+            <Link key={to} to={to} className={menuLinkClass}>
               <div className="menu__content">
                 {icon && <Icon source={icon} />}
                 {label && <div className="menu__label">{label}</div>}

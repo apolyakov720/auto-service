@@ -1,34 +1,45 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 
+import Menu from '@components/layout/menu';
 import withLocationHOC from './with-location-hoc';
-// import CSSUtils from '@utils/css';
-
-// import Menu from '@components/layout/menu'
-// <Menu list={[{ to:' ', label: 'hello' }]} />
+import { panels } from './config';
 
 class Layout extends React.Component {
   render() {
-    // const { location, routes } = this.props;
+    const { location, routes } = this.props;
 
-    // const currentRoute = routes.find(({ path }) => path === location.pathname) || {};
-    // const zoneType = currentRoute.zoneType;
+    const currentRoute = routes.find(({ path }) => path === location.pathname) || {};
+    const { zoneType, path } = currentRoute;
 
-    // const zoneTypeClass = CSSUtils.mergeModifiers('page', {
-    //   [zoneType]: zoneType,
-    // });
+    const zonePanels = panels[zoneType] || {};
+    const { panel1, panel2 } = zonePanels;
 
+    let header = 'header';
+    let footer = 'footer';
+
+    // Можно добавить модификаторы класса к слою и каждой страницы отдельно, но пока в этом нет необходимости
     return (
       <div className="layout">
-        <header className="layout__header">Header</header>
+        {header && <header>{header}</header>}
         <main className="layout__main">
-          <div className="layout__panel">Panel 1</div>
+          {panel1 && (
+            <div className="layout__panel">
+              <Menu list={panel1} toActive={path} vertical />
+            </div>
+          )}
           <div className="layout__content">
-            <Outlet />
+            <div className="layout__outlet">
+              <Outlet />
+            </div>
           </div>
-          <div className="layout__panel layout__panel--right">Panel 2</div>
+          {panel2 && (
+            <div className="layout__panel layout__panel--right">
+              <Menu list={panel2} toActive={path} vertical />
+            </div>
+          )}
         </main>
-        <footer className="layout__footer">Footer</footer>
+        {footer && <footer>{footer}</footer>}
       </div>
     );
   }

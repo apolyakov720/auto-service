@@ -1,3 +1,23 @@
+// TODO Сделать конфиг
+
+.size-xs
+  font-size $font-size-base * $scheme-size.xs;
+
+.size-s
+  font-size $font-size-base * $scheme-size.s;
+
+.size-m
+  font-size $font-size-base * $scheme-size.m;
+
+.size-l
+  font-size $font-size-base * $scheme-size.l;
+
+.size-xl
+  font-size $font-size-base * $scheme-size.xl;
+
+.size-xxl
+  font-size $font-size-base * $scheme-size.xxl;
+
 .text-center
   text-align center
 
@@ -14,40 +34,15 @@
   font-family $font-family-regular
   text-decoration none
 
-$classes-config-map = {
-  input-no-visible: {
-    pseudos: "&:not(:checked), &:checked",
-    values: {
-      position: absolute,
-      opacity: 0,
-      pointer-events: none,
-    },
-  },
-  size: {
-    property: font-size,
-    values: $sizes,
-  },
-  trigger: {
-    values: {
-      display: inline-block,
-      position: relative,
-    },
-  },
-}
+.input-not-visible
+  &:not(:checked)
+  &:checked
+    visibility hidden
+    opacity 0
+    pointer-events none
+    position absolute
+    z-index -1
 
-for class-key, class-props in $classes-config-map
-  property = class-props.property
-  values = class-props.values
-  pseudos = class-props.pseudos
-
-  if type(property) == 'ident'
-    if type(values) == 'object'
-      for value-key, value in values
-        .{class-key}-{value-key}
-          {property} value
-
-  if pseudos != null and type(pseudos) == 'string'
-    .{class-key}
-      {pseudos}
-        for pseudo-key, pseudo-value in values
-          {pseudo-key} pseudo-value
+.trigger
+  display inline-block
+  position relative

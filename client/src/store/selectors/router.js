@@ -2,6 +2,7 @@ import { createSelector } from '@reduxjs/toolkit';
 
 const selectAllRoutes = (state) => state.router.routes;
 
+// TODO убрать отсюда редиректы
 const selectRoutes = createSelector([selectAllRoutes], (allRoutes) => {
   const defaultRoute = allRoutes.find((route) => route.isDefault) || {};
   const indexRoute = allRoutes.find((route) => route.isIndex) || {};
