@@ -7,7 +7,6 @@ import RerouteRequired from './reroute-required';
 import startup from './startup';
 import Suspense from '@components/functional/suspense';
 import commonUtils from '@utils/common';
-import RouterSelectors from '@store/selectors/router';
 import { loaders } from './config';
 
 class Router extends React.Component {
@@ -17,19 +16,19 @@ class Router extends React.Component {
 
   render() {
     const {
-      routes: { allRoutes },
       app: { isAuthorized },
+      routes,
     } = this.props;
 
-    if (commonUtils.isEmpty(allRoutes)) {
+    if (commonUtils.isEmpty(routes)) {
       return null;
     }
 
     return (
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Layout routes={allRoutes} />}>
-            {allRoutes.map((route) => {
+          <Route path="/" element={<Layout routes={routes} />}>
+            {routes.map((route) => {
               const { id, path, isIndex, isAuthNoRequired, ...props } = route;
 
               const loader = loaders[id];
@@ -62,7 +61,7 @@ class Router extends React.Component {
 const mapStateToProps = (state) => {
   return {
     app: state.app,
-    routes: RouterSelectors.selectRoutes(state),
+    routes: state.router.routes,
   };
 };
 

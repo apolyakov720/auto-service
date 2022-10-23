@@ -3,38 +3,42 @@ import { Link } from 'react-router-dom';
 
 import Icon from '@components/shared/icon';
 import CSSUtils from '@utils/css';
-import commonUtils from '@utils/common';
 
 class Menu extends React.PureComponent {
   render() {
     const { list, vertical, toActive } = this.props;
 
-    if (commonUtils.isEmpty(list)) {
-      return null;
+    const listFiltered = list.filter(({ hidden }) => !hidden);
+
+    if (listFiltered.length) {
+      const menuClass = CSSUtils.mergeModifiers('menu', {
+        vertical,
+      });
+
+      return (
+        <div className={menuClass}>
+          {listFiltered.map(({ to, icon, label }) => {
+            const menuLinkClass = CSSUtils.mergeModifiers('menu__link', {
+              active: toActive === to,
+            });
+
+            return (
+              <Link key={to} to={to} className={menuLinkClass}>
+                <div className="menu__content">
+                  {icon && <Icon source={icon} />}
+                  {label && <div className="menu__label">{label}</div>}
+                </div>
+                <div className="menu__chevron">
+                  <Icon source={Icon.sources.base.chevronRight} />
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      );
     }
 
-    const menuClass = CSSUtils.mergeModifiers('menu', {
-      vertical,
-    });
-
-    return (
-      <div className={menuClass}>
-        {list.map(({ to, icon, label }) => {
-          const menuLinkClass = CSSUtils.mergeModifiers('menu__link', {
-            active: toActive === to,
-          });
-
-          return (
-            <Link key={to} to={to} className={menuLinkClass}>
-              <div className="menu__content">
-                {icon && <Icon source={icon} />}
-                {label && <div className="menu__label">{label}</div>}
-              </div>
-            </Link>
-          );
-        })}
-      </div>
-    );
+    return null;
   }
 }
 

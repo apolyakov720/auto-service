@@ -1,6 +1,6 @@
 import APIService from '@services/api';
 import loaderActions from '@store/actions/loader';
-import modalActions from '@store/actions/modal';
+// import modalActions from '@store/actions/modal';
 // import routerActions from "@store/actions/router";
 
 export default (values) => {

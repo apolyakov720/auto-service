@@ -20,6 +20,7 @@ import gear from '@assets/icons/gear.svg';
 import boxArrowInLeft from '@assets/icons/box-arrow-in-left.svg';
 import boxArrowInRight from '@assets/icons/box-arrow-in-right.svg';
 import clipboard from '@assets/icons/clipboard.svg';
+import news from '@assets/icons/news.svg';
 
 export default {
   person,
@@ -44,4 +45,5 @@ export default {
   boxArrowInLeft,
   boxArrowInRight,
   clipboard,
+  news,
 };

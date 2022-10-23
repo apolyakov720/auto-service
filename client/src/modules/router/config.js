@@ -15,16 +15,23 @@ const routes = {
   login: 'login',
   registration: 'registration',
   main: 'main',
+  profile: 'profile',
+  messages: 'messages',
+  settings: 'settings',
+};
+
+const zoneTypes = {
+  unauthorized: 'unauthorized',
+  default: 'default',
 };
 
 const paths = {
   [routes.login]: '/',
   [routes.registration]: '/registration',
   [routes.main]: '/main',
-};
-
-const zoneTypes = {
-  unauthorized: 'unauthorized',
+  [routes.profile]: '/profile',
+  [routes.messages]: '/messages',
+  [routes.settings]: '/settings',
 };
 
 const panels = {
@@ -42,6 +49,25 @@ const panels = {
       },
     ],
   },
+  [zoneTypes.default]: {
+    panel1: [
+      {
+        to: paths[routes.main],
+        label: 'Главная',
+        icon: Icon.sources.base.house,
+      },
+      {
+        to: paths[routes.settings],
+        label: 'Настройки',
+        icon: Icon.sources.base.gear,
+      },
+      {
+        to: paths[routes.profile],
+        label: 'Профиль',
+        icon: Icon.sources.base.person,
+      },
+    ],
+  },
 };
 
 // Содержимое роута, которое будет загружено динамически
@@ -49,6 +75,7 @@ const loaders = {
   [routes.login]: () => import('@pages/login'),
   [routes.registration]: () => import('@pages/registration'),
   [routes.main]: () => import('@pages/main'),
+  [routes.profile]: () => import('@pages/profile'),
 };
 
 const full = {
@@ -58,17 +85,26 @@ const full = {
     isIndex: true,
     isAuthNoRequired: true,
   },
-  [routes.main]: {
-    path: paths[routes.main],
-    isDefault: true,
-  },
   [routes.registration]: {
     path: paths[routes.registration],
     zoneType: zoneTypes.unauthorized,
     isAuthNoRequired: true,
     isEnabled: true,
   },
+  [routes.main]: {
+    path: paths[routes.main],
+    isDefault: true,
+  },
+  [routes.profile]: {
+    path: paths[routes.profile],
+    isEnabled: true,
+  },
 };
 
-export { routes, zoneTypes, loaders, panels };
+const redirects = {
+  toAuth: '/main',
+  fromAuth: '/',
+};
+
+export { routes, zoneTypes, loaders, panels, redirects };
 export default full;

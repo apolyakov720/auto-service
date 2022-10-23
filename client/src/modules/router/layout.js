@@ -10,7 +10,7 @@ class Layout extends React.Component {
     const { location, routes } = this.props;
 
     const currentRoute = routes.find(({ path }) => path === location.pathname) || {};
-    const { zoneType, path } = currentRoute;
+    const { path, zoneType = 'default' } = currentRoute;
 
     const zonePanels = panels[zoneType] || {};
     const { panel1, panel2 } = zonePanels;
