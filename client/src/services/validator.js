@@ -3,6 +3,7 @@ import commonUtils from '@utils/common';
 const types = {
   required: 'required',
   equals: 'equals',
+  email: 'email',
 };
 
 class Validator {
@@ -23,11 +24,14 @@ class Validator {
       },
       default: 'Значения не равны',
     },
+    [types.email]: {
+      validate: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value),
+      default: 'Значение поля - неверно',
+    },
   };
 
-  // TODO добавить проверки
   validate(config, values) {
-    const errors = {};
+    let errors = {};
 
     Object.entries(config).forEach(([fieldName, rules]) => {
       let error = '';
@@ -41,7 +45,7 @@ class Validator {
           continue;
         }
 
-        const result = checker.validate(values[fieldName], params);
+        const result = checker.validate(commonUtils.getDescendantValue(values, fieldName), params);
 
         if (!result) {
           error = message || checker.default;
@@ -50,7 +54,7 @@ class Validator {
       }
 
       if (error) {
-        errors[fieldName] = error;
+        errors = commonUtils.setDescendantValue(errors, fieldName, error);
       }
     });
 

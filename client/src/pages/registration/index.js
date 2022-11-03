@@ -1,25 +1,12 @@
-import React from 'react';
 import { connect } from 'react-redux';
 
-import RegistrationHeader from './registration-header';
-import RegistrationMain from './registration-main';
-
-class RegistrationPage extends React.Component {
-  render() {
-    const { configs } = this.props;
-
-    return (
-      <div className="page">
-        <RegistrationHeader />
-        <RegistrationMain configs={configs} />
-      </div>
-    );
-  }
-}
+import RegistrationPage from './entry';
+import { keys } from '@store/data.config';
+import { selectDataByKey } from '@store/selectors/data';
 
 const mapStateToProps = (state) => {
   return {
-    configs: state.data.configs.data,
+    configs: selectDataByKey(keys.configs)(state),
   };
 };
 

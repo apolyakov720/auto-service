@@ -63,10 +63,40 @@ const isNumeric = (value) => !isNaN(parseFloat(value)) && isFinite(parseFloat(va
 /** Значение - это функция */
 const isFunction = (value) => typeof value === 'function';
 
+/** Получить значение из объекта по составному ключу, разделенными точками */
+const getDescendantValue = (object, key) =>
+  key.split('.').reduce((value, chunk) => value?.[chunk], object);
+
+/** Установить значение в объект по составному ключу, разделенными точками */
+const setDescendantValue = (object, key, value) => {
+  const decomposedKey = key.split('.');
+  const chunk = decomposedKey[0];
+
+  if (!chunk) {
+    return object;
+  }
+
+  if (!Object.prototype.hasOwnProperty.call(object, chunk)) {
+    object[chunk] = {};
+  }
+
+  value =
+    decomposedKey.length <= 1
+      ? value
+      : setDescendantValue(object[chunk], decomposedKey.slice(1).join('.'), value);
+
+  return {
+    ...object,
+    [chunk]: value,
+  };
+};
+
 export default {
   debounce,
   isNumeric,
   isNull,
   isEmpty,
   isFunction,
+  getDescendantValue,
+  setDescendantValue,
 };

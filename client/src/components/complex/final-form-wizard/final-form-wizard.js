@@ -53,32 +53,37 @@ class FinalFormWizard extends React.Component {
     const isLastPage = page === React.Children.count(children) - 1;
 
     return (
-      <Form initialValues={values} validate={this.validate} onSubmit={this.handleSubmit}>
-        {({ handleSubmit, valid }) => {
+      // Передаем функцию проверки полей каждый раз создавая новую
+      <Form
+        initialValues={values}
+        validate={(values) => this.validate(values)}
+        onSubmit={this.handleSubmit}>
+        {({ handleSubmit, valid, submitting }) => {
           const nextButtonText = isLastPage ? 'Подтвердить' : 'Далее';
           const nextButtonTheme = valid
             ? CSSConstants.THEMES.PRIMARY
             : CSSConstants.THEMES.DISABLED;
 
           return (
-            <form onSubmit={handleSubmit}>
+            <form className="form" onSubmit={handleSubmit}>
               {activePage}
-              <div className="step-buttons">
+              <div className="controls">
                 {page > 0 && (
-                  <div className="step-buttons__previous">
+                  <div className="controls__previous">
                     <Button
+                      type="button"
                       caption="Назад"
                       theme={CSSConstants.THEMES.SECONDARY}
                       onClick={this.previous}
                     />
                   </div>
                 )}
-                <div className="step-buttons__next">
+                <div className="controls__next">
                   <Button
                     type="submit"
                     caption={nextButtonText}
                     theme={nextButtonTheme}
-                    disabled={!valid}
+                    disabled={submitting}
                   />
                 </div>
               </div>
