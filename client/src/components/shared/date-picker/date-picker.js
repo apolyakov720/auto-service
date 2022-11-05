@@ -5,7 +5,6 @@ import Input from '@components/shared/input';
 import Icon from '@components/shared/icon';
 import Calendar from '@components/shared/calendar';
 import Dropdown from '@components/shared/dropdown';
-import { masks } from '@services/normalizer';
 import { CSSConstants } from '@constants';
 
 /** Компонент "DatePicker" (Выбор даты) */
@@ -50,6 +49,7 @@ class DatePicker extends React.PureComponent {
   };
 
   render() {
+    const { mask, ...inputProps } = this.props;
     const { selectedDate } = this.state;
 
     const dropdownHeader = (
@@ -71,11 +71,13 @@ class DatePicker extends React.PureComponent {
 
             return (
               <Input
+                // value={selectedDate}
+                {...inputProps}
                 theme={theme}
                 dropdown={openState}
-                mask={masks.date}
-                onChange={this.onChangeDate}
-                value={selectedDate}>
+                mask={mask}
+                // onChange={this.onChangeDate}
+              >
                 <Input.Effect onClick={onToggleOpen}>
                   <Icon source={Icon.sources.base.calendar} />
                 </Input.Effect>
@@ -89,7 +91,14 @@ class DatePicker extends React.PureComponent {
 }
 
 DatePicker.propTypes = {
+  // value,
+  // format
+  mask: PropTypes.string,
   onPick: PropTypes.func,
+};
+
+DatePicker.defaultProps = {
+  mask: 'date',
 };
 
 export default DatePicker;

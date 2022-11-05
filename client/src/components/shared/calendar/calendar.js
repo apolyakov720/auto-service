@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Button from '@components/shared/button';
-import Icon from '@components/shared/icon';
 import Week from './week';
 import WeekDays from './week-days';
+import Button from '@components/shared/button';
+import Icon from '@components/shared/icon';
 import commonUtils from '@utils/common';
 import dateUtils from '@utils/date';
 import { CSSConstants } from '@constants';
@@ -23,7 +23,9 @@ class Calendar extends React.PureComponent {
   }
 
   componentDidMount() {
-    this.onSelectDate(this.state.selected);
+    const { selected } = this.state;
+
+    this.onSelectDate(selected);
   }
 
   leftChevron = (<Icon source={Icon.sources.base.chevronLeft} size={CSSConstants.SIZES.S} bold />);
@@ -73,9 +75,9 @@ class Calendar extends React.PureComponent {
   };
 
   setMonth = (value) => {
-    this.setDate({
-      date: dateUtils.addMonths(this.state.date, value),
-    });
+    this.setDate(({ date }) => ({
+      date: dateUtils.addMonths(date, value),
+    }));
   };
 
   setNextMonth = () => {
@@ -98,11 +100,13 @@ class Calendar extends React.PureComponent {
   };
 
   render() {
+    const { date } = this.state;
+
     return (
       <div className="calendar">
         <div className="calendar__header">
           <Button extra={this.leftChevron} onClick={this.setPreviousMonth} noStroke />
-          <div className="calendar__month">{dateUtils.formatDisplayedDate(this.state.date)}</div>
+          <div className="calendar__month">{dateUtils.formatDisplayedDate(date)}</div>
           <Button extra={this.rightChevron} onClick={this.setNextMonth} noStroke />
         </div>
         <div className="calendar__daily-planner">
@@ -119,7 +123,7 @@ Calendar.propTypes = {
    * Начальая дата.
    * Если дата недействительна, то значение будет сегодняшнее число.
    * */
-  original: PropTypes.instanceOf(Date),
+  original: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),
   /** Формат даты. */
   format: PropTypes.string,
   /**

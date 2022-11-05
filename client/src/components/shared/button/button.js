@@ -7,7 +7,8 @@ import { CSSConstants } from '@constants';
 /** Компонент "Button" (Кнопка) */
 class Button extends React.PureComponent {
   render() {
-    const { caption, theme, size, extra, circled, noStroke, full, onClick, ...props } = this.props;
+    const { type, caption, theme, size, extra, circled, noStroke, full, onClick, ...props } =
+      this.props;
 
     const buttonClass = CSSUtils.mergeClasses(
       CSSUtils.mergeModifiers('button', {
@@ -22,7 +23,7 @@ class Button extends React.PureComponent {
     );
 
     return (
-      <button className={buttonClass} onClick={onClick} {...props}>
+      <button type={type} className={buttonClass} onClick={onClick} {...props}>
         {caption && <span className="button__caption">{caption}</span>}
         {extra && <span className="button__extra">{extra}</span>}
       </button>
@@ -31,6 +32,8 @@ class Button extends React.PureComponent {
 }
 
 Button.propTypes = {
+  /** Определяет тип кнопки. */
+  type: PropTypes.oneOf(['submit', 'button', 'reset']),
   /** Название кнопки. */
   caption: PropTypes.string,
   /**
@@ -58,6 +61,10 @@ Button.propTypes = {
    * Принимает событие клика в качестве единственного аргумента.
    * */
   onClick: PropTypes.func,
+};
+
+Button.defaultProps = {
+  type: 'button',
 };
 
 export default Button;

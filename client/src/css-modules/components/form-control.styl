@@ -15,17 +15,20 @@
     align-items center
     justify-content center
     padding .5em
+    order 2
 
   &__extra
     background-color $color-background.default;
     border-right @border
     border-color currentColor
+    order 0
 
-  &__component
+  &__control
     width 100%
     margin .425em
     height $input-line-height * $font-size-base
     line-height @height
+    order 1
 
   theme-variant(variant-form-control)
 

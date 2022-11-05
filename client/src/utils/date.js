@@ -28,7 +28,7 @@ const formatSelectedDate = (date, formatValue = 'dd.MM.yyyy') =>
 const formatWeekDay = (date) => format(date, 'eee', { locale: ru }).substring(0, 2);
 
 const getWeekDays = () => {
-  const startWeek = new Date();
+  const startWeek = getStartOfWeek();
 
   return [0, 1, 2, 3, 4, 5, 6].map((value) => formatWeekDay(addDays(startWeek, value)));
 };

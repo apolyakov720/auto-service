@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Input from '@components/shared/input';
+import Select from '@components/shared/select';
 import FinalFormField from '@components/complex/final-form-field';
 import FinalFormWizard from '@components/complex/final-form-wizard';
 import Validator, { types } from '@services/validator';
@@ -29,7 +30,7 @@ class FFWPageContacts extends React.PureComponent {
           <Input placeholder="Укажите номер Вашего телефона" />
         </FinalFormField>
         <FinalFormField name={userFieldNames.workSpace} label="Рабочий кабинет" required>
-          <Input placeholder="Укажите рабочий кабинет" />
+          <Select placeholder="Укажите рабочий кабинет" />
         </FinalFormField>
       </FinalFormWizard.Page>
     );

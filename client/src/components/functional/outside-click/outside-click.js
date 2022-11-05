@@ -49,7 +49,11 @@ class OutsideClick extends React.Component {
   render() {
     const { children } = this.props;
 
-    return <div ref={this.outsideNode}>{children}</div>;
+    return (
+      <div className="trigger" ref={this.outsideNode}>
+        {children}
+      </div>
+    );
   }
 }
 

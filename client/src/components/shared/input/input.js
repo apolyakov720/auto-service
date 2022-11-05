@@ -2,6 +2,7 @@ import React from 'react';
 import InputMask from 'react-input-mask';
 
 import FormControl from '@components/shared/form-control';
+// TODO: рассмотреть возможность вынести отсюда NormalizerService
 import NormalizerService from '@services/normalizer';
 import CSSUtils from '@utils/css';
 import commonUtils from '@utils/common';
@@ -28,26 +29,30 @@ class Input extends React.PureComponent {
     });
   };
 
-  onChangeValue = (event) => {
+  onChange = (event) => {
     const { onChange } = this.props;
 
     commonUtils.isFunction(onChange) && onChange(event?.target?.value);
   };
 
   onBlur = (event) => {
+    const { onBlur } = this.props;
+
     this.unsetTheme();
 
-    this.props.onBlur && this.props.onBlur(event);
+    commonUtils.isFunction(onBlur) && onBlur(event);
   };
 
   onFocus = (event) => {
+    const { onFocus } = this.props;
+
     this.setTheme();
 
-    this.props.onFocus && this.props.onFocus(event);
+    commonUtils.isFunction(onFocus) && onFocus(event);
   };
 
   render() {
-    const { theme: externalTheme, mask, dropdown, children, ...inputProps } = this.props;
+    const { theme: externalTheme, mask, dropdown, children, type, ...inputProps } = this.props;
     const { theme: internalTheme } = this.state;
 
     let theme = internalTheme;
@@ -66,8 +71,9 @@ class Input extends React.PureComponent {
         <FormControl.Control>
           <InputMask
             {...inputProps}
+            type={type}
             className={inputClass}
-            onChange={this.onChangeValue}
+            onChange={this.onChange}
             onBlur={this.onBlur}
             onFocus={this.onFocus}
             mask={NormalizerService.masks[mask]}

@@ -3,8 +3,8 @@ import React from 'react';
 import Button from '@components/shared/button';
 import ScrollBox from '@components/shared/scroll-box';
 import OutsideClick from '@components/functional/outside-click';
-import { CSSConstants } from '@constants';
 import commonUtils from '@utils/common';
+import { CSSConstants } from '@constants';
 
 class Dropdown extends React.Component {
   constructor(props) {
@@ -68,6 +68,9 @@ class Dropdown extends React.Component {
     const { open } = this.state;
     const { children, header, onApply, onCancel, items, itemComponent: Component } = this.props;
 
+    const canCallApply = commonUtils.isFunction(onApply);
+    const canCallCancel = commonUtils.isFunction(onCancel);
+
     return (
       <OutsideClick onOutsideClick={this.onClose}>
         {children(this.onToggleOpen, open)}
@@ -83,15 +86,19 @@ class Dropdown extends React.Component {
                 </ScrollBox>
               </div>
             )}
-            {(commonUtils.isFunction(onApply) || commonUtils.isFunction(onCancel)) && (
+            {(canCallApply || canCallCancel) && (
               <div className="dropdown__footer">
-                <Button caption="Отмена" onClick={this.onCancel} size={CSSConstants.SIZES.S} />
-                <Button
-                  caption="Применить"
-                  theme={CSSConstants.THEMES.PRIMARY}
-                  onClick={this.onApply}
-                  size={CSSConstants.SIZES.S}
-                />
+                {canCallCancel && (
+                  <Button caption="Отмена" onClick={this.onCancel} size={CSSConstants.SIZES.S} />
+                )}
+                {canCallApply && (
+                  <Button
+                    caption="Применить"
+                    theme={CSSConstants.THEMES.PRIMARY}
+                    onClick={this.onApply}
+                    size={CSSConstants.SIZES.S}
+                  />
+                )}
               </div>
             )}
           </div>

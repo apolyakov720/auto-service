@@ -5,21 +5,12 @@ import CSSUtils from '@utils/css';
 
 /** Компонент "FormControl" (Элемент управления формы) */
 class FormControl extends React.PureComponent {
-  // Части компонента можно передавать в различной последовательности.
-  // Поэтому необходимо отсортировать все переданные части в определенной последовательности.
-  // Для этого определим вес каждой части.
-  orders = {
-    Extra: -1,
-    Control: 0,
-    Effect: 1,
-  };
-
   static Extra(props) {
     return <div className="form-control__extra" {...props} />;
   }
 
   static Control(props) {
-    return <div className="form-control__component" {...props} />;
+    return <div className="form-control__control" {...props} />;
   }
 
   static Effect(props) {
@@ -36,9 +27,7 @@ class FormControl extends React.PureComponent {
 
     return (
       <div className={formControlClass} onClick={onClick}>
-        {React.Children.toArray(children).sort((a, b) => {
-          return this.orders[a.type.name] - this.orders[b.type.name];
-        })}
+        {children}
       </div>
     );
   }
