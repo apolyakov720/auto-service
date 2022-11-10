@@ -1,17 +1,27 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Button from '@components/shared/button';
 import ScrollBox from '@components/shared/scroll-box';
 import OutsideClick from '@components/functional/outside-click';
+import CSSUtils from '@utils/css';
 import commonUtils from '@utils/common';
 import { CSSConstants } from '@constants';
 
 class Dropdown extends React.Component {
+  static Header = ({ children }) => <div className="dropdown__header">{children}</div>;
+
+  static Menu = ({ children }) => (
+    <div className="dropdown__menu">
+      <ScrollBox>{children}</ScrollBox>
+    </div>
+  );
+
   constructor(props) {
     super(props);
 
     this.state = {
-      open: false,
+      isOpen: false,
     };
   }
 
@@ -27,7 +37,7 @@ class Dropdown extends React.Component {
 
   setOpen = (value) => {
     this.setState({
-      open: value,
+      isOpen: value,
     });
   };
 
@@ -36,77 +46,32 @@ class Dropdown extends React.Component {
   };
 
   onToggleOpen = () => {
-    this.setState(({ open }) => ({
-      open: !open,
+    this.setState(({ isOpen }) => ({
+      isOpen: !isOpen,
     }));
   };
 
-  onApply = () => {
-    this.props.onApply();
-    this.onClose();
-  };
-
-  onCancel = () => {
-    this.props.onCancel();
-    this.onClose();
-  };
-
-  onClickItem = (...args) => {
-    const {
-      notCloseClicked,
-      itemProps: { onClick },
-    } = this.props;
-
-    commonUtils.isFunction(onClick) && onClick(...args);
-
-    if (!notCloseClicked) {
-      this.onClose();
-    }
-  };
-
   render() {
-    const { open } = this.state;
-    const { children, header, onApply, onCancel, items, itemComponent: Component } = this.props;
+    const { trigger, theme, children } = this.props;
+    const { isOpen } = this.state;
 
-    const canCallApply = commonUtils.isFunction(onApply);
-    const canCallCancel = commonUtils.isFunction(onCancel);
+    const dropdownClass = CSSUtils.mergeModifiers('dropdown', {
+      [theme]: theme,
+    });
 
     return (
       <OutsideClick onOutsideClick={this.onClose}>
-        {children(this.onToggleOpen, open)}
-        {open && (
-          <div className="dropdown">
-            {header && <div className="dropdown__header">{header}</div>}
-            {!(commonUtils.isEmpty(items) || commonUtils.isNull(Component)) && (
-              <div className="dropdown__main">
-                <ScrollBox>
-                  {items.map((props) => (
-                    <Component key={props.id} {...props} onClick={this.onClickItem} />
-                  ))}
-                </ScrollBox>
-              </div>
-            )}
-            {(canCallApply || canCallCancel) && (
-              <div className="dropdown__footer">
-                {canCallCancel && (
-                  <Button caption="Отмена" onClick={this.onCancel} size={CSSConstants.SIZES.S} />
-                )}
-                {canCallApply && (
-                  <Button
-                    caption="Применить"
-                    theme={CSSConstants.THEMES.PRIMARY}
-                    onClick={this.onApply}
-                    size={CSSConstants.SIZES.S}
-                  />
-                )}
-              </div>
-            )}
-          </div>
-        )}
+        {trigger(this.onToggleOpen)}
+        {isOpen && <div className={dropdownClass}>{children}</div>}
       </OutsideClick>
     );
   }
 }
+
+Dropdown.propTypes = {
+  trigger: PropTypes.func.isRequired,
+  // theme
+};
 
 Dropdown.defaultProps = {
   items: [],

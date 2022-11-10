@@ -146,47 +146,30 @@ class Select extends React.Component {
     const { searchable, multiple } = this.props;
 
     const listItems = this.listItems();
-    const dropdownHeader = (searchable && <SearchBar onChange={this.onSearchOption} />) || null;
+    const dropdownTrigger = (onToggleOpen) => {
+      return (
+        <FormControl onClick={onToggleOpen}>
+          <FormControl.Effect>
+            <Icon source={Icon.sources.base.chevronDown} />
+          </FormControl.Effect>
+          <FormControl.Control>
+            <ul className="select__sample-sheet">{this.sampleSheet}</ul>
+          </FormControl.Control>
+        </FormControl>
+      );
+    };
 
     return (
       <div className="select">
-        <Dropdown
-          items={listItems}
-          itemComponent={SelectListItem}
-          itemProps={{
-            onClick: this.toggleInAccumulatedList,
-          }}
-          notCloseClicked={multiple}
-          header={dropdownHeader}
-          onApply={this.onApplyList}
-          onCancel={this.onCancelList}>
-          {(onToggleOpen, openState) => {
-            let theme = null;
-            let chevron = this.chevronDown;
-
-            if (openState) {
-              theme = CSSConstants.THEMES.PRIMARY;
-              chevron = this.chevronUp;
-            }
-
-            const onOpen = (event) => {
-              this.setState({
-                filter: null,
-                accumulatedList: selectedList,
-              });
-
-              onToggleOpen(event);
-            };
-
-            return (
-              <FormControl theme={theme} dropdown={openState} onClick={onOpen}>
-                <FormControl.Effect>{chevron}</FormControl.Effect>
-                <FormControl.Control>
-                  <ul className="select__sample-sheet">{this.sampleSheet}</ul>
-                </FormControl.Control>
-              </FormControl>
-            );
-          }}
+        <Dropdown trigger={dropdownTrigger}>
+          <Dropdown.Header>
+            {searchable && <SearchBar onChange={this.onSearchOption} />}
+          </Dropdown.Header>
+          <Dropdown.Menu>
+            {listItems.map((props) => (
+              <SelectListItem key={props.id} {...props} />
+            ))}
+          </Dropdown.Menu>
         </Dropdown>
       </div>
     );

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import InputMask from 'react-input-mask';
 
 import FormControl from '@components/shared/form-control';
@@ -8,14 +9,15 @@ import CSSUtils from '@utils/css';
 import commonUtils from '@utils/common';
 import { CSSConstants } from '@constants';
 
+/** Компонент "Input" (Поле ввода) */
 class Input extends React.PureComponent {
   state = {
     theme: null,
   };
 
-  static Extra = FormControl.Extra;
+  static Extra = (props) => FormControl.Extra(props);
 
-  static Effect = FormControl.Effect;
+  static Effect = (props) => FormControl.Effect(props);
 
   setTheme = () => {
     this.setState({
@@ -52,7 +54,7 @@ class Input extends React.PureComponent {
   };
 
   render() {
-    const { theme: externalTheme, mask, dropdown, children, type, ...inputProps } = this.props;
+    const { theme: externalTheme, mask, children, type, ...inputProps } = this.props;
     const { theme: internalTheme } = this.state;
 
     let theme = internalTheme;
@@ -66,7 +68,7 @@ class Input extends React.PureComponent {
     });
 
     return (
-      <FormControl theme={theme} dropdown={dropdown}>
+      <FormControl theme={theme}>
         {children}
         <FormControl.Control>
           <InputMask
@@ -85,6 +87,19 @@ class Input extends React.PureComponent {
     );
   }
 }
+
+Input.propTypes = {
+  /** Определяет тип поля ввода. */
+  type: PropTypes.string,
+  /**
+   * Тема компонента.
+   * Определяет внешний вид компонента.
+   * Примечание: основная тема устанавливается в момент получения фокуса, если не было передано другой темы.
+   * */
+  theme: PropTypes.oneOf(['primary', 'secondary', 'info', 'warning', 'error', 'disabled']),
+  /** Маска ввода. */
+  mask: PropTypes.string,
+};
 
 Input.defaultProps = {
   type: 'text',

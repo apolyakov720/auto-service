@@ -1,9 +1,11 @@
 import commonUtils from '@utils/common';
+import dateUtils from '@utils/date';
 
 const types = {
   required: 'required',
   equals: 'equals',
   email: 'email',
+  dateIsBefore: 'dateIsBefore',
 };
 
 class Validator {
@@ -27,6 +29,17 @@ class Validator {
     [types.email]: {
       validate: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value),
       default: 'Значение поля - неверно',
+    },
+    [types.dateIsBefore]: {
+      validate: (value, params) => {
+        const { compare, format } = params;
+
+        const parsedValue = dateUtils.parseDate({ value, format, defaultValue: '' });
+        const parsedCompareValue = dateUtils.parseDate({ compare, format });
+
+        return dateUtils.isBefore(parsedValue, parsedCompareValue);
+      },
+      default: 'Значение даты - неверно',
     },
   };
 

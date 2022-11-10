@@ -5,85 +5,73 @@ import Input from '@components/shared/input';
 import Icon from '@components/shared/icon';
 import Calendar from '@components/shared/calendar';
 import Dropdown from '@components/shared/dropdown';
+import commonUtils from '@utils/common';
+import dateUtils from '@utils/date';
 import { CSSConstants } from '@constants';
 
-/** Компонент "DatePicker" (Выбор даты) */
+/** Компонент "DatePicker" (Поле выбора даты) */
 class DatePicker extends React.PureComponent {
-  state = {
-    open: false,
-    selectedDate: '',
-    calendarDate: '',
-  };
+  constructor(props) {
+    super(props);
 
-  toggleOpen = () => {
-    this.setOpen(!this.state.open);
-  };
-
-  setOpen = (value) => {
-    this.setState({
-      open: value,
+    const value = dateUtils.parseDate({
+      value: props.value,
+      format: props.format,
+      defaultValue: '',
     });
+
+    this.state = {
+      value: this.formatDate(value),
+    };
+  }
+
+  formatDate = (value) => {
+    const { format } = this.props;
+
+    return dateUtils.formatDate(value, format);
   };
 
-  onChangeDate = (date) => {
+  onChangeDate = (value) => {
+    const { onChange } = this.props;
+
     this.setState({
-      selectedDate: date,
+      value,
+      isOpen: false,
     });
-  };
 
-  onSelectCalendarDate = (calendarDate) => {
-    this.setState({
-      calendarDate,
-    });
-  };
-
-  onApplyCalendarDate = () => {
-    this.setState(({ calendarDate }) => ({
-      open: false,
-      selectedDate: calendarDate,
-    }));
-  };
-
-  onCancelPick = () => {
-    this.setOpen(false);
+    commonUtils.isFunction(onChange) && onChange(value);
   };
 
   render() {
-    const { mask, ...inputProps } = this.props;
-    const { selectedDate } = this.state;
+    const { mask, theme: externalTheme, format, ...inputProps } = this.props;
+    const { value } = this.state;
 
-    const dropdownHeader = (
-      <Calendar original={selectedDate} onSelect={this.onSelectCalendarDate} />
-    );
+    let theme;
+
+    // if (isOpen) {
+    //   theme = CSSConstants.THEMES.PRIMARY;
+    // }
+    //
+    // if (externalTheme) {
+    //   theme = externalTheme;
+    // }
+
+    const dropdownTrigger = (onToggleOpen) => {
+      return (
+        <Input {...inputProps} theme={theme} mask={mask} value={value} onChange={this.onChangeDate}>
+          <Input.Effect onClick={onToggleOpen}>
+            <Icon source={Icon.sources.base.calendar} />
+          </Input.Effect>
+        </Input>
+      );
+    };
 
     return (
       <div className="date-picker">
-        <Dropdown
-          header={dropdownHeader}
-          onApply={this.onApplyCalendarDate}
-          onCancel={this.onCancelPick}>
-          {(onToggleOpen, openState) => {
-            let theme = null;
-
-            if (openState) {
-              theme = CSSConstants.THEMES.PRIMARY;
-            }
-
-            return (
-              <Input
-                // value={selectedDate}
-                {...inputProps}
-                theme={theme}
-                dropdown={openState}
-                mask={mask}
-                // onChange={this.onChangeDate}
-              >
-                <Input.Effect onClick={onToggleOpen}>
-                  <Icon source={Icon.sources.base.calendar} />
-                </Input.Effect>
-              </Input>
-            );
-          }}
+        <Dropdown trigger={dropdownTrigger} theme={theme}>
+          <Dropdown.Header>
+            <Calendar value={value} onSelect={this.onChangeDate} format={format} />
+          </Dropdown.Header>
         </Dropdown>
       </div>
     );
@@ -91,13 +79,13 @@ class DatePicker extends React.PureComponent {
 }
 
 DatePicker.propTypes = {
-  // value,
-  // format
+  format: PropTypes.string,
   mask: PropTypes.string,
-  onPick: PropTypes.func,
+  onChange: PropTypes.func,
 };
 
 DatePicker.defaultProps = {
+  format: 'dd.MM.yyyy',
   mask: 'date',
 };
 

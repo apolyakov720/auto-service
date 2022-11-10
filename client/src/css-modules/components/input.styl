@@ -8,9 +8,14 @@
   appearance none
   background-color $color-background.light;
   color $color-element.placeholder;
+  text-overflow ellipsis
 
-  &--primary
+  &:focus
     color $color-element.header;
 
   &::placeholder
     color @color
+
+  &:autofill
+  &:-webkit-autofill
+    box-shadow 0 0 0 25px $color-background.light inset

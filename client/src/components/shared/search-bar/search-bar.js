@@ -1,5 +1,5 @@
 import React from 'react';
-import PropsTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import Input from '@components/shared/input';
 import Icon from '@components/shared/icon';
@@ -71,12 +71,12 @@ class SearchBar extends React.PureComponent {
 
 SearchBar.propTypes = {
   /** Текстовый подсказка поиска (что искать?) для пользователя. */
-  placeholder: PropsTypes.string,
+  placeholder: PropTypes.string,
   /**
    * Функция обработчик, вызывается при каждом изменении строки поиска.
    * Принимает строку регулярного выражения или null в качестве единственного аргумента.
    * */
-  onChange: PropsTypes.func,
+  onChange: PropTypes.func,
 };
 
 SearchBar.defaultProps = {

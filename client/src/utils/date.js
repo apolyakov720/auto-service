@@ -8,11 +8,19 @@ import {
   startOfMonth,
   isSameDay,
   isValid,
+  isBefore,
   format,
   parse,
   toDate,
 } from 'date-fns';
 import ru from 'date-fns/locale/ru';
+
+/** Форматы, используемые в разных частях приложения */
+const formats = {
+  default: 'dd.MM.yyyy',
+  weekDay: 'eee',
+  calendarHeader: 'LLLL yyyy',
+};
 
 /** Возвращает дату начала недели от заданной даты, где начало недели - понедельник */
 const getStartOfWeek = (date = new Date()) => startOfWeek(date, { weekStartsOn: 1 });
@@ -20,21 +28,40 @@ const getStartOfWeek = (date = new Date()) => startOfWeek(date, { weekStartsOn: 
 /** Возвращает дату начала недели для текущего месяца от заданной даты */
 const getStartOfWeekMonth = (date = new Date()) => getStartOfWeek(startOfMonth(date));
 
-const formatDisplayedDate = (date) => format(date, 'LLLL yyyy', { locale: ru });
+/** Возвращает дату в указанном формате */
+const formatDate = (date, formatValue) =>
+  date && formatValue ? format(date, formatValue, { locale: ru }) : date;
 
-const formatSelectedDate = (date, formatValue = 'dd.MM.yyyy') =>
-  format(date, formatValue, { locale: ru });
+/**
+ * Если значение передано в виде строки, то попытается разобрать это значение как дату по формату
+ * Примечание: формат в данном случае обязателен
+ * Иначе попытается привести переданное значение к дате
+ * В случае невалидного значения возвращает значение по умолчанию или текущую дату
+ *
+ * Итого, значениями могут быть:
+ * 1. Строка и формат строки
+ * 2. Экземпляр класса Date
+ * 3. Число
+ * */
+const parseDate = ({ value, format, defaultValue = new Date() }) => {
+  if (!value) {
+    return defaultValue;
+  }
 
-const formatWeekDay = (date) => format(date, 'eee', { locale: ru }).substring(0, 2);
+  let current;
 
-const getWeekDays = () => {
-  const startWeek = getStartOfWeek();
+  if (format) {
+    current = parse(value, format, new Date());
+  }
 
-  return [0, 1, 2, 3, 4, 5, 6].map((value) => formatWeekDay(addDays(startWeek, value)));
+  if (!(current && isValid(current))) {
+    current = toDate(value);
+  }
+
+  return isValid(current) ? current : defaultValue;
 };
 
-const parseStringDate = (value) => toDate(Date.parse(value));
-
+export { formats };
 export default {
   addMonths,
   addWeeks,
@@ -43,12 +70,8 @@ export default {
   getMonth,
   getStartOfWeek,
   getStartOfWeekMonth,
-  getWeekDays,
   isSameDay,
-  isValid,
-  formatDisplayedDate,
-  formatSelectedDate,
-  formatWeekDay,
-  parse,
-  parseStringDate,
+  isBefore,
+  formatDate,
+  parseDate,
 };

@@ -19,8 +19,7 @@ class Week extends React.PureComponent {
       return (
         <Day
           key={value}
-          date={date.toString()}
-          day={dateUtils.getDay(date)}
+          date={date}
           outside={isOutside}
           selected={isSelected}
           onSelect={onSelectDay}

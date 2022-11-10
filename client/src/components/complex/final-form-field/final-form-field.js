@@ -9,7 +9,7 @@ class FinalFormField extends React.PureComponent {
     const { name, type, multiple, label, required, hints, children } = this.props;
 
     return (
-      <Field name={name} type={type} multiple={multiple}>
+      <Field name={name} type={type} multiple={multiple} initialValue={children.props.value}>
         {({ input, meta: { touched, error } }) => {
           let theme;
           const errors = touched && error ? error : null;

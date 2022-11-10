@@ -8,11 +8,11 @@ class Day extends React.PureComponent {
   onClick = () => {
     const { onSelect, date } = this.props;
 
-    commonUtils.isFunction(onSelect) && onSelect(dateUtils.parseStringDate(date));
+    commonUtils.isFunction(onSelect) && onSelect(date);
   };
 
   render() {
-    const { day, selected, outside } = this.props;
+    const { date, selected, outside } = this.props;
 
     const dayClass = CSSUtils.mergeModifiers('calendar__day', {
       selected,
@@ -21,7 +21,7 @@ class Day extends React.PureComponent {
 
     return (
       <li className={dayClass} onClick={this.onClick}>
-        {day}
+        {dateUtils.getDay(date)}
       </li>
     );
   }

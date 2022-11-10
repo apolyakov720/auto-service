@@ -6,7 +6,7 @@ import WeekDays from './week-days';
 import Button from '@components/shared/button';
 import Icon from '@components/shared/icon';
 import commonUtils from '@utils/common';
-import dateUtils from '@utils/date';
+import dateUtils, { formats } from '@utils/date';
 import { CSSConstants } from '@constants';
 
 /** Компонент "Calendar" (Календарь) */
@@ -14,7 +14,7 @@ class Calendar extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    const date = this.getInitDate(props);
+    const date = dateUtils.parseDate(props);
 
     this.state = {
       date,
@@ -22,29 +22,13 @@ class Calendar extends React.PureComponent {
     };
   }
 
-  componentDidMount() {
-    const { selected } = this.state;
-
-    this.onSelectDate(selected);
-  }
-
-  leftChevron = (<Icon source={Icon.sources.base.chevronLeft} size={CSSConstants.SIZES.S} bold />);
-
-  rightChevron = (
-    <Icon source={Icon.sources.base.chevronRight} size={CSSConstants.SIZES.S} bold />
+  chevronLeftIcon = (
+    <Icon source={Icon.sources.base.chevronLeft} size={CSSConstants.SIZES.S} bold />
   );
 
-  getInitDate = (props) => {
-    const { original, format } = props || this.props;
-
-    let current = dateUtils.parse(original, format, new Date());
-
-    if (!dateUtils.isValid(current)) {
-      current = new Date();
-    }
-
-    return current;
-  };
+  chevronRightIcon = (
+    <Icon source={Icon.sources.base.chevronRight} size={CSSConstants.SIZES.S} bold />
+  );
 
   get weeks() {
     const { date, selected } = this.state;
@@ -96,7 +80,9 @@ class Calendar extends React.PureComponent {
       selected: date,
     });
 
-    commonUtils.isFunction(onSelect) && onSelect(dateUtils.formatSelectedDate(date, format));
+    if (commonUtils.isFunction(onSelect)) {
+      onSelect(dateUtils.formatDate(date, format));
+    }
   };
 
   render() {
@@ -105,9 +91,11 @@ class Calendar extends React.PureComponent {
     return (
       <div className="calendar">
         <div className="calendar__header">
-          <Button extra={this.leftChevron} onClick={this.setPreviousMonth} noStroke />
-          <div className="calendar__month">{dateUtils.formatDisplayedDate(date)}</div>
-          <Button extra={this.rightChevron} onClick={this.setNextMonth} noStroke />
+          <Button extra={this.chevronLeftIcon} onClick={this.setPreviousMonth} noStroke />
+          <div className="calendar__month">
+            {dateUtils.formatDate(date, formats.calendarHeader)}
+          </div>
+          <Button extra={this.chevronRightIcon} onClick={this.setNextMonth} noStroke />
         </div>
         <div className="calendar__daily-planner">
           <WeekDays />
@@ -123,7 +111,7 @@ Calendar.propTypes = {
    * Начальая дата.
    * Если дата недействительна, то значение будет сегодняшнее число.
    * */
-  original: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),
+  value: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string, PropTypes.number]),
   /** Формат даты. */
   format: PropTypes.string,
   /**
@@ -131,10 +119,6 @@ Calendar.propTypes = {
    * Принимает значение даты в качестве единственного аргумента в формате, указанном в свойстве format.
    * */
   onSelect: PropTypes.func,
-};
-
-Calendar.defaultProps = {
-  format: 'dd.MM.yyyy',
 };
 
 export default Calendar;
