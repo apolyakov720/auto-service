@@ -69,7 +69,7 @@ class FinalFormWizard extends React.Component {
               {activePage}
               <div className="controls">
                 {page > 0 && (
-                  <div className="controls__previous">
+                  <div className="controls__secondary">
                     <Button
                       type="button"
                       caption="Назад"
@@ -78,7 +78,7 @@ class FinalFormWizard extends React.Component {
                     />
                   </div>
                 )}
-                <div className="controls__next">
+                <div className="controls__primary">
                   <Button
                     type="submit"
                     caption={nextButtonText}

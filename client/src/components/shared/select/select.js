@@ -8,6 +8,7 @@ import SearchBar from '@components/shared/search-bar';
 import Dropdown from '@components/shared/dropdown';
 import { SelectListItem } from '@components/shared/list-items';
 import CSSUtils from '@utils/css';
+import commonUtils from '@utils/common';
 import { CSSConstants } from '@constants';
 
 class Select extends React.Component {
@@ -17,15 +18,15 @@ class Select extends React.Component {
     accumulatedList: [],
   };
 
-  chevronDown = (<Icon source={Icon.sources.base.chevronDown} />);
-
-  chevronUp = (<Icon source={Icon.sources.base.chevronUp} />);
-
   mergeAccumulatorList = (onApplyFlag) => {
+    const { onSelect } = this.props;
+
     this.setState(({ accumulatedList, selectedList }) => {
       const finalList = onApplyFlag ? accumulatedList : selectedList;
 
-      this.props.onSelect(finalList);
+      if (commonUtils.isFunction(onSelect)) {
+        onSelect(finalList);
+      }
 
       return {
         selectedList: finalList,
@@ -146,9 +147,19 @@ class Select extends React.Component {
     const { searchable, multiple } = this.props;
 
     const listItems = this.listItems();
+
     const dropdownTrigger = (onToggleOpen) => {
+      const onOpen = (event) => {
+        this.setState({
+          filter: null,
+          accumulatedList: selectedList,
+        });
+
+        onToggleOpen(event);
+      };
+
       return (
-        <FormControl onClick={onToggleOpen}>
+        <FormControl onClick={onOpen}>
           <FormControl.Effect>
             <Icon source={Icon.sources.base.chevronDown} />
           </FormControl.Effect>
@@ -167,9 +178,10 @@ class Select extends React.Component {
           </Dropdown.Header>
           <Dropdown.Menu>
             {listItems.map((props) => (
-              <SelectListItem key={props.id} {...props} />
+              <SelectListItem key={props.id} onClick={this.toggleInAccumulatedList} {...props} />
             ))}
           </Dropdown.Menu>
+          <Dropdown.Controls onCancel={this.onCancelList} onApply={multiple && this.onApplyList} />
         </Dropdown>
       </div>
     );
@@ -198,6 +210,11 @@ Select.propTypes = {
       title: PropTypes.string.isRequired,
     }),
   ).isRequired,
+  /**
+   * Тема компонента.
+   * Определяет внешний вид компонента.
+   * */
+  theme: PropTypes.oneOf(['primary', 'secondary', 'info', 'warning', 'error', 'disabled']),
   placeholder: PropTypes.string,
   /** Текстовый подсказка при пустом списке. */
   placeholderEmpty: PropTypes.string,

@@ -36,7 +36,6 @@ class DatePicker extends React.PureComponent {
 
     this.setState({
       value,
-      isOpen: false,
     });
 
     commonUtils.isFunction(onChange) && onChange(value);
@@ -72,6 +71,7 @@ class DatePicker extends React.PureComponent {
           <Dropdown.Header>
             <Calendar value={value} onSelect={this.onChangeDate} format={format} />
           </Dropdown.Header>
+          <Dropdown.Controls onCancel />
         </Dropdown>
       </div>
     );

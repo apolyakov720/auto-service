@@ -59,7 +59,19 @@ class FFWPagePersonalData extends React.PureComponent {
             <DatePicker placeholder="Укажите дату Вашего рождения" />
           </FinalFormField>
           <DatePicker placeholder="Укажите дату Вашего рождения" />
-          <Select items={[{ id: '1', title: '201' }]} />
+          <Select
+            items={[
+              { id: '1', title: '201' },
+              { id: '2', title: '202' },
+              { id: '3', title: '201' },
+              { id: '4', title: '201' },
+              // { id: '5', title: '201' }, { id: '6', title: '201' },
+              // { id: '5', title: '201' }, { id: '6', title: '201' },
+              // { id: '5', title: '201' }, { id: '6', title: '201' },
+              // { id: '5', title: '201' }, { id: '6', title: '201' },
+            ]}
+            multiple
+          />
         </div>
       </FinalFormWizard.Page>
     );

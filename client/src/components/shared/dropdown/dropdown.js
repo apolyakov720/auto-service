@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { DropdownProvider, DropdownConsumer } from './dropdown-context';
 import Button from '@components/shared/button';
 import ScrollBox from '@components/shared/scroll-box';
 import OutsideClick from '@components/functional/outside-click';
@@ -9,13 +10,70 @@ import commonUtils from '@utils/common';
 import { CSSConstants } from '@constants';
 
 class Dropdown extends React.Component {
-  static Header = ({ children }) => <div className="dropdown__header">{children}</div>;
+  static Header = ({ children }) => {
+    if (children) {
+      return <div className="dropdown__header">{children}</div>;
+    }
 
-  static Menu = ({ children }) => (
-    <div className="dropdown__menu">
-      <ScrollBox>{children}</ScrollBox>
-    </div>
-  );
+    return null;
+  };
+
+  static Menu = ({ children }) => {
+    if (children) {
+      return (
+        <div className="dropdown__menu">
+          <ScrollBox>{children}</ScrollBox>
+        </div>
+      );
+    }
+
+    return null;
+  };
+
+  static Controls = ({ onApply, onCancel }) => {
+    if (onApply || onCancel) {
+      return (
+        <DropdownConsumer>
+          {({ onClose }) => {
+            const onCancelHandler = () => {
+              if (commonUtils.isFunction(onCancel)) {
+                onCancel();
+              }
+
+              onClose();
+            };
+
+            const onApplyHandler = () => {
+              if (commonUtils.isFunction(onApply)) {
+                onApply();
+              }
+
+              onClose();
+            };
+
+            return (
+              <div className="dropdown__controls">
+                <div className="controls">
+                  {onCancel && (
+                    <div className="controls__secondary">
+                      <Button caption="Закрыть" onClick={onCancelHandler} />
+                    </div>
+                  )}
+                  {onApply && (
+                    <div className="controls__primary">
+                      <Button caption="Принять" onClick={onApplyHandler} />
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          }}
+        </DropdownConsumer>
+      );
+    }
+
+    return null;
+  };
 
   constructor(props) {
     super(props);
@@ -45,7 +103,9 @@ class Dropdown extends React.Component {
     this.setOpen(false);
   };
 
-  onToggleOpen = () => {
+  onToggleOpen = (event) => {
+    event.stopPropagation();
+
     this.setState(({ isOpen }) => ({
       isOpen: !isOpen,
     }));
@@ -61,8 +121,10 @@ class Dropdown extends React.Component {
 
     return (
       <OutsideClick onOutsideClick={this.onClose}>
-        {trigger(this.onToggleOpen)}
-        {isOpen && <div className={dropdownClass}>{children}</div>}
+        <DropdownProvider value={{ onClose: this.onClose }}>
+          {trigger(this.onToggleOpen)}
+          {isOpen && <div className={dropdownClass}>{children}</div>}
+        </DropdownProvider>
       </OutsideClick>
     );
   }
@@ -70,7 +132,11 @@ class Dropdown extends React.Component {
 
 Dropdown.propTypes = {
   trigger: PropTypes.func.isRequired,
-  // theme
+  /**
+   * Тема компонента.
+   * Определяет внешний вид компонента.
+   * */
+  theme: PropTypes.oneOf(['primary', 'secondary', 'info', 'warning', 'error', 'disabled']),
 };
 
 Dropdown.defaultProps = {
