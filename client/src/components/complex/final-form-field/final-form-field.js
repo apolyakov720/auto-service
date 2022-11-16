@@ -6,13 +6,13 @@ import { CSSConstants } from '@constants';
 
 class FinalFormField extends React.PureComponent {
   render() {
-    const { name, type, multiple, label, required, hints, children } = this.props;
+    const { name, type, label, required, hints, children } = this.props;
 
     return (
-      <Field name={name} type={type} multiple={multiple} initialValue={children.props.value}>
-        {({ input, meta: { touched, error } }) => {
+      <Field name={name} type={type} initialValue={children.props.value}>
+        {({ input, meta: { touched, error, dirty } }) => {
           let theme;
-          const errors = touched && error ? error : null;
+          const errors = (touched || dirty) && error ? error : null;
 
           if (errors) {
             theme = CSSConstants.THEMES.ERROR;

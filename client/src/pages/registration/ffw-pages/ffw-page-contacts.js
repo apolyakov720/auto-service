@@ -29,8 +29,20 @@ class FFWPageContacts extends React.PureComponent {
         <FinalFormField name={userFieldNames.phoneNumber} label="Номер телефона" required>
           <Input placeholder="Укажите номер Вашего телефона" />
         </FinalFormField>
-        <FinalFormField name={userFieldNames.workSpace} label="Рабочий кабинет" required>
-          <Select placeholder="Укажите рабочий кабинет" />
+        <FinalFormField name={userFieldNames.workSpace} label="Рабочий кабинет" multiple>
+          <Select
+            placeholder="Укажите рабочий кабинет"
+            items={[
+              { id: '1', title: 'hello' },
+              { id: '2', title: 'world' },
+              { id: '3', title: 'hello' },
+              { id: '4', title: 'world' },
+              { id: '5', title: 'hello' },
+              { id: '6', title: 'world' },
+              { id: '7', title: 'hello' },
+              { id: '8', title: 'world' },
+            ]}
+          />
         </FinalFormField>
       </FinalFormWizard.Page>
     );

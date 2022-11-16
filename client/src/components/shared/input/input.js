@@ -5,7 +5,6 @@ import InputMask from 'react-input-mask';
 import FormControl from '@components/shared/form-control';
 // TODO: рассмотреть возможность вынести отсюда NormalizerService
 import NormalizerService from '@services/normalizer';
-import CSSUtils from '@utils/css';
 import commonUtils from '@utils/common';
 import { CSSConstants } from '@constants';
 
@@ -63,10 +62,6 @@ class Input extends React.PureComponent {
       theme = externalTheme;
     }
 
-    const inputClass = CSSUtils.mergeModifiers('input', {
-      [theme]: theme,
-    });
-
     return (
       <FormControl theme={theme}>
         {children}
@@ -74,7 +69,7 @@ class Input extends React.PureComponent {
           <InputMask
             {...inputProps}
             type={type}
-            className={inputClass}
+            className="input"
             onChange={this.onChange}
             onBlur={this.onBlur}
             onFocus={this.onFocus}

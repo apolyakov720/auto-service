@@ -42,22 +42,29 @@ class DatePicker extends React.PureComponent {
   };
 
   render() {
-    const { mask, theme: externalTheme, format, ...inputProps } = this.props;
+    const { mask, theme, format, ...inputProps } = this.props;
     const { value } = this.state;
 
-    let theme;
+    let dropdownTheme = theme || CSSConstants.THEMES.PRIMARY;
 
-    // if (isOpen) {
-    //   theme = CSSConstants.THEMES.PRIMARY;
-    // }
-    //
-    // if (externalTheme) {
-    //   theme = externalTheme;
-    // }
+    const dropdownTrigger = (onToggleOpen, openState) => {
+      let inputTheme;
 
-    const dropdownTrigger = (onToggleOpen) => {
+      if (openState) {
+        inputTheme = CSSConstants.THEMES.PRIMARY;
+      }
+
+      if (theme) {
+        inputTheme = theme;
+      }
+
       return (
-        <Input {...inputProps} theme={theme} mask={mask} value={value} onChange={this.onChangeDate}>
+        <Input
+          {...inputProps}
+          theme={inputTheme}
+          mask={mask}
+          value={value}
+          onChange={this.onChangeDate}>
           <Input.Effect onClick={onToggleOpen}>
             <Icon source={Icon.sources.base.calendar} />
           </Input.Effect>
@@ -67,7 +74,7 @@ class DatePicker extends React.PureComponent {
 
     return (
       <div className="date-picker">
-        <Dropdown trigger={dropdownTrigger} theme={theme}>
+        <Dropdown trigger={dropdownTrigger} theme={dropdownTheme}>
           <Dropdown.Header>
             <Calendar value={value} onSelect={this.onChangeDate} format={format} />
           </Dropdown.Header>

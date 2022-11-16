@@ -19,13 +19,13 @@ class Select extends React.Component {
   };
 
   mergeAccumulatorList = (onApplyFlag) => {
-    const { onSelect } = this.props;
+    const { onChange } = this.props;
 
     this.setState(({ accumulatedList, selectedList }) => {
       const finalList = onApplyFlag ? accumulatedList : selectedList;
 
-      if (commonUtils.isFunction(onSelect)) {
-        onSelect(finalList);
+      if (commonUtils.isFunction(onChange)) {
+        onChange(finalList);
       }
 
       return {
@@ -226,7 +226,7 @@ Select.propTypes = {
    * Функция обработчик, вызывается при каждом выборе элементов списка.
    * Принимает массив идентификаторов элементов в качестве единственного аргумента.
    * */
-  onSelect: PropTypes.func,
+  onChange: PropTypes.func,
 };
 
 Select.defaultProps = {

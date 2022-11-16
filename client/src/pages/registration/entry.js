@@ -11,6 +11,7 @@ class RegistrationPage extends React.Component {
   render() {
     return (
       <FinalFormWizard>
+        <FFWPageContacts />
         <FFWPageIntroduction />
         <FFWPagePersonalData />
         <FFWPageContacts />

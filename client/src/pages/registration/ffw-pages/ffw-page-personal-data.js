@@ -6,7 +6,6 @@ import FinalFormField from '@components/complex/final-form-field';
 import FinalFormWizard from '@components/complex/final-form-wizard';
 import Validator, { types } from '@services/validator';
 import { userFieldNames } from '@store/form.config';
-import Select from '@components/shared/select';
 
 const validateConfig = {
   [userFieldNames.firstName]: [
@@ -58,20 +57,6 @@ class FFWPagePersonalData extends React.PureComponent {
           <FinalFormField name={userFieldNames.birthday} label="Дата рождения" required>
             <DatePicker placeholder="Укажите дату Вашего рождения" />
           </FinalFormField>
-          <DatePicker placeholder="Укажите дату Вашего рождения" />
-          <Select
-            items={[
-              { id: '1', title: '201' },
-              { id: '2', title: '202' },
-              { id: '3', title: '201' },
-              { id: '4', title: '201' },
-              // { id: '5', title: '201' }, { id: '6', title: '201' },
-              // { id: '5', title: '201' }, { id: '6', title: '201' },
-              // { id: '5', title: '201' }, { id: '6', title: '201' },
-              // { id: '5', title: '201' }, { id: '6', title: '201' },
-            ]}
-            multiple
-          />
         </div>
       </FinalFormWizard.Page>
     );
