@@ -17,11 +17,11 @@ variant-color(value-color)
 variant-border-color(value-color)
   border-color value-color
 
-variant-badge(value-color)
-  color value-color
-  background-color lighten(@color, 90%)
-
-variant-button(value-color)
+variant-background-border-transparent(value-color)
   color $color-text.light;
   background-color value-color
   border-color @background-color
+
+variant-badge(value-color)
+  color value-color
+  background-color lighten(@color, 90%)

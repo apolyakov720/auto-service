@@ -63,6 +63,9 @@ const isNumeric = (value) => !isNaN(parseFloat(value)) && isFinite(parseFloat(va
 /** Значение - это функция */
 const isFunction = (value) => typeof value === 'function';
 
+/** Значение - это строка */
+const isString = (value) => typeof value === 'string' || value instanceof String;
+
 /** Получить значение из объекта по составному ключу, разделенными точками */
 const getDescendantValue = (object, key) =>
   key.split('.').reduce((value, chunk) => value?.[chunk], object);
@@ -91,12 +94,28 @@ const setDescendantValue = (object, key, value) => {
   };
 };
 
+/** Возвращает строку, где слова разделены пробелами */
+const splitStringByWords = (string) =>
+  string
+    // Находим аббревиатуры (сокращения) и отделяем их
+    .replace(/([A-Z]+)([A-Z][a-z])/g, '$1 $2')
+    // Находим букву в нижнем регистре за которой следует буква в верхнем регистре и отделяем их
+    .replace(/([a-z\d])([A-Z])/g, '$1 $2')
+    // Находим букву за которой следует цифра и отделяем их
+    .replace(/([a-zA-Z])(\d)/g, '$1 $2')
+    // Находим цифру за которой следует буква и отделяем их
+    .replace(/(\d)([a-zA-Z])/g, '$1 $2')
+    // Удаляем пробелы вокруг строки
+    .trim();
+
 export default {
   debounce,
   isNumeric,
   isNull,
   isEmpty,
   isFunction,
+  isString,
   getDescendantValue,
   setDescendantValue,
+  splitStringByWords,
 };
