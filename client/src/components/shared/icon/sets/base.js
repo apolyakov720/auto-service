@@ -21,11 +21,19 @@ import boxArrowInLeft from '@assets/icons/box-arrow-in-left.svg';
 import boxArrowInRight from '@assets/icons/box-arrow-in-right.svg';
 import clipboard from '@assets/icons/clipboard.svg';
 import news from '@assets/icons/news.svg';
+import checkCircle from '@assets/icons/check-circle.svg';
+import crossCircle from '@assets/icons/cross-circle.svg';
+import infoCircle from '@assets/icons/info-circle.svg';
+import questionCircle from '@assets/icons/question-circle.svg';
 
 export default {
   person,
   key,
   check,
+  checkCircle,
+  crossCircle,
+  infoCircle,
+  questionCircle,
   cross,
   search,
   dotsHorizontal,

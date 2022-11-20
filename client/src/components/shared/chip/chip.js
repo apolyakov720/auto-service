@@ -27,13 +27,11 @@ class Chip extends Simple {
   render() {
     const { label, onClose } = this.props;
 
-    const chipClass = super.getClass();
-
     return (
-      <div className={chipClass} onClick={this.onClick}>
-        <div className="chip__label">{label}</div>
+      <div className={this.getClassNameWrapper()} onClick={this.onClick}>
+        <div className={`${this.className}__label`}>{label}</div>
         {commonUtils.isFunction(onClose) && (
-          <div className="chip__close" onClick={this.onClose}>
+          <div className={`${this.className}__close`} onClick={this.onClose}>
             <Icon source={Icon.sources.base.cross} />
           </div>
         )}

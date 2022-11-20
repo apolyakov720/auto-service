@@ -109,4 +109,5 @@ export { CSSSizes, CSSThemes };
 export default {
   mergeClasses,
   mergeModifiers,
+  getClassNameByKey,
 };

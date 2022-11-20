@@ -10,7 +10,7 @@ class Icon extends React.PureComponent {
   isColor = (value) => CSS.supports('color', value);
 
   render() {
-    const { source, size, bold, color } = this.props;
+    const { source, size, bold, color, onClick } = this.props;
 
     if (!source) {
       return null;
@@ -27,12 +27,12 @@ class Icon extends React.PureComponent {
         [CSSConstants.THEMES[color.toUpperCase()]]: isThemeColor,
       }),
       {
-        [CSSConstants.SIZE_CLASSES[size]]: size,
+        size: size,
       },
     );
 
     return (
-      <div className={iconClass} style={styleColor}>
+      <div className={iconClass} style={styleColor} onClick={onClick}>
         <SVG />
       </div>
     );

@@ -14,7 +14,7 @@ theme-variant(variant, exclude = ())
 variant-color(value-color)
   color value-color
 
-variant-border-color(value-color)
+variant-border(value-color)
   border-color value-color
 
 variant-background-border-transparent(value-color)
@@ -25,3 +25,8 @@ variant-background-border-transparent(value-color)
 variant-badge(value-color)
   color value-color
   background-color lighten(@color, 90%)
+
+variant-alert(value-color)
+  color value-color
+  background-color lighten(@color, 90%)
+  border-color @background-color

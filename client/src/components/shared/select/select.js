@@ -10,6 +10,7 @@ import { SelectListItem } from '@components/shared/list-items';
 import CSSUtils from '@utils/css';
 import commonUtils from '@utils/common';
 import { CSSConstants } from '@constants';
+import Chip from '@components/shared/chip';
 
 class Select extends React.Component {
   state = {
@@ -57,9 +58,7 @@ class Select extends React.Component {
     }
   };
 
-  onCloseItem = (event, id) => {
-    event.stopPropagation();
-
+  onCloseItem = (id) => {
     this.setState(({ selectedList, accumulatedList }) => ({
       selectedList: selectedList.filter((value) => value !== id),
       accumulatedList: accumulatedList.filter((value) => value !== id),
@@ -102,7 +101,12 @@ class Select extends React.Component {
 
       return (
         <li key={id} className="select__sample-item">
-          <Alert textual id={id} content={item.title} onClose={this.onCloseItem} theme="disabled" />
+          <Chip
+            label={item.title}
+            id={id}
+            onClose={this.onCloseItem}
+            modifiers={{ textual: true }}
+          />
         </li>
       );
     });
@@ -159,7 +163,7 @@ class Select extends React.Component {
       };
 
       return (
-        <FormControl onClick={onOpen}>
+        <FormControl onClick={onOpen} theme="primary">
           <FormControl.Effect>
             <Icon source={Icon.sources.base.chevronDown} />
           </FormControl.Effect>

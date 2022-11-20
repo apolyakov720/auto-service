@@ -1,40 +1,67 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Simple from '@components/experimental/simple';
 import Icon from '@components/shared/icon';
-import CSSUtils from '@utils/css';
+import { CSSThemes, CSSSizes } from '@utils/css';
 import commonUtils from '@utils/common';
-import { CSSConstants } from '@constants';
 
 /** Компонент "Alert" (Оповещение) */
-class Alert extends React.PureComponent {
+class Alert extends Simple {
+  constructor(props) {
+    super(props);
+
+    this.iconThemeMap = {
+      ...this.defaultIconThemeMap,
+      ...props.iconThemeMap,
+    };
+  }
+
+  defaultIconThemeMap = {
+    [CSSThemes.primary]: Icon.sources.base.infoCircle,
+    [CSSThemes.info]: Icon.sources.base.infoCircle,
+    [CSSThemes.secondary]: Icon.sources.base.checkCircle,
+    [CSSThemes.warning]: Icon.sources.base.questionCircle,
+    [CSSThemes.error]: Icon.sources.base.crossCircle,
+  };
+
   onClose = (event) => {
     const { id, onClose } = this.props;
 
-    onClose(event, id);
+    event.stopPropagation();
+
+    onClose(id);
   };
 
   render() {
-    const { content, theme, textual, size, onClose } = this.props;
+    const { className, iconThemeMap, props } = this;
+    const { content, title, onClose, modifiers, action } = props;
 
-    const alertClass = CSSUtils.mergeClasses(
-      CSSUtils.mergeModifiers('alert', {
-        textual,
-        [theme]: theme,
-      }),
-      {
-        [CSSConstants.SIZE_CLASSES[size]]: size,
-      },
-    );
+    let icon = iconThemeMap[modifiers?.theme];
+    let currentAction;
+
+    if (commonUtils.isFunction(onClose)) {
+      currentAction = (
+        <Icon source={Icon.sources.base.cross} onClick={this.onClose} size={CSSSizes.l} />
+      );
+    }
+
+    if (action) {
+      currentAction = action;
+    }
 
     return (
-      <div className={alertClass}>
-        <div className="alert__content">{content}</div>
-        {commonUtils.isFunction(onClose) && (
-          <div className="alert__effect" onClick={this.onClose}>
-            <Icon source={Icon.sources.base.cross} bold />
+      <div className={this.getClassNameWrapper()}>
+        {icon && (
+          <div className={`${className}__icon`}>
+            <Icon source={icon} size={CSSSizes.l} />
           </div>
         )}
+        <section className={`${className}__section`}>
+          {title && <div className={`${className}__title`}>{title}</div>}
+          <div className={`${className}__content`}>{content}</div>
+        </section>
+        {currentAction && <div className={`${className}__action`}>{currentAction}</div>}
       </div>
     );
   }
@@ -47,31 +74,55 @@ Alert.propTypes = {
    * Принимает React элемент, либо допустимый в качестве дочернего элемента React тип данных.
    * */
   content: PropTypes.oneOfType([PropTypes.element, PropTypes.elementType]).isRequired,
+
+  /** Заголовок оповещения. */
+  title: PropTypes.string,
+
   /**
    * Необязательный идентификатор.
-   * Передается в качестве второго аргумента в функцию обработчика onClose.
+   * Передается в качестве единственного аргумента в функцию обработчика onClose.
    * */
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /**
-   * Тема компонента.
-   * Определяет внешний вид компонента.
-   * Примечание: основная тема устанавливается по умолчанию средствами CSS, передача свойства необязательна.
-   * */
-  theme: PropTypes.oneOf(['primary', 'secondary', 'info', 'warning', 'error', 'disabled']),
-  /**
-   * Размер компонента.
-   * Определяется на основе размера шрифта для корня документа.
-   * Примечание: размер "M" устанавливается по умолчанию средствами CSS, передача свойства необязательна.
-   * */
-  size: PropTypes.oneOf(['XS', 'S', 'M', 'L', 'XL', 'XXL']),
-  /** Флаг для придания более строгого внешнего вида. */
-  textual: PropTypes.bool,
+
+  /** Все возможные модификаторы компонента. */
+  modifiers: PropTypes.shape({
+    /**
+     * Модификатор, определяющий цветовую тему компонента: фон, цвет границы, цвет текста.
+     * Если установлен модификатор "outlined", то цвет фона не изменяется.
+     * */
+    theme: PropTypes.oneOf(Object.values(CSSThemes)),
+
+    /** Модификатор, задающий постоянный белый фон. */
+    outlined: PropTypes.bool,
+  }),
+
+  /** Все возможные дополнительные классы. */
+  classes: PropTypes.shape({
+    /**
+     * Размер компонента.
+     * Определяется на основе размера шрифта для корня документа.
+     * Примечание: размер "M" устанавливается по умолчанию средствами CSS, передача свойства необязательна.
+     * */
+    size: PropTypes.oneOf(Object.values(CSSSizes)),
+  }),
+
   /**
    * Функция обработчик закрытия компонента.
-   * Принимает событие клика и необязательный идентификатор в качестве аргументов.
-   * Если свойство отсутствует, то закрытие недоступно.
+   * Если свойство установлено, то отображается значок закрытия.
+   * Принимает необязательный идентификатор в качестве единственного аргумента.
+   * Если свойство отсутствует или передано свойство "action", то значек закрытия недоступен.
    * */
   onClose: PropTypes.func,
+
+  /**
+   * Элемент для обработки альтернативного действия.
+   * Имеет больший приоритет по сравнению со свойством "onClose".
+   * Принимает React элемент, либо допустимый в качестве дочернего элемента React тип данных.
+   * */
+  action: PropTypes.oneOfType([PropTypes.element, PropTypes.elementType]),
+
+  /** Свойство для удаления или установки индивидуальных иконок путем указания имени темы и источника иконки. */
+  iconThemeMap: PropTypes.objectOf(PropTypes.string),
 };
 
 export default Alert;

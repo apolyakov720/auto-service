@@ -1,25 +1,33 @@
 .alert
   font-size $font-size-base
   border-radius $border-radius
-  padding 1em
-  color $color-theme.primary;
-  background-color lighten(@color, 90%)
+  padding .5em 1em
   display flex
-  text-align left
+  color $color-text.default;
+  background-color lighten(@color, 90%)
+  border $border-width solid @background-color
+
+  &__icon
+    padding-top .15em
+    margin-right .5em
+
+  &__section
+    display flex
+    flex-direction column
+
+  &__title
+    font-family $font-family-bold
 
   &__content
-    flex 1
-    padding-right .25em
+    padding .35em 0
+    font-size .75em
 
-  &__effect
-    display flex
-    align-items center
-    justify-content center
-    margin-left .25em
-    line-height 0
+  &__action
+    padding-top .15em
+    margin-left auto
 
-  &--textual
-    padding 0 0 0 .25em
-    border-radius 0
+  theme-variant(variant-alert)
 
-  theme-variant(variant-badge)
+  &--outlined
+    background-color $color-background.light;
+    border-color currentColor
