@@ -11,17 +11,13 @@ class OutsideClick extends React.Component {
   }
 
   componentDidMount() {
-    this.addMouseDownEventListener();
+    document.addEventListener('mousedown', this.onMouseDown);
   }
 
   componentWillUnmount() {
     document.removeEventListener('mousedown', this.onMouseDown);
     document.removeEventListener('mouseup', this.onMouseUp);
   }
-
-  addMouseDownEventListener = () => {
-    document.addEventListener('mousedown', this.onMouseDown);
-  };
 
   onMouseDown = (event) => {
     const { current } = this.outsideNode;

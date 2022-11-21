@@ -7,8 +7,6 @@ import FinalFormWizard from '@components/complex/final-form-wizard';
 import Validator, { types } from '@services/validator';
 import { userFieldNames } from '@store/form.config';
 
-import Chip from '@components/shared/chip';
-
 const validateConfig = {
   [userFieldNames.email]: [
     {
@@ -46,14 +44,6 @@ class FFWPageContacts extends React.PureComponent {
             ]}
           />
         </FinalFormField>
-        <Chip
-          label="This is Chip"
-          onClose={() => {}}
-          modifiers={{
-            theme: 'primary',
-            textual: true,
-          }}
-        />
       </FinalFormWizard.Page>
     );
   }

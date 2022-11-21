@@ -108,6 +108,36 @@ const splitStringByWords = (string) =>
     // Удаляем пробелы вокруг строки
     .trim();
 
+/**
+ * Удаляет из объекта obj1, свойства отсутствующиее в объекте obj2.
+ * Возвращает obj1.
+ * */
+const restrictObjects = (obj1, obj2) => {
+  for (let prop in obj1) {
+    if (!(prop in obj2)) {
+      delete obj1[prop];
+    }
+  }
+
+  return obj1;
+};
+
+/**
+ * Удаляет из объекта obj1, свойства присутствующие в объекте obj2.
+ * Возвращает obj1.
+ * */
+const subtractObjects = (obj1, obj2) => {
+  for (let prop in obj2) {
+    delete obj1[prop];
+  }
+
+  return obj1;
+};
+
+/** Преобразует массив в объект. */
+const arrayToObject = (array) =>
+  array.reduce((accumulator, value) => ({ ...accumulator, [value]: value }), {});
+
 export default {
   debounce,
   isNumeric,
@@ -118,4 +148,7 @@ export default {
   getDescendantValue,
   setDescendantValue,
   splitStringByWords,
+  restrictObjects,
+  subtractObjects,
+  arrayToObject,
 };
