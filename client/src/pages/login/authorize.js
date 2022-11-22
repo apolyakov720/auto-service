@@ -8,10 +8,10 @@ import { keys } from '@store/data.config';
 export default (values) => {
   loaderActions.showLoader();
 
-  APIService.post('v1/auth', values)
+  APIService.post({ path: '/auth', data: values })
     .then(({ result, token }) => {
       if (result && token) {
-        APIService.setToken(token);
+        // Сохранить токен
 
         appActions.authorize();
 

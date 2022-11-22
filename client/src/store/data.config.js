@@ -22,14 +22,14 @@ export default {
     // availability - доступость для загрузки, например, только когда пользователь авторизован
 
     // Адрес по которому получаем данные
-    url: 'v1/configs',
+    url: '/configs',
     // Функция преобразования начального значения
     initializer: defaultObjectInitializer,
     // Функция преобразования конечного значения
     parser: defaultObjectParser,
   },
   [keys.user]: {
-    url: 'v1/user',
+    url: '/user',
     initializer: defaultObjectInitializer,
     parser: defaultObjectParser,
   },
