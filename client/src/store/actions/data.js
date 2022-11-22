@@ -36,7 +36,7 @@ const _popFetchRequests = (keys) => {
 const _pushFetchRequests = (keys) => {
   if (keys.length) {
     keys.forEach((key) => {
-      _requests[key] = APIService.get(dataConfig[key].url)
+      _requests[key] = APIService.get({ path: dataConfig[key].url })
         .then((response) => {
           fetchSuccess([{ key, response }]);
           _popFetchRequests([key]);

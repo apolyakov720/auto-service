@@ -1,59 +1,137 @@
+import commonUtils from '@utils/common';
+
+/**
+ * API сервис.
+ * Используется для получения данных с указанного ресурса.
+ * Для настройки необходимо передать следующий объект конфигурации:
+ * 1. url - адрес по которому получаются данные, состоит из протокола: http(s) и имени хоста: localhost:3000 (http://localhost:3000/);
+ * 2. resource - необязательный дополнительный путь к ресурсам для более гибкой настройки, будет добавлен к url;
+ * */
 class API {
-  token = null;
+  methods = {
+    get: 'GET',
+    post: 'POST',
+    put: 'PUT',
+    delete: 'DELETE',
+  };
 
-  getToken() {
-    return this.token;
-  }
+  config = {
+    url: '',
+  };
 
-  setToken(token) {
-    this.token = token;
-  }
+  constructor(config = {}) {
+    const { url = '', resource } = config;
 
-  get path() {
-    if (USE_MOCK_API) {
-      return 'http://localhost:3001/api/';
+    if (!commonUtils.isString(url) || commonUtils.isEmpty(url.trim())) {
+      throw new Error('API service: *url* configuration value is not valid');
     }
 
-    return '';
+    let preparedUrl = url.trim();
+
+    if (!preparedUrl.endsWith('/')) {
+      preparedUrl = `${preparedUrl}/`;
+    }
+
+    if (commonUtils.isString(resource) && !commonUtils.isEmpty(resource.trim())) {
+      preparedUrl = `${preparedUrl}${resource.trim().replace(/^\/|\/$/g, '')}`;
+    }
+
+    this.config = {
+      url: preparedUrl.toLowerCase(),
+    };
   }
 
-  get(url) {
-    return this._makeRequest({ url });
+  _encodeData(data) {
+    if (!data) {
+      return '';
+    }
+
+    const pairs = [];
+
+    for (let name in data) {
+      if (!Object.prototype.hasOwnProperty.call(data, name)) {
+        continue;
+      }
+
+      if (typeof data[name] === 'function') {
+        continue;
+      }
+
+      let value = data[name].toString();
+
+      name = encodeURIComponent(name.replace('%20', '+'));
+      value = encodeURIComponent(value.replace('%20', '+'));
+
+      pairs.push(`${name}=${value}`);
+    }
+
+    return `?${pairs.join('&')}`;
   }
-
-  post(url, data) {
-    return this._makeRequest({
-      method: 'POST',
-      url,
-      data,
-    });
-  }
-
-  put() {}
-
-  delete() {}
 
   async _makeRequest(params) {
-    const { method = 'GET', url, data } = params;
+    // path - путь до ресурса;
+    // method - метод запроса;
+    // data - данные тела запроса.
+    // headers - заголовки запроса, по умолчанию 'Content-Type': 'application/json';
+    // parser - имя обработчика данных, по умолчанию json;
+    const { path, method, data, headers = {}, parser = 'json' } = params;
+    const { url } = this.config;
 
     try {
-      const resultPath = `${this.path}${url}`;
+      const resultPath = `${url}${path}`;
 
       const response = await fetch(resultPath, {
         method,
         body: JSON.stringify(data),
         headers: {
           'Content-Type': 'application/json',
-          'token': this.getToken(),
+          ...headers,
         },
       });
 
-      return await response.json();
-    } catch (e) {
+      if (!response.ok) {
+        return Promise.reject();
+      }
+
+      return await response[parser]();
+    } catch (error) {
       // Будет отклонён только при сбое сети или если что-то помешало запросу выполниться.
-      return Promise.reject();
+      return Promise.reject(error);
     }
+  }
+
+  get({ path, data, ...rest }) {
+    // Для GET запроса преобразуем входные данные в строку, подходящую для использования в адресе;
+    const preparedPath = `${path}${this._encodeData(data)}`;
+
+    return this._makeRequest({
+      data,
+      path: preparedPath,
+      method: this.methods.get,
+      ...rest,
+    });
+  }
+
+  post(params) {
+    return this._makeRequest({
+      method: this.methods.post,
+      ...params,
+    });
+  }
+
+  put(params) {
+    return this._makeRequest({
+      method: this.methods.put,
+      ...params,
+    });
+  }
+
+  delete(params) {
+    return this._makeRequest({
+      method: this.methods.delete,
+      ...params,
+    });
   }
 }
 
-export default new API();
+export default new API({ url: 'http://localhost:3001/', resource: 'api/v1' });
