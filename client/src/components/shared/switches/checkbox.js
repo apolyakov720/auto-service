@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Switch from './switch';
 import Icon from '@components/shared/icon';
-import { CSSConstants } from '@constants';
+import { CSSSizes } from '@utils/css';
 
 /** Компонент переключателя "Checkbox" (Флажок) */
 class Checkbox extends React.PureComponent {
@@ -12,7 +12,7 @@ class Checkbox extends React.PureComponent {
 
     return (
       <Switch type="checkbox" baseClass="checkbox" caption={caption} {...inputProps}>
-        <Icon source={Icon.sources.base.check} size={CSSConstants.SIZES.L} />
+        <Icon source={Icon.sources.base.check} size={CSSSizes.l} />
       </Switch>
     );
   }

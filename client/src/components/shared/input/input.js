@@ -5,8 +5,8 @@ import InputMask from 'react-input-mask';
 import FormControl from '@components/shared/form-control';
 // TODO: рассмотреть возможность вынести отсюда NormalizerService
 import NormalizerService from '@services/normalizer';
-import commonUtils from '@utils/common';
-import { CSSConstants } from '@constants';
+import { isFunction } from '@utils/common';
+import { CSSThemes } from '@utils/css';
 
 /** Компонент "Input" (Поле ввода) */
 class Input extends React.PureComponent {
@@ -20,7 +20,7 @@ class Input extends React.PureComponent {
 
   setTheme = () => {
     this.setState({
-      theme: CSSConstants.THEMES.PRIMARY,
+      theme: CSSThemes.primary,
     });
   };
 
@@ -33,7 +33,7 @@ class Input extends React.PureComponent {
   onChange = (event) => {
     const { onChange } = this.props;
 
-    commonUtils.isFunction(onChange) && onChange(event?.target?.value);
+    isFunction(onChange) && onChange(event?.target?.value);
   };
 
   onBlur = (event) => {
@@ -41,7 +41,7 @@ class Input extends React.PureComponent {
 
     this.unsetTheme();
 
-    commonUtils.isFunction(onBlur) && onBlur(event);
+    isFunction(onBlur) && onBlur(event);
   };
 
   onFocus = (event) => {
@@ -49,7 +49,7 @@ class Input extends React.PureComponent {
 
     this.setTheme();
 
-    commonUtils.isFunction(onFocus) && onFocus(event);
+    isFunction(onFocus) && onFocus(event);
   };
 
   render() {

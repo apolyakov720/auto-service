@@ -1,5 +1,5 @@
 import APIService from '@services/api';
-import appActions from '@store/actions/app';
+import appActions from '@store/actions/application';
 import loaderActions from '@store/actions/loader';
 import dataActions from '@store/actions/data';
 import routerActions from '@store/actions/router';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CSSUtils from '@utils/css';
+import { getClassNameByKey, mergeClasses, mergeModifiers } from '@utils/css';
 
 /**
  * Экспериментальный** класс для избавления от написания дублирующего кода.
@@ -15,13 +15,13 @@ class Simple extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this.className = CSSUtils.getClassNameByKey(props.className || this.constructor.name);
+    this.className = getClassNameByKey(props.className || this.constructor.name);
   }
 
   getClassNameWrapper() {
     const { modifiers, classes } = this.props;
 
-    return CSSUtils.mergeClasses(CSSUtils.mergeModifiers(this.className, modifiers), classes);
+    return mergeClasses(mergeModifiers(this.className, modifiers), classes);
   }
 }
 

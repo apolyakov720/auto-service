@@ -1,12 +1,12 @@
 import React from 'react';
 
-import CSSUtils from '@utils/css';
+import { mergeModifiers } from '@utils/css';
 
 class Overlay extends React.PureComponent {
   render() {
     const { children, transparent } = this.props;
 
-    const overlayClass = CSSUtils.mergeModifiers('overlay', {
+    const overlayClass = mergeModifiers('overlay', {
       transparent: transparent,
     });
 

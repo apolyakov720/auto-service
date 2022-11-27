@@ -2,7 +2,7 @@ import React from 'react';
 import { Form } from 'react-final-form';
 
 import Button from '@components/shared/button';
-import { CSSConstants } from '@constants';
+import { CSSThemes } from '@utils/css';
 
 class FinalFormWizard extends React.Component {
   constructor(props) {
@@ -60,9 +60,7 @@ class FinalFormWizard extends React.Component {
         onSubmit={this.handleSubmit}>
         {({ handleSubmit, valid, submitting }) => {
           const nextButtonText = isLastPage ? 'Подтвердить' : 'Далее';
-          const nextButtonTheme = valid
-            ? CSSConstants.THEMES.PRIMARY
-            : CSSConstants.THEMES.DISABLED;
+          const nextButtonTheme = valid ? CSSThemes.primary : CSSThemes.disabled;
 
           return (
             <form className="form" onSubmit={handleSubmit}>
@@ -73,7 +71,7 @@ class FinalFormWizard extends React.Component {
                     <Button
                       type="button"
                       caption="Назад"
-                      theme={CSSConstants.THEMES.SECONDARY}
+                      theme={CSSThemes.secondary}
                       onClick={this.previous}
                     />
                   </div>

@@ -6,11 +6,10 @@ import FormControl from '@components/shared/form-control';
 import Icon from '@components/shared/icon';
 import SearchBar from '@components/shared/search-bar';
 import Dropdown from '@components/shared/dropdown';
-import { SelectListItem } from '@components/shared/list-items';
-import CSSUtils from '@utils/css';
-import commonUtils from '@utils/common';
-import { CSSConstants } from '@constants';
 import Chip from '@components/shared/chip';
+import { SelectListItem } from '@components/shared/list-items';
+import { mergeModifiers } from '@utils/css';
+import { isFunction } from '@utils/common';
 
 class Select extends React.Component {
   state = {
@@ -25,7 +24,7 @@ class Select extends React.Component {
     this.setState(({ accumulatedList, selectedList }) => {
       const finalList = onApplyFlag ? accumulatedList : selectedList;
 
-      if (commonUtils.isFunction(onChange)) {
+      if (isFunction(onChange)) {
         onChange(finalList);
       }
 
@@ -112,7 +111,7 @@ class Select extends React.Component {
     });
 
     if (collapse) {
-      const collapseItemClass = CSSUtils.mergeModifiers('select__sample-item', {
+      const collapseItemClass = mergeModifiers('select__sample-item', {
         collapse: true,
       });
 

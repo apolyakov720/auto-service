@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Avatar from '@components/shared/avatar';
-import { CSSConstants } from '@constants';
+import { CSSSizes } from '@utils/css';
 
 class ProfileHeader extends React.PureComponent {
   render() {
@@ -11,7 +11,7 @@ class ProfileHeader extends React.PureComponent {
 
     return (
       <div className="page__header">
-        <Avatar size={CSSConstants.SIZES.XXL} />
+        <Avatar size={CSSSizes.l} />
         <div>
           {firstName} {lastName}
           <br />

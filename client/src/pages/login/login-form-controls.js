@@ -1,13 +1,13 @@
 import React from 'react';
 
 import Button from '@components/shared/button';
-import { CSSConstants } from '@constants';
+import { CSSThemes } from '@utils/css';
 
 class LoginFormControls extends React.PureComponent {
   render() {
     const { valid } = this.props;
 
-    const theme = valid ? CSSConstants.THEMES.PRIMARY : CSSConstants.THEMES.DISABLED;
+    const theme = valid ? CSSThemes.primary : CSSThemes.disabled;
 
     return (
       <div className="form__controls">

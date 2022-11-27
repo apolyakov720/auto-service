@@ -1,9 +1,9 @@
-import appTypes from '../types/app';
+import applicationTypes from '../types/application';
 import { dispatch } from '../';
 
 const authorize = () => {
   dispatch({
-    type: appTypes.AUTHORIZE,
+    type: applicationTypes.AUTHORIZE,
   });
 };
 

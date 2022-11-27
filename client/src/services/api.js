@@ -1,4 +1,4 @@
-import commonUtils from '@utils/common';
+import { isString, isEmpty } from '@utils/common';
 
 /**
  * API сервис.
@@ -22,7 +22,7 @@ class API {
   constructor(config = {}) {
     const { url = '', resource } = config;
 
-    if (!commonUtils.isString(url) || commonUtils.isEmpty(url.trim())) {
+    if (!isString(url) || isEmpty(url.trim())) {
       throw new Error('API service: *url* configuration value is not valid');
     }
 
@@ -32,7 +32,7 @@ class API {
       preparedUrl = `${preparedUrl}/`;
     }
 
-    if (commonUtils.isString(resource) && !commonUtils.isEmpty(resource.trim())) {
+    if (isString(resource) && !isEmpty(resource.trim())) {
       preparedUrl = `${preparedUrl}${resource.trim().replace(/^\/|\/$/g, '')}`;
     }
 
@@ -72,7 +72,7 @@ class API {
     // path - путь до ресурса;
     // method - метод запроса;
     // data - данные тела запроса.
-    // headers - заголовки запроса, по умолчанию 'Content-Type': 'application/json';
+    // headers - заголовки запроса, по умолчанию 'Content-Type': 'core/json';
     // parser - имя обработчика данных, по умолчанию json;
     const { path, method, data, headers = {}, parser = 'json' } = params;
     const { url } = this.config;
@@ -84,7 +84,7 @@ class API {
         method,
         body: JSON.stringify(data),
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'core/json',
           ...headers,
         },
       });
@@ -105,7 +105,6 @@ class API {
     const preparedPath = `${path}${this._encodeData(data)}`;
 
     return this._makeRequest({
-      data,
       path: preparedPath,
       method: this.methods.get,
       ...rest,

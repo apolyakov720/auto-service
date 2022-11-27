@@ -1,21 +1,21 @@
 const defaultObjectInitializer = () => ({});
 const defaultObjectParser = (response) => response || {};
 
-const keys = {
+const dataKeys = {
   configs: 'configs',
   user: 'user',
 };
 
-const statuses = {
+const dataStatuses = {
   NOT_FETCHED: 'NOT_FETCHED',
   FETCHING: 'FETCHING',
   FETCHED: 'FETCHED',
   FETCH_ERROR: 'FETCH_ERROR',
 };
 
-export { statuses, keys };
+export { dataStatuses, dataKeys };
 export default {
-  [keys.configs]: {
+  [dataKeys.configs]: {
     // TODO продумать следующие поля - force, immutable, availability
     // force - принудительно отправлять повторный запрос
     // immutable - не отправлять запрос, если значение не должно изменяться
@@ -28,7 +28,7 @@ export default {
     // Функция преобразования конечного значения
     parser: defaultObjectParser,
   },
-  [keys.user]: {
+  [dataKeys.user]: {
     url: '/user',
     initializer: defaultObjectInitializer,
     parser: defaultObjectParser,

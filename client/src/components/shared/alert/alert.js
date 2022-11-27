@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Simple from '@components/experimental/simple';
 import Icon from '@components/shared/icon';
 import { CSSThemes, CSSSizes } from '@utils/css';
-import commonUtils from '@utils/common';
+import { isFunction } from '@utils/common';
 
 /** Компонент "Alert" (Оповещение) */
 class Alert extends Simple {
@@ -40,7 +40,7 @@ class Alert extends Simple {
     let icon = iconThemeMap[modifiers?.theme];
     let currentAction;
 
-    if (commonUtils.isFunction(onClose)) {
+    if (isFunction(onClose)) {
       currentAction = (
         <Icon source={Icon.sources.base.cross} onClick={this.onClose} size={CSSSizes.l} />
       );

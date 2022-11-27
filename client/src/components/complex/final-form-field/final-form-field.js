@@ -2,7 +2,7 @@ import React from 'react';
 import { Field } from 'react-final-form';
 
 import FormField from '@components/shared/form-field';
-import { CSSConstants } from '@constants';
+import { CSSThemes } from '@utils/css';
 
 class FinalFormField extends React.PureComponent {
   render() {
@@ -15,7 +15,7 @@ class FinalFormField extends React.PureComponent {
           const errors = (touched || dirty) && error ? error : null;
 
           if (errors) {
-            theme = CSSConstants.THEMES.ERROR;
+            theme = CSSThemes.error;
           }
 
           return (

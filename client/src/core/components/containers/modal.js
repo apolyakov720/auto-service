@@ -2,11 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Modal from '@components/shared/modal';
-import Suspense from '@components/functional/suspense';
+import Suspense from '@components/../components/module-loader';
 import modalActions from '@store/actions/modal';
-import { routes, loaders } from '../router/config';
+// TODO
+import { routes, loaders } from '../../configs/router';
 
-class ModalContainer extends React.PureComponent {
+class ContainerModal extends React.PureComponent {
   getContent = () => {
     const {
       modal: { data },
@@ -46,4 +47,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(ModalContainer);
+export default connect(mapStateToProps)(ContainerModal);

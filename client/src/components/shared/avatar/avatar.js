@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Icon from '@components/shared/icon';
-import CSSUtils from '@utils/css';
-import { CSSConstants } from '@constants';
+import { mergeClasses } from '@utils/css';
 
 /** Компонент "Avatar" (Графическое представление профиля) */
 class Avatar extends React.PureComponent {
@@ -17,8 +16,8 @@ class Avatar extends React.PureComponent {
       content = <img src={source} alt="avatar-image" />;
     }
 
-    const avatarClass = CSSUtils.mergeClasses('avatar', {
-      [CSSConstants.SIZE_CLASSES[size]]: size,
+    const avatarClass = mergeClasses('avatar', {
+      size: size,
     });
 
     return <div className={avatarClass}>{content}</div>;

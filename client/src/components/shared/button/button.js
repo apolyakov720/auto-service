@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import CSSUtils from '@utils/css';
-import { CSSConstants } from '@constants';
+import { mergeClasses, mergeModifiers } from '@utils/css';
 
 /** Компонент "Button" (Кнопка) */
 class Button extends React.PureComponent {
@@ -10,15 +9,15 @@ class Button extends React.PureComponent {
     const { type, caption, theme, size, extra, circled, noStroke, full, onClick, ...props } =
       this.props;
 
-    const buttonClass = CSSUtils.mergeClasses(
-      CSSUtils.mergeModifiers('button', {
+    const buttonClass = mergeClasses(
+      mergeModifiers('button', {
         circled,
         full,
         [theme]: theme,
         'no-stroke': noStroke,
       }),
       {
-        [CSSConstants.SIZE_CLASSES[size]]: size,
+        size: size,
       },
     );
 

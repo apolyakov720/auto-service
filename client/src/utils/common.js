@@ -138,7 +138,7 @@ const subtractObjects = (obj1, obj2) => {
 const arrayToObject = (array) =>
   array.reduce((accumulator, value) => ({ ...accumulator, [value]: value }), {});
 
-export default {
+export {
   debounce,
   isNumeric,
   isNull,

@@ -1,4 +1,4 @@
-import commonUtils from './common';
+import { splitStringByWords, isString } from './common';
 
 const CSSSizes = {
   xxs: 'xxs',
@@ -26,7 +26,7 @@ const CSSThemes = {
 
 /** Возвращает имя класса по ключу в нижнем регистре, где ключ будет разбит по словам через делимитер класса */
 const getClassNameByKey = (key) =>
-  commonUtils.splitStringByWords(key).toLowerCase().replace(/\s/g, CSSDelimiters.className);
+  splitStringByWords(key).toLowerCase().replace(/\s/g, CSSDelimiters.className);
 
 /**
  * Слияние классов.
@@ -54,9 +54,7 @@ const mergeClasses = (...classes) =>
           const [key, value] = chunk;
 
           if (key && value) {
-            const keyValue = commonUtils.isString(value)
-              ? `${key}${CSSDelimiters.className}${value}`
-              : key;
+            const keyValue = isString(value) ? `${key}${CSSDelimiters.className}${value}` : key;
             const preparedKeyValue = getClassNameByKey(keyValue) + ' ';
 
             resultChunkClass = resultChunkClass.concat(preparedKeyValue);
@@ -89,7 +87,7 @@ const mergeModifiers = (baseClass, modifiers = {}) => {
           const [key, value] = modifier;
 
           if (key && value) {
-            const keyValue = commonUtils.isString(value) ? value : key;
+            const keyValue = isString(value) ? value : key;
             const preparedKeyValue = getClassNameByKey(keyValue);
 
             accumulator.push(`${preparedBaseClass}${CSSDelimiters.modifier}${preparedKeyValue}`);
@@ -105,9 +103,4 @@ const mergeModifiers = (baseClass, modifiers = {}) => {
   return '';
 };
 
-export { CSSSizes, CSSThemes };
-export default {
-  mergeClasses,
-  mergeModifiers,
-  getClassNameByKey,
-};
+export { CSSSizes, CSSThemes, mergeClasses, mergeModifiers, getClassNameByKey };

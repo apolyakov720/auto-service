@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import baseIconSet from './sets/base';
-import { CSSConstants } from '@constants';
-import CSSUtils from '@utils/css';
+import { CSSThemes, mergeClasses, mergeModifiers } from '@utils/css';
 
 /** Компонент "Icon" (Иконка) */
 class Icon extends React.PureComponent {
@@ -18,13 +17,13 @@ class Icon extends React.PureComponent {
 
     const SVG = source;
 
-    const isThemeColor = Object.values(CSSConstants.THEMES).includes(color);
+    const isThemeColor = Object.values(CSSThemes).includes(color);
     const styleColor = (!isThemeColor && this.isColor(color) && { color: color }) || {};
 
-    const iconClass = CSSUtils.mergeClasses(
-      CSSUtils.mergeModifiers('icon', {
+    const iconClass = mergeClasses(
+      mergeModifiers('icon', {
         bold,
-        [CSSConstants.THEMES[color.toUpperCase()]]: isThemeColor,
+        [CSSThemes[color.toUpperCase()]]: isThemeColor,
       }),
       {
         size: size,

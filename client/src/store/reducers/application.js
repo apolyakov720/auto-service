@@ -1,4 +1,4 @@
-import appTypes from '../types/app';
+import applicationTypes from '../types/application';
 
 const initialState = {
   isAuthorized: false,
@@ -6,7 +6,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case appTypes.AUTHORIZE:
+    case applicationTypes.AUTHORIZE:
       return { ...state, isAuthorized: true };
 
     default:

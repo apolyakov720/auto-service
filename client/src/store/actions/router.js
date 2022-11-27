@@ -1,5 +1,6 @@
-import commonUtils from '@utils/common';
-import routerConfig from '@modules/router/config';
+import { isFunction } from '@utils/common';
+// TODO
+import { routerConfig } from '@core/configs/router';
 import routerTypes from '../types/router';
 import { getState, dispatch } from '../';
 
@@ -17,7 +18,7 @@ const calculateRoutes = () => {
     (accumulator, [id, { isEnabled, ...value }]) => {
       let isRouteEnabled;
 
-      if (commonUtils.isFunction(isEnabled)) {
+      if (isFunction(isEnabled)) {
         isRouteEnabled = isEnabled(state);
       } else {
         isRouteEnabled = isEnabled || value.isIndex || value.isDefault;

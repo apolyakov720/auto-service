@@ -1,7 +1,8 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 
-import { redirects } from './config';
+// TODO
+import { redirects } from '../configs/router';
 
 // children - маршрут и вложенные в него маршруты, которые необходимо показать
 // state - состояние приложение (авторизовано или нет)

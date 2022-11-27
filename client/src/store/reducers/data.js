@@ -1,10 +1,10 @@
 import dataTypes from '../types/data';
-import dataConfig, { statuses } from '../data.config';
+import dataConfig, { dataStatuses } from '../data.config';
 
 const getInitialState = () =>
   Object.entries(dataConfig).reduce((accumulate, [key, config]) => {
     accumulate[key] = {
-      status: statuses.NOT_FETCHED,
+      status: dataStatuses.NOT_FETCHED,
       data: config.initializer(),
     };
 
@@ -19,7 +19,7 @@ export default (state = getInitialState(), action) => {
       action.payload.forEach((key) => {
         chunks[key] = {
           ...state[key],
-          status: statuses.FETCHING,
+          status: dataStatuses.FETCHING,
         };
       });
 
@@ -33,7 +33,7 @@ export default (state = getInitialState(), action) => {
         chunks[key] = {
           ...state[key],
           data: dataConfig[key].parser(response),
-          status: statuses.FETCHED,
+          status: dataStatuses.FETCHED,
         };
       });
 
@@ -47,7 +47,7 @@ export default (state = getInitialState(), action) => {
         chunks[key] = {
           ...state[key],
           data: dataConfig[key].initializer(),
-          status: statuses.FETCH_ERROR,
+          status: dataStatuses.FETCH_ERROR,
         };
       });
 

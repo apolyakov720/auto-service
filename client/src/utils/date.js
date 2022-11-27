@@ -16,7 +16,7 @@ import {
 import ru from 'date-fns/locale/ru';
 
 /** Форматы, используемые в разных частях приложения */
-const formats = {
+const dateFormats = {
   default: 'dd.MM.yyyy',
   weekDay: 'eee',
   calendarHeader: 'LLLL yyyy',
@@ -61,8 +61,8 @@ const parseDate = ({ value, format, defaultValue = new Date() }) => {
   return isValid(current) ? current : defaultValue;
 };
 
-export { formats };
-export default {
+export {
+  dateFormats,
   addMonths,
   addWeeks,
   addDays,

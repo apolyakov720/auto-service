@@ -1,5 +1,5 @@
 import { getState, dispatch } from '../';
-import dataConfig, { statuses } from '../data.config';
+import dataConfig, { dataStatuses } from '../data.config';
 import dataTypes from '../types/data';
 import APIService from '@services/api';
 
@@ -17,7 +17,7 @@ const _getFetchKeys = (keys) => {
   keys.forEach((key) => {
     const status = dataState[key].status;
 
-    if (status !== statuses.FETCHING) {
+    if (status !== dataStatuses.FETCHING) {
       ready.push(key);
     }
   });

@@ -14,6 +14,4 @@ const getSize = () => {
 
 const isMobile = () => getSize().width <= 1000;
 
-export default {
-  isMobile,
-};
+export { isMobile };

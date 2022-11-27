@@ -2,7 +2,6 @@ import React from 'react';
 
 import LoginHeader from './login-header';
 import LoginMain from './login-main';
-import LoginFooter from './login-footer';
 
 class LoginPage extends React.Component {
   render() {
@@ -10,7 +9,6 @@ class LoginPage extends React.Component {
       <div className="page">
         <LoginHeader />
         <LoginMain />
-        <LoginFooter />
       </div>
     );
   }

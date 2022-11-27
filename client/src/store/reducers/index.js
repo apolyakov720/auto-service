@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
 
-import app from './app';
+import application from './application';
 import data from './data';
 import router from './router';
 import modal from './modal';
 import loader from './loader';
 
 const rootReducer = combineReducers({
-  app,
+  application,
   data,
   router,
   modal,

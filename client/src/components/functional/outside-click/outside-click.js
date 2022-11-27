@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import commonUtils from '@utils/common';
+import { isFunction } from '@utils/common';
 
 class OutsideClick extends React.Component {
   constructor(props) {
@@ -35,7 +35,7 @@ class OutsideClick extends React.Component {
 
     const isContained = current && current.contains(event.target);
 
-    if (!isContained && commonUtils.isFunction(onOutsideClick)) {
+    if (!isContained && isFunction(onOutsideClick)) {
       onOutsideClick(event);
     }
 

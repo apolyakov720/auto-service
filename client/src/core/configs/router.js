@@ -11,7 +11,7 @@ import Icon from '@components/shared/icon';
 
 // Этот конфиг кандидат на вынос за пределы модуля
 
-const routes = {
+const routeNames = {
   login: 'login',
   registration: 'registration',
   main: 'main',
@@ -20,21 +20,21 @@ const routes = {
   settings: 'settings',
 };
 
-const zoneTypes = {
+/* const zoneTypes = {
   unauthorized: 'unauthorized',
   default: 'default',
+}; */
+
+const routePaths = {
+  [routeNames.login]: '/',
+  [routeNames.registration]: '/registration',
+  [routeNames.main]: '/main',
+  [routeNames.profile]: '/profile',
+  [routeNames.messages]: '/messages',
+  [routeNames.settings]: '/settings',
 };
 
-const paths = {
-  [routes.login]: '/',
-  [routes.registration]: '/registration',
-  [routes.main]: '/main',
-  [routes.profile]: '/profile',
-  [routes.messages]: '/messages',
-  [routes.settings]: '/settings',
-};
-
-const panels = {
+/*const panels = {
   [zoneTypes.unauthorized]: {
     panel1: [
       {
@@ -68,43 +68,34 @@ const panels = {
       },
     ],
   },
-};
+};*/
 
-// Содержимое роута, которое будет загружено динамически
-const loaders = {
-  [routes.login]: () => import('@pages/login'),
-  [routes.registration]: () => import('@pages/registration'),
-  [routes.main]: () => import('@pages/main'),
-  [routes.profile]: () => import('@pages/profile'),
-};
-
-const full = {
-  [routes.login]: {
-    path: paths[routes.login],
-    zoneType: zoneTypes.unauthorized,
+const routerConfig = {
+  [routeNames.login]: {
+    path: routePaths[routeNames.login],
+    // zoneType: zoneTypes.unauthorized,
     isIndex: true,
-    isAuthNoRequired: true,
+    // isAuthNoRequired: true,
   },
-  [routes.registration]: {
-    path: paths[routes.registration],
-    zoneType: zoneTypes.unauthorized,
-    isAuthNoRequired: true,
+  [routeNames.registration]: {
+    path: routePaths[routeNames.registration],
+    // zoneType: zoneTypes.unauthorized,
+    // isAuthNoRequired: true,
     isEnabled: true,
   },
-  [routes.main]: {
-    path: paths[routes.main],
+  [routeNames.main]: {
+    path: routePaths[routeNames.main],
     isDefault: true,
   },
-  [routes.profile]: {
-    path: paths[routes.profile],
+  [routeNames.profile]: {
+    path: routePaths[routeNames.profile],
     isEnabled: true,
   },
 };
 
-const redirects = {
+/* const redirects = {
   toAuth: '/main',
   fromAuth: '/',
-};
+}; */
 
-export { routes, zoneTypes, loaders, panels, redirects };
-export default full;
+export { routeNames, routerConfig };

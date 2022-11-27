@@ -5,16 +5,24 @@ import Week from './week';
 import WeekDays from './week-days';
 import Button from '@components/shared/button';
 import Icon from '@components/shared/icon';
-import commonUtils from '@utils/common';
-import dateUtils, { formats } from '@utils/date';
-import { CSSConstants } from '@constants';
+import { isFunction } from '@utils/common';
+import {
+  dateFormats,
+  parseDate,
+  getStartOfWeekMonth,
+  getMonth,
+  addWeeks,
+  addMonths,
+  formatDate,
+} from '@utils/date';
+import { CSSSizes } from '@utils/css';
 
 /** Компонент "Calendar" (Календарь) */
 class Calendar extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    const date = dateUtils.parseDate(props);
+    const date = parseDate(props);
 
     this.state = {
       date,
@@ -22,33 +30,29 @@ class Calendar extends React.PureComponent {
     };
   }
 
-  chevronLeftIcon = (
-    <Icon source={Icon.sources.base.chevronLeft} size={CSSConstants.SIZES.S} bold />
-  );
+  chevronLeftIcon = (<Icon source={Icon.sources.base.chevronLeft} size={CSSSizes.s} bold />);
 
-  chevronRightIcon = (
-    <Icon source={Icon.sources.base.chevronRight} size={CSSConstants.SIZES.S} bold />
-  );
+  chevronRightIcon = (<Icon source={Icon.sources.base.chevronRight} size={CSSSizes.s} bold />);
 
   get weeks() {
     const { date, selected } = this.state;
 
     const weeks = [];
 
-    let startWeek = dateUtils.getStartOfWeekMonth(date);
+    let startWeek = getStartOfWeekMonth(date);
 
     [0, 1, 2, 3, 4, 5].forEach((value) => {
       weeks.push(
         <Week
           key={value}
           start={startWeek}
-          month={dateUtils.getMonth(date)}
+          month={getMonth(date)}
           selected={selected}
           onSelectDay={this.onSelectDate}
         />,
       );
 
-      startWeek = dateUtils.addWeeks(startWeek, 1);
+      startWeek = addWeeks(startWeek, 1);
     });
 
     return weeks;
@@ -60,7 +64,7 @@ class Calendar extends React.PureComponent {
 
   setMonth = (value) => {
     this.setDate(({ date }) => ({
-      date: dateUtils.addMonths(date, value),
+      date: addMonths(date, value),
     }));
   };
 
@@ -80,8 +84,8 @@ class Calendar extends React.PureComponent {
       selected: date,
     });
 
-    if (commonUtils.isFunction(onSelect)) {
-      onSelect(dateUtils.formatDate(date, format));
+    if (isFunction(onSelect)) {
+      onSelect(formatDate(date, format));
     }
   };
 
@@ -92,9 +96,7 @@ class Calendar extends React.PureComponent {
       <div className="calendar">
         <div className="calendar__header">
           <Button extra={this.chevronLeftIcon} onClick={this.setPreviousMonth} noStroke />
-          <div className="calendar__month">
-            {dateUtils.formatDate(date, formats.calendarHeader)}
-          </div>
+          <div className="calendar__month">{formatDate(date, dateFormats.calendarHeader)}</div>
           <Button extra={this.chevronRightIcon} onClick={this.setNextMonth} noStroke />
         </div>
         <div className="calendar__daily-planner">

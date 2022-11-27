@@ -5,30 +5,30 @@ import Input from '@components/shared/input';
 import Icon from '@components/shared/icon';
 import Calendar from '@components/shared/calendar';
 import Dropdown from '@components/shared/dropdown';
-import commonUtils from '@utils/common';
-import dateUtils from '@utils/date';
-import { CSSConstants } from '@constants';
+import { isFunction } from '@utils/common';
+import { parseDate, formatDate } from '@utils/date';
+import { CSSThemes } from '@utils/css';
 
 /** Компонент "DatePicker" (Поле выбора даты) */
 class DatePicker extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    const value = dateUtils.parseDate({
+    const value = parseDate({
       value: props.value,
       format: props.format,
       defaultValue: '',
     });
 
     this.state = {
-      value: this.formatDate(value),
+      value: this.normalizeDate(value),
     };
   }
 
-  formatDate = (value) => {
+  normalizeDate = (value) => {
     const { format } = this.props;
 
-    return dateUtils.formatDate(value, format);
+    return formatDate(value, format);
   };
 
   onChangeDate = (value) => {
@@ -38,20 +38,20 @@ class DatePicker extends React.PureComponent {
       value,
     });
 
-    commonUtils.isFunction(onChange) && onChange(value);
+    isFunction(onChange) && onChange(value);
   };
 
   render() {
     const { mask, theme, format, ...inputProps } = this.props;
     const { value } = this.state;
 
-    let dropdownTheme = theme || CSSConstants.THEMES.PRIMARY;
+    let dropdownTheme = theme || CSSThemes.primary;
 
     const dropdownTrigger = (onToggleOpen, openState) => {
       let inputTheme;
 
       if (openState) {
-        inputTheme = CSSConstants.THEMES.PRIMARY;
+        inputTheme = CSSThemes.primary;
       }
 
       if (theme) {

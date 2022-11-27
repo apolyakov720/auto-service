@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Icon from '@components/shared/icon';
-import CSSUtils from '@utils/css';
+import { mergeModifiers } from '@utils/css';
 
 class Menu extends React.PureComponent {
   render() {
@@ -11,14 +11,14 @@ class Menu extends React.PureComponent {
     const listFiltered = list.filter(({ hidden }) => !hidden);
 
     if (listFiltered.length) {
-      const menuClass = CSSUtils.mergeModifiers('menu', {
+      const menuClass = mergeModifiers('menu', {
         vertical,
       });
 
       return (
         <div className={menuClass}>
           {listFiltered.map(({ to, icon, label }) => {
-            const menuLinkClass = CSSUtils.mergeModifiers('menu__link', {
+            const menuLinkClass = mergeModifiers('menu__link', {
               active: toActive === to,
             });
 
