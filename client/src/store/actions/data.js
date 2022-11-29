@@ -1,7 +1,7 @@
 import { getState, dispatch } from '../';
 import dataConfig, { dataStatuses } from '../data.config';
 import dataTypes from '../types/data';
-import APIService from '@services/api';
+import APIService from '@core/services/api';
 
 const _requests = {};
 

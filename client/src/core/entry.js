@@ -6,6 +6,7 @@ import ContainerLoader from './components/containers/loader';
 import ErrorIndicator from './components/error-indicator';
 // import ContainerModal from './containers/modal';
 import startup from './interaction/startup';
+import localeService from './services/locale';
 
 class Application extends React.Component {
   state = {
@@ -23,7 +24,7 @@ class Application extends React.Component {
 
     return (
       <BrowserRouter>
-        <ErrorIndicator alertContent="Извините, в данный момент в работе приложения наблюдается сбой. Пожалуйста, повторите попытку позже.">
+        <ErrorIndicator alertContent={localeService.take('errors/application')}>
           <div className="application">
             {isReady && <Router />}
             <ContainerLoader />

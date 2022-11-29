@@ -1,0 +1,5 @@
+{
+  "errors/title": "Error",
+  "errors/application": "Sorry, there is a glitch in the application at the moment. Please try again later.",
+  "errors/module": "An error has occurred in the operation of the module, please try again later."
+}

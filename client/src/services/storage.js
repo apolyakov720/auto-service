@@ -1,4 +1,4 @@
-import commonUtils from '@utils/common';
+import { restrictObjects, arrayToObject, subtractObjects } from '@utils/common';
 
 class Storage {
   /** Конфигурация хранилища по умолчанию. */
@@ -11,7 +11,7 @@ class Storage {
   };
 
   constructor(config, initialValues) {
-    this.config = Object.assign(this.config, config);
+    this.config = { ...this.config, ...config };
 
     this._create().save(initialValues);
   }
@@ -45,7 +45,7 @@ class Storage {
   }
 
   /**
-   * Сохраняет новые значения ключей в хранилище.
+   * Сохрананение новых значений ключей в хранилище.
    * Не изменяет значения уже существующих ключей.
    * Возвращает экземпляр хранилища.
    * */
@@ -58,14 +58,14 @@ class Storage {
   }
 
   /**
-   * Изменяет значения существующих ключей в хранилище.
+   * Изменение значений существующих ключей в хранилище.
    * Не добавляет новые пары ключ/значение.
    * Возвращает экземпляр хранилища.
    * */
   update(values) {
     const store = this._read();
 
-    const valuesForUpdate = commonUtils.restrictObjects(values, store);
+    const valuesForUpdate = restrictObjects(values, store);
 
     this._save({ ...store, ...valuesForUpdate });
 
@@ -73,15 +73,15 @@ class Storage {
   }
 
   /**
-   * Удаляет ключи в хранилище.
+   * Удаление ключей в хранилище.
    * Игнорирует несуществующие ключи.
    * Возвращает экземпляр хранилища.
    * */
   delete(listKeys) {
     const store = this._read();
 
-    const transformedList = commonUtils.arrayToObject(listKeys);
-    const valuesAfterDelete = commonUtils.subtractObjects(store, transformedList);
+    const transformedList = arrayToObject(listKeys);
+    const valuesAfterDelete = subtractObjects(store, transformedList);
 
     this._save(valuesAfterDelete);
 
@@ -89,7 +89,7 @@ class Storage {
   }
 
   /**
-   * Полностью очищает хранилище.
+   * Полное очищение хранилища.
    * Возвращает экземпляр хранилища.
    * */
   clear() {

@@ -12,6 +12,8 @@ import {
   format,
   parse,
   toDate,
+  // TODO: устанавливать locale при изменении
+  // setDefaultOptions,
 } from 'date-fns';
 import ru from 'date-fns/locale/ru';
 

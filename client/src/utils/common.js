@@ -138,6 +138,9 @@ const subtractObjects = (obj1, obj2) => {
 const arrayToObject = (array) =>
   array.reduce((accumulator, value) => ({ ...accumulator, [value]: value }), {});
 
+/** Получение имени хоста. */
+const getHostURL = (url) => url.toString().replace(/^(.*\/\/[^/?#]*).*$/, '$1/');
+
 export {
   debounce,
   isNumeric,
@@ -151,4 +154,5 @@ export {
   restrictObjects,
   subtractObjects,
   arrayToObject,
+  getHostURL,
 };

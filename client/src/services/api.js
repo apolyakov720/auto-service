@@ -1,4 +1,4 @@
-import { isString, isEmpty } from '@utils/common';
+import { isString, isEmpty, isFunction } from '@utils/common';
 
 /**
  * API сервис.
@@ -23,7 +23,7 @@ class API {
     const { url = '', resource } = config;
 
     if (!isString(url) || isEmpty(url.trim())) {
-      throw new Error('API service: *url* configuration value is not valid');
+      throw new Error(`API service: url configuration value: "${url}" is not valid`);
     }
 
     let preparedUrl = url.trim();
@@ -53,7 +53,7 @@ class API {
         continue;
       }
 
-      if (typeof data[name] === 'function') {
+      if (isFunction(data[name])) {
         continue;
       }
 
@@ -133,4 +133,4 @@ class API {
   }
 }
 
-export default new API({ url: 'http://localhost:3001/', resource: 'api/v1' });
+export default API;
