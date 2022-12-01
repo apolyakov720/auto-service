@@ -1,6 +1,6 @@
 import { isFunction } from '@utils/common';
 // TODO
-import { routerConfig } from '@core/configs/router';
+import { routerConfig } from '@core/configurations/router';
 import routerTypes from '../types/router';
 import { getState, dispatch } from '../';
 

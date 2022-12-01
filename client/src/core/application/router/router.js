@@ -5,8 +5,6 @@ import Reroute from './reroute';
 import Layout from '../layout';
 import ErrorIndicator from '../error-indicator';
 import ModuleLoader from '../module-loader';
-import commonUtils from '@utils/common';
-import localeService from '../../services/locale';
 
 class Router extends React.Component {
   get currentRoute() {
@@ -16,11 +14,13 @@ class Router extends React.Component {
   }
 
   get layout() {
+    const { id, layoutId } = this.currentRoute;
+
     return (
-      <Layout>
+      <Layout id={layoutId} moduleId={id}>
         <Layout.Header>[Header]</Layout.Header>
         <Layout.Main>
-          <ErrorIndicator alertContent={localeService.take('errors/module')}>
+          <ErrorIndicator message="errors/module">
             <Outlet />
           </ErrorIndicator>
         </Layout.Main>
@@ -35,7 +35,7 @@ class Router extends React.Component {
     return (
       <Routes>
         <Route path="/" element={this.layout}>
-          {routes?.map((route) => {
+          {routes.map((route) => {
             const { id, isIndex, path } = route;
 
             return (
@@ -45,7 +45,7 @@ class Router extends React.Component {
                 path={path}
                 element={
                   <Reroute>
-                    <ModuleLoader loaderId={id} />
+                    <ModuleLoader id={id} />
                   </Reroute>
                 }
               />

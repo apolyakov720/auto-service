@@ -81,16 +81,16 @@ class Locale {
   }
 
   /** Изменение локализации. */
-  change(localeId) {
+  change = (localeId) => {
     this.config.localeId = localeId;
-  }
+  };
 
   /**
    * Получение локализованной строки по ключу.
    * Возвращает локализованную строку или пустую строку, если отсутствует ключ или локализация.
    * Принимает дополнительные строки (%s) и ключи (%k) для замены в той последовательности, в которой они указаны в файле локализации.
    * */
-  take(key, ...substitutions) {
+  take = (key, ...substitutions) => {
     const resource = this._resource;
     let value = resource[key];
 
@@ -113,7 +113,7 @@ class Locale {
     }
 
     return value;
-  }
+  };
 }
 
 export default Locale;

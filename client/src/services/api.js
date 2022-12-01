@@ -72,7 +72,7 @@ class API {
     // path - путь до ресурса;
     // method - метод запроса;
     // data - данные тела запроса.
-    // headers - заголовки запроса, по умолчанию 'Content-Type': 'core/json';
+    // headers - заголовки запроса, по умолчанию 'Content-Type': 'application/json';
     // parser - имя обработчика данных, по умолчанию json;
     const { path, method, data, headers = {}, parser = 'json' } = params;
     const { url } = this.config;
@@ -84,7 +84,7 @@ class API {
         method,
         body: JSON.stringify(data),
         headers: {
-          'Content-Type': 'core/json',
+          'Content-Type': 'application/json',
           ...headers,
         },
       });

@@ -11,18 +11,17 @@ import { dataKeys } from '@store/data.config';
  * - Инициализация различных, в том числе глобальных переменных или состояния;
  * - И т.д. и т.п.;
  * */
-export default function () {
+const startup = async () => {
   loaderActions.showLoader();
 
-  return new Promise((resolve) => {
-    return dataActions
-      .fetch([dataKeys.configs])
-      .then(() => {
-        routerActions.calculateRoutes();
-      })
-      .then(() => resolve())
-      .finally(() => {
-        loaderActions.hideLoader();
-      });
-  });
-}
+  await dataActions
+    .fetch([dataKeys.configs])
+    .then(() => {
+      routerActions.calculateRoutes();
+    })
+    .finally(() => {
+      loaderActions.hideLoader();
+    });
+};
+
+export { startup };
