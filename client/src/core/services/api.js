@@ -1,7 +1,7 @@
 import API from '@services/api';
 import { getHostURL } from '@utils/common';
 
-import { standConfig } from '../configs/stand';
+import { standConfig } from '../configurations/stand';
 
 const { url, APIPath } = standConfig;
 

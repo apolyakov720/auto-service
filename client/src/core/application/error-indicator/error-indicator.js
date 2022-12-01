@@ -2,20 +2,23 @@ import React from 'react';
 
 import Alert from '@components/shared/alert';
 import ErrorBoundary from '@components/functional/error-boundary';
-import localeService from '../../services/locale';
+import { coreContext } from '../../interaction/core-context';
 import { CSSThemes } from '@utils/css';
 
 class ErrorIndicator extends React.Component {
+  static contextType = coreContext;
+
   render() {
-    const { children, alertContent } = this.props;
+    const { children, message } = this.props;
+    const { locale } = this.context;
 
     return (
       <ErrorBoundary
         indicator={
           <div className="error-indicator">
             <Alert
-              title={localeService.take('errors/title')}
-              content={alertContent}
+              title={locale('errors/title')}
+              content={locale(message)}
               modifiers={{
                 theme: CSSThemes.error,
               }}

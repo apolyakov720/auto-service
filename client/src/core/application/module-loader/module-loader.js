@@ -1,30 +1,31 @@
 import React from 'react';
 
-import { moduleLoaderConfig } from '../../configs/module-loader';
+import { coreContext } from '../../interaction/core-context';
 
 class ModuleLoader extends React.PureComponent {
+  static contextType = coreContext;
+
+  loader = null;
+
   constructor(props) {
     super(props);
 
-    const { loaderId } = props;
+    const { id } = props;
+    const { modules } = this.context;
 
-    const loader = moduleLoaderConfig[loaderId];
+    const loader = modules[id];
 
     if (loader) {
       React.startTransition(() => {
-        this.state = {
-          loader,
-        };
+        this.loader = loader;
       });
     } else {
-      throw new Error(`Module loader: the loader with the ID "${loaderId}" could not be found`);
+      throw new Error(`Module loader: the loader with the ID "${id}" could not be found`);
     }
   }
 
   render() {
-    const { loader } = this.state;
-
-    const Component = React.lazy(loader);
+    const Component = React.lazy(this.loader);
 
     // TODO создать компонент инлайн лоадер, либо другой, отличный от лоадера приложения
     return (

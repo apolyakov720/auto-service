@@ -6,19 +6,27 @@
   max-width $layout-breakpoint-0
   margin 0 auto
 
+  &__header
+    order 0
+
   &__main
     display flex
     flex 1
     flex-wrap nowrap
+    order 1
+
+  &__footer
+    order 2
 
   &__panel
-    order 0
     flex 1 0 0
     padding .5em 0
-    margin-right .5em
 
-    &--right
-      margin-right 0
+    &--primary
+      margin-right .5em
+      order 0
+
+    &--secondary
       margin-left .5em
       order 2
 
@@ -26,5 +34,5 @@
     flex 4 0
     order 1
 
-  &__outlet
+  &__module
     padding .5em

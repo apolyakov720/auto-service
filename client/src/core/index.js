@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import Application from './entry';
+import Core from './core';
 
 const mapStateToProps = (state) => {
   return {
@@ -9,4 +9,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Application);
+export default Core; // connect(mapStateToProps)(Application);
