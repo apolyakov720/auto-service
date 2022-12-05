@@ -1,7 +1,4 @@
 {
-  "locale": {
-    "id": "ru"
-  },
   "securityProfile": {
     "minPasswordLength": 3,
     "maxPasswordLength": 5

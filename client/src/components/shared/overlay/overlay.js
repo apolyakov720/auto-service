@@ -12,7 +12,7 @@ class Overlay extends React.PureComponent {
 
     return (
       <div className={overlayClass}>
-        <div className="overlay__light-box">{children}</div>
+        <div className="overlay__container">{children}</div>
       </div>
     );
   }

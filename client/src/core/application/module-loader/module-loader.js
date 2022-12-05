@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { coreContext } from '../../interaction/core-context';
+import { coreContext } from '../../core-context';
 
 class ModuleLoader extends React.PureComponent {
   static contextType = coreContext;

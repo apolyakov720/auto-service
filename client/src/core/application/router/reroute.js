@@ -1,12 +1,13 @@
 import React from 'react';
 
-import commonUtils from '@utils/common';
+import { isEmpty } from '@utils/common';
 
 class Reroute extends React.PureComponent {
   render() {
     const { children, redirects } = this.props;
 
-    if (!commonUtils.isEmpty(redirects)) {
+    if (!isEmpty(redirects)) {
+      //
     }
 
     return children;

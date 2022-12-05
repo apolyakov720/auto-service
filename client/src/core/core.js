@@ -1,25 +1,49 @@
 import React from 'react';
 
 import Application from './application';
-import localeService from './services/locale';
-import { moduleLoaderConfig } from './configurations/module-loader';
-import { CoreProvider } from './interaction/core-context';
-import { startup } from './interaction/startup';
+import { CoreProvider } from './core-context';
+import { coreStartup } from './interaction/core-startup';
+import { applicationStartup } from './interaction/application-startup';
+import { isFunction } from '@utils/common';
 
-/**
- * Ядро приложения.
- * Для запуска необходимо:
- * -
- * */
 class Core extends React.Component {
+  state = {
+    localeId: null,
+    locale: (text) => text,
+    changeLocale: () => {},
+  };
+
+  componentDidMount() {
+    Promise.resolve(this._start()).then((values) => {
+      this.setState(values);
+    });
+  }
+
+  async _start() {
+    const initial = await coreStartup();
+
+    const { changeLocale } = initial || {};
+
+    return {
+      ...initial,
+      changeLocale: (localeId) => {
+        if (isFunction(changeLocale)) {
+          changeLocale(localeId);
+        }
+
+        this.setLocale(localeId);
+      },
+    };
+  }
+
+  setLocale = (localeId) => {
+    this.setState({ localeId });
+  };
+
   render() {
     return (
-      <CoreProvider
-        value={{
-          locale: localeService.take,
-          modules: moduleLoaderConfig,
-        }}>
-        <Application />
+      <CoreProvider value={this.state}>
+        <Application startup={applicationStartup} />
       </CoreProvider>
     );
   }

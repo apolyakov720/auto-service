@@ -8,7 +8,7 @@ class ProfileMain extends React.PureComponent {
     return (
       <div className="page__main">
         <Form onSubmit={() => {}} validate={() => {}}>
-          {({ handleSubmit, valid }) => {
+          {({ handleSubmit }) => {
             return (
               <form className="form" onSubmit={handleSubmit}>
                 <ProfileFormFields />

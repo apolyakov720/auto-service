@@ -2,7 +2,7 @@ import React from 'react';
 
 import Alert from '@components/shared/alert';
 import ErrorBoundary from '@components/functional/error-boundary';
-import { coreContext } from '../../interaction/core-context';
+import { coreContext } from '../../core-context';
 import { CSSThemes } from '@utils/css';
 
 class ErrorIndicator extends React.Component {

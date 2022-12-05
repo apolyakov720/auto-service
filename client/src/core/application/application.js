@@ -57,7 +57,7 @@ class Application extends React.Component {
             {isReady && <Router routes={validRoutes} />}
             <ContainerLoader />
             <ContainerModal />
-            <ContainerPopup />
+            <ContainerPopup popup={true} />
           </div>
         </ErrorIndicator>
       </BrowserRouter>

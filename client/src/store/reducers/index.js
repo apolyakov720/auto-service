@@ -5,6 +5,7 @@ import data from './data';
 import router from './router';
 import modal from './modal';
 import loader from './loader';
+import popup from './popup';
 
 const rootReducer = combineReducers({
   application,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   router,
   modal,
   loader,
+  popup,
 });
 
 export default rootReducer;

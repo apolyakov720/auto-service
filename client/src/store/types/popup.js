@@ -1,0 +1,4 @@
+export default {
+  SHOW_POPUP: 'POPUP.SHOW_POPUP',
+  CLOSE_POPUP: 'POPUP.CLOSE_POPUP',
+};

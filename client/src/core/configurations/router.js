@@ -1,4 +1,4 @@
-import Icon from '@components/shared/icon';
+// import Icon from '@components/shared/icon';
 
 // path* - путь по которому доступен роут
 // isEnabled* - доступность роута, может быть функцией, которая принимает состояние приложения

@@ -3,7 +3,7 @@ import React from 'react';
 import Overlay from '../overlay';
 import Icon from '../icon';
 import Button from '../button';
-import commonUtils from '@utils/common';
+import { isFunction } from '@utils/common';
 
 class Modal extends React.Component {
   render() {
@@ -14,7 +14,7 @@ class Modal extends React.Component {
         <div className="modal">
           <div className="modal__header">
             {title && <span>{title}</span>}
-            {commonUtils.isFunction(onClose) && (
+            {isFunction(onClose) && (
               <Button
                 extra={<Icon source={Icon.sources.base.cross} />}
                 onClick={onClose}

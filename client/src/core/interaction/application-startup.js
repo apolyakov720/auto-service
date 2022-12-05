@@ -11,7 +11,7 @@ import { dataKeys } from '@store/data.config';
  * - Инициализация различных, в том числе глобальных переменных или состояния;
  * - И т.д. и т.п.;
  * */
-const startup = async () => {
+const applicationStartup = async () => {
   loaderActions.showLoader();
 
   await dataActions
@@ -24,4 +24,4 @@ const startup = async () => {
     });
 };
 
-export { startup };
+export { applicationStartup };

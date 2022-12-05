@@ -1,9 +1,9 @@
 import React from 'react';
 
-import ProfileMain from '@pages/profile/profile-main';
+// import ProfileMain from '@pages/profile/profile-main';
 import ProfileHeader from '@pages/profile/profile-header';
 import dataActions from '@store/actions/data';
-import { keys } from '@store/data.config';
+import { dataKeys } from '@store/data.config';
 import Menu from '@components/layout/menu';
 import Icon from '@components/shared/icon';
 
@@ -52,7 +52,7 @@ const list4 = [
 
 class ProfilePage extends React.Component {
   componentDidMount() {
-    dataActions.fetch([keys.user]);
+    dataActions.fetch([dataKeys.user]);
   }
 
   render() {
