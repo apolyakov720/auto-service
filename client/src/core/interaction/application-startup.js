@@ -1,6 +1,7 @@
 import loaderActions from '@store/actions/loader';
 import dataActions from '@store/actions/data';
 import routerActions from '@store/actions/router';
+import { showAlert } from '@store/actions/popup';
 import { dataKeys } from '@store/data.config';
 
 /**
@@ -24,4 +25,8 @@ const applicationStartup = async () => {
     });
 };
 
-export { applicationStartup };
+const applicationStartupFailure = () => {
+  showAlert().then(() => console.log('hello'));
+};
+
+export { applicationStartup, applicationStartupFailure };

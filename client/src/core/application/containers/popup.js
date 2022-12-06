@@ -1,24 +1,50 @@
 import React from 'react';
 
 import Overlay from '@components/shared/overlay';
-import Button from '@components/shared/button';
+import Popup from '@components/layout/popup';
+import { coreContext } from '../../core-context';
 
 class ContainerPopup extends React.PureComponent {
-  render() {
-    const { popup } = this.props;
+  static contextType = coreContext;
 
-    if (popup) {
+  getPopupProps(popup) {
+    const { type, title, content } = popup;
+    const { locale } = this.context;
+
+    switch (type) {
+      case 'confirm':
+        return {
+          title: locale(title || 'popup/confirm/title'),
+        };
+
+      case 'prompt':
+        return {
+          title: locale(title || 'popup/prompt/title'),
+        };
+
+      case 'alert':
+      default:
+        return {
+          type,
+          title: locale(title || 'popup/alert/title'),
+          content: locale(content || 'popup/alert/content'),
+          // controls: [],
+        };
+    }
+  }
+
+  render() {
+    const { popups } = this.props;
+
+    if (popups.length) {
       return (
         <Overlay>
-          <div className="popup">
-            <div className="popup__title">hello1</div>
-            <div className="popup__content"></div>
-            <div className="popup__controls">
-              <Button caption="Понятно" full noStroke />
-              <div className="diliver"></div>
-              <Button caption="Понятно" full noStroke />
-            </div>
-          </div>
+          {popups.map((popup, index) => {
+            const popupId = popup.id || index;
+            const popupProps = this.getPopupProps({ ...popup, id: popupId });
+
+            return <Popup key={popupId} {...popupProps} />;
+          })}
         </Overlay>
       );
     }

@@ -20,7 +20,7 @@ class Router extends React.Component {
       <Layout id={layoutId} moduleId={id}>
         <Layout.Header>[Header]</Layout.Header>
         <Layout.Main>
-          <ErrorIndicator message="errors/module">
+          <ErrorIndicator message="error/module">
             <Outlet />
           </ErrorIndicator>
         </Layout.Main>

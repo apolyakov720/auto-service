@@ -17,7 +17,7 @@ class ErrorIndicator extends React.Component {
         indicator={
           <div className="error-indicator">
             <Alert
-              title={locale('errors/title')}
+              title={locale('error/title')}
               content={locale(message)}
               modifiers={{
                 theme: CSSThemes.error,

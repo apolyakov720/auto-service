@@ -46,18 +46,27 @@ class Application extends React.Component {
 
   render() {
     const { isReady } = this.state;
-    const { routes } = this.props;
+    const { routes, loader, popups, modals } = this.props;
 
     const validRoutes = Array.isArray(routes) ? routes : [];
+    const validModals = Array.isArray(modals) ? modals : [];
+    const validPopups = Array.isArray(popups)
+      ? popups
+      : [
+          {
+            title: 'Title',
+            content: 'Alert content',
+          },
+        ];
 
     return (
       <BrowserRouter>
-        <ErrorIndicator message="errors/application">
+        <ErrorIndicator message="error/application">
           <div className="application">
             {isReady && <Router routes={validRoutes} />}
-            <ContainerLoader />
-            <ContainerModal />
-            <ContainerPopup popup={true} />
+            <ContainerLoader loader={loader} />
+            <ContainerModal modals={validModals} />
+            <ContainerPopup popups={validPopups} />
           </div>
         </ErrorIndicator>
       </BrowserRouter>

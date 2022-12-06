@@ -3,7 +3,7 @@ import React from 'react';
 import Application from './application';
 import { CoreProvider } from './core-context';
 import { coreStartup } from './interaction/core-startup';
-import { applicationStartup } from './interaction/application-startup';
+import { applicationStartup, applicationStartupFailure } from './interaction/application-startup';
 import { isFunction } from '@utils/common';
 
 class Core extends React.Component {
@@ -43,7 +43,7 @@ class Core extends React.Component {
   render() {
     return (
       <CoreProvider value={this.state}>
-        <Application startup={applicationStartup} />
+        <Application startup={applicationStartup} startupFailure={applicationStartupFailure} />
       </CoreProvider>
     );
   }
