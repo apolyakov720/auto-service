@@ -5,15 +5,20 @@ import rootReducer from './reducers';
 
 const store = configureStore({
   reducer: rootReducer,
+  devTools: {
+    serialize: {
+      options: {
+        // Показывает функции.
+        function: () => '[function]',
+        // Показывает неопределенные значения.
+        undefined: true,
+      },
+    },
+  },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      /**
-       * При показе всплыващего окна, необходимо дождаться ответа пользователя прежде чем закрыть.
-       * Из функции действия неоходимо вернуть обещание, которое будет выполнено с некоторым результатом после подтверждения пользователем.
-       * Для этого передаем в состояние функции действия для взаимодействия с пользователем.
-       * Игнорируем данное состояние при проверки на несериализуемые данные.
-       * */
       serializableCheck: {
+        // Игнорирует действия для несериализуемых значений.
         ignoredActions: [popupActions.SHOW_POPUP],
         ignoredPaths: ['popup.list'],
       },

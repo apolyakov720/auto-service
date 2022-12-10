@@ -1,6 +1,6 @@
 import popupTypes from '../types/popup';
 import { dispatch } from '../';
-import { getGloballyUniqueIdentifier } from '@utils/common';
+import { getGloballyUniqueIdentifier, isFunction } from '@utils/common';
 
 const showPopup = (data) => {
   dispatch({
@@ -16,25 +16,38 @@ const closePopup = (id) => {
   });
 };
 
-const showAlert = () => {
-  return new Promise((resolve) => {
-    showPopup({
-      id: getGloballyUniqueIdentifier(),
-      type: 'alert',
-      controls: {
-        onSuccess: () => {
-          resolve(true);
-        },
-        onFailure: () => {
-          resolve(false);
-        },
-      },
-      resources: {
-        onSuccess: 'success',
-        onFailure: 'failure',
-      },
-    });
+/**
+ * Показывает всплывающее окно предупреждения.
+ * Доступны следующие параметры:
+ * - id: уникальный идентификатор всплывающего окна, если не задан, будет сгенерирован автоматически;
+ * - title: заголовок всплывающего окна;
+ * - content: содержимое окна, может быть задано функцией для произвольной отрисовки;
+ * - successControlText: текст кнопки контроля;
+ * - successControlHandler: контроль, при нажатии будет закрывать всплывающее окно;
+ * */
+const showAlert = (params) => {
+  // Проверяем все параметры, которые были переданы, чтобы не было лишних.
+  const { id, title, content, successControlText, successControlHandler } = params || {};
+
+  const popupId = id || getGloballyUniqueIdentifier();
+
+  showPopup({
+    title,
+    content,
+    successControlText,
+    id: popupId,
+    type: 'alert',
+    successControlHandler: function () {
+      if (isFunction(successControlHandler)) {
+        successControlHandler();
+      }
+      closePopup(popupId);
+    },
   });
 };
 
-export { closePopup, showAlert };
+const showPrompt = () => {};
+
+const showConfirm = () => {};
+
+export { showAlert, showPrompt, showConfirm };

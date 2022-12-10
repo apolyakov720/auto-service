@@ -1,5 +1,13 @@
 {
-  "errors/title": "Error",
-  "errors/application": "Sorry, there is a glitch in the application at the moment. Please try again later.",
-  "errors/module": "An error has occurred in the operation of the module, please try again later."
+  "error/title": "Error",
+  "error/application": "Sorry, there is a glitch in the application at the moment. Please try again later.",
+  "error/module": "An error has occurred in the operation of the module, please try again later.",
+
+  "popup/alert/title": "Warning",
+  "popup/alert/content": "Something went wrong...",
+  "popup/alert/control/success": "Understand",
+  "popup/confirm/title": "Confirmation",
+  "popup/confirm/content": "Are you sure you want to perform this operation?",
+  "popup/confirm/control/success": "Accept",
+  "popup/confirm/control/failure": "Dismiss"
 }

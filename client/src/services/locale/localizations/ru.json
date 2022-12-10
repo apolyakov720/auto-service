@@ -4,10 +4,10 @@
   "error/module": "В работе модуля произошла ошибка, пожалуйста, повторите попытку позже.",
 
   "popup/alert/title": "Предупреждение",
-  "popup/alert/content": "Выполняемая Вами операция недоступна.",
-  "popup/alert/control/accept": "Понятно",
+  "popup/alert/content": "Что-то пошло не так...",
+  "popup/alert/control/success": "Понятно",
   "popup/confirm/title": "Подтверждение",
   "popup/confirm/content": "Вы уверены, что хотите выполнить данную операцию?",
-  "popup/confirm/control/accept": "Принять",
-  "popup/confirm/control/dismiss": "Отклонить"
+  "popup/confirm/control/success": "Принять",
+  "popup/confirm/control/failure": "Отклонить"
 }

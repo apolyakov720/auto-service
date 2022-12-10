@@ -1,8 +1,7 @@
 import modalTypes from '../types/modal';
 
 const initialState = {
-  isOpen: false,
-  data: {},
+  list: [],
 };
 
 export default (state = initialState, action) => {

@@ -41,9 +41,17 @@ class Core extends React.Component {
   };
 
   render() {
+    const { popups, modals, loader } = this.props;
+
     return (
       <CoreProvider value={this.state}>
-        <Application startup={applicationStartup} startupFailure={applicationStartupFailure} />
+        <Application
+          startup={applicationStartup}
+          startupFailure={applicationStartupFailure}
+          loader={loader}
+          popups={popups}
+          modals={modals}
+        />
       </CoreProvider>
     );
   }

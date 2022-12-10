@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Divider from '@components/shared/divider';
+import { mergeModifiers } from '@utils/css';
 
 class Popup extends React.Component {
   splitControls(controls) {
@@ -14,10 +15,12 @@ class Popup extends React.Component {
   }
 
   render() {
-    const { title, content, controls } = this.props;
+    const { type, title, content, controls } = this.props;
+
+    const popupClass = mergeModifiers('popup', { type });
 
     return (
-      <div className="popup">
+      <div className={popupClass}>
         {title && <div className="popup__title">{title}</div>}
         <div className="popup__content">{content}</div>
         {controls?.length > 0 && (

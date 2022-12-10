@@ -50,15 +50,8 @@ class Application extends React.Component {
 
     const validRoutes = Array.isArray(routes) ? routes : [];
     const validModals = Array.isArray(modals) ? modals : [];
-    const validPopups = Array.isArray(popups)
-      ? popups
-      : [
-          {
-            title: 'Title',
-            content: 'Alert content',
-          },
-        ];
-
+    const validPopups = Array.isArray(popups) ? popups : [];
+    // TODO: обворачивать контейнеры в error-indicator т.к. в них может случиться ошибка.
     return (
       <BrowserRouter>
         <ErrorIndicator message="error/application">

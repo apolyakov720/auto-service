@@ -1,7 +1,7 @@
 import routerTypes from '../types/router';
 
 const initialState = {
-  routes: [],
+  list: [],
 };
 
 export default (state = initialState, action) => {

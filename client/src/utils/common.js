@@ -134,6 +134,13 @@ const subtractObjects = (obj1, obj2) => {
   return obj1;
 };
 
+const cleanNullObjectValues = (obj) =>
+  Object.entries(obj).reduce(
+    (accumulator, [key, value]) =>
+      isNull(value) ? accumulator : ((accumulator[key] = value), accumulator),
+    {},
+  );
+
 /** Преобразует массив в объект. */
 const arrayToObject = (array) =>
   array.reduce((accumulator, value) => ({ ...accumulator, [value]: value }), {});
@@ -169,4 +176,5 @@ export {
   arrayToObject,
   getHostURL,
   getGloballyUniqueIdentifier,
+  cleanNullObjectValues,
 };

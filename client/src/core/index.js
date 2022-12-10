@@ -1,12 +1,15 @@
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 
 import Core from './core';
 
-// const mapStateToProps = (state) => {
-//   return {
-//     application: state.application,
-//     routes: state.router.routes,
-//   };
-// };
+const mapStateToProps = (state) => {
+  return {
+    application: state.application,
+    routes: state.router.list,
+    popups: state.popup.list,
+    modals: state.modal.list,
+    loader: state.loader,
+  };
+};
 
-export default Core; // connect(mapStateToProps)(Application);
+export default connect(mapStateToProps)(Core);

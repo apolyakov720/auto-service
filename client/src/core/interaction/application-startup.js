@@ -23,10 +23,16 @@ const applicationStartup = async () => {
     .finally(() => {
       loaderActions.hideLoader();
     });
+
+  throw new Error('hello');
 };
 
 const applicationStartupFailure = () => {
-  showAlert().then(() => console.log('hello'));
+  showAlert({
+    title: 'Warning',
+    content: () => 'Warning custom content',
+    successControlText: 'understand',
+  });
 };
 
 export { applicationStartup, applicationStartupFailure };
