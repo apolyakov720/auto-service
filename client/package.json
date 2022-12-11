@@ -4,9 +4,11 @@
   "description": "auto service client",
   "scripts": {
     "prepare": "cd .. && husky install client/configs/husky",
-    "lint": "eslint . --ext .js,.jsx --ignore-pattern node_modules --config ./configs/eslint.js --fix",
-    "dev-server": "cd dev-server && node prepare-server && node --require dotenv/config server dotenv_config_path=../configs/.environment",
-    "storybook": "start-storybook -c configs/storybook -p 6006"
+    "build:development": "cd tools && node prepare-build-folder && webpack --config ../configs/webpack.js",
+    "build:production": "cd tools && node prepare-build-folder && webpack --config ../configs/webpack.js",
+    "development:server": "cd tools && node prepare-build-folder && cd server && node -r dotenv/config . dotenv_config_path=../../configs/environment/.local",
+    "development:storybook": "start-storybook -c configs/storybook -p 6006",
+    "task:lint": "eslint . --ext .js,.jsx --ignore-pattern node_modules --config ./configs/eslint.js --fix"
   },
   "author": "Polyakov Alexey",
   "devDependencies": {

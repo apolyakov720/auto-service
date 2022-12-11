@@ -1,4 +1,4 @@
 #!/bin/sh
 cd client
-npm run lint
+npm run task:lint
 git add .

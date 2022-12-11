@@ -3,7 +3,7 @@ const path = require('path');
 const express = require('express');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackConfig = require('../configs/webpack');
+const webpackConfig = require('../../configs/webpack');
 
 const app = express();
 const compiler = webpack(webpackConfig);
@@ -37,7 +37,7 @@ app.use((req, res, next) => {
 });
 
 app.use((req, res) => {
-  res.sendFile(path.join(__dirname, '../build/index.html'));
+  res.sendFile(path.join(__dirname, '../../build/index.html'));
 });
 
 compilerInstance.waitUntilValid(() => {
