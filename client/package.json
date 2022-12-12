@@ -4,11 +4,12 @@
   "description": "auto service client",
   "scripts": {
     "prepare": "cd .. && husky install client/configs/husky",
-    "build:development": "cd tools && node prepare-build-folder && webpack --config ../configs/webpack.js",
-    "build:production": "cd tools && node prepare-build-folder && webpack --config ../configs/webpack.js",
+    "build:prepare": "cd tools && node prepare-build-folder && cd ../",
+    "build:development": "npm run build:prepare && webpack --config ./configs/webpack.js",
+    "build:production": "",
     "development:server": "cd tools && node prepare-build-folder && cd server && node -r dotenv/config . dotenv_config_path=../../configs/environment/.local",
     "development:storybook": "start-storybook -c configs/storybook -p 6006",
-    "task:lint": "eslint . --ext .js,.jsx --ignore-pattern node_modules --config ./configs/eslint.js --fix"
+    "task:lint": "eslint . --config ./configs/eslint.js --fix"
   },
   "author": "Polyakov Alexey",
   "devDependencies": {
@@ -39,6 +40,7 @@
     "eslint-webpack-plugin": "^3.1.1",
     "express": "^4.17.1",
     "husky": "^8.0.1",
+    "mini-css-extract-plugin": "^2.7.2",
     "postcss-loader": "^6.2.1",
     "prettier": "^2.5.1",
     "react-docgen": "^5.4.1",
