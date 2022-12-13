@@ -1,4 +1,4 @@
-const standURL = USE_MOCK_API ? window.location.href : '';
+const standURL = USE_MOCK_API ? window.location.href : window.location.href;
 
 const standConfig = {
   url: standURL,

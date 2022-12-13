@@ -5,14 +5,13 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>PRODUCT_NAME PRODUCT_VERSION</title>
-    <link rel="icon" type="image/png" href="./assets/icons/favicon/favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="./assets/icons/favicon/favicon-16x16.png" sizes="16x16" />
-    <link rel="mask-icon" href="./assets/icons/favicon/safari-pinned-tab.svg" color="#fc0654" />
-    <link rel="shortcut icon" href="./assets/icons/favicon/favicon.ico" />
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <link rel="icon" type="image/png" href="<%=htmlWebpackPlugin.options.faviconPaths%>/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="<%=htmlWebpackPlugin.options.faviconPaths%>/favicon-16x16.png" sizes="16x16" />
+    <link rel="mask-icon" href="<%=htmlWebpackPlugin.options.faviconPaths%>/safari-pinned-tab.svg" color="#fc0654" />
+    <link rel="shortcut icon" href="<%=htmlWebpackPlugin.options.faviconPaths%>/favicon.ico" />
 </head>
 <body>
     <div id="container"></div>
-    <script async src="bundle.PRODUCT_VERSION.js"></script>
 </body>
 </html>

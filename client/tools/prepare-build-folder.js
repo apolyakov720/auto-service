@@ -1,3 +1,5 @@
+/** Не используется. Для копирования и создания html файла используем htmlWebpackPlugin. */
+
 const packageJSON = require('../package.json');
 const { checkAndCreateFolder, clearFolder, copyFile } = require('./utils');
 
