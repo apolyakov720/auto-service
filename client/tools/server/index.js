@@ -36,9 +36,9 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use((req, res) => {
-  res.sendFile(path.join(__dirname, '../../build/index.html'));
-});
+// app.use((req, res) => {
+//   res.sendFile(path.join(__dirname, '../../build/index.html'));
+// });
 
 compilerInstance.waitUntilValid(() => {
   app.listen(devServerPort, () => {

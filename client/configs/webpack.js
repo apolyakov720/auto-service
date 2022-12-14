@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
@@ -27,14 +28,13 @@ const mode = {
   development: 'development',
   production: 'production',
 };
-const environment = process.env.NODE_ENV || mode.production;
-const isDevelopment = environment === mode.development;
-const isProduction = environment === mode.production;
+
+const environment = process.env.NODE_ENV || mode.development;
 
 // Прерывает пакетирование при возникновении первой ошибки
 let bail = false;
 
-// Имя файлов, котороые будут загружены динамически в процессе работы приложения
+// Имя файлов, которые будут загружены динамически в процессе работы приложения
 let chunkFilename = 'js/[name].js';
 
 // Функция для отображения имен модулей в консоле браузера, чтобы улучшить процесс отладки
@@ -57,7 +57,13 @@ let optimizationOptions = {};
 // https://github.com/terser/html-minifier-terser
 let htmlMinifyOptions = {};
 
-if (isProduction) {
+let stylusLoaders = [
+  {
+    loader: 'style-loader',
+  },
+];
+
+if (environment === mode.production) {
   bail = true;
 
   chunkFilename = 'js/[name][chunkhash:8].js';
@@ -70,6 +76,7 @@ if (isProduction) {
   plugins.push(
     new MiniCssExtractPlugin({
       filename: `bundle.${productVersion}.css`,
+      chunkFilename: 'css/[name][chunkhash:8].css',
     }),
   );
 
@@ -108,8 +115,11 @@ if (isProduction) {
           },
         },
       }),
+      new CssMinimizerPlugin(),
     ],
   };
+
+  stylusLoaders = [MiniCssExtractPlugin.loader];
 
   htmlMinifyOptions = {
     minify: {
@@ -144,17 +154,17 @@ module.exports = {
     clean: true,
   },
   resolve: {
-    modules: ['node_modules', path.resolve(__dirname, '../src')],
+    modules: ['node_modules', path.join(__dirname, paths.src)],
     extensions: ['.js', '.jsx', '...'],
     alias: {
-      '@': path.resolve(__dirname, '../src'),
-      '@assets': path.resolve(__dirname, '../src/assets'),
-      '@components': path.resolve(__dirname, '../src/components'),
-      '@core': path.resolve(__dirname, '../src/core'),
-      '@pages': path.resolve(__dirname, '../src/pages'),
-      '@services': path.resolve(__dirname, '../src/services'),
-      '@store': path.resolve(__dirname, '../src/store'),
-      '@utils': path.resolve(__dirname, '../src/utils'),
+      '@': path.join(__dirname, paths.src),
+      '@assets': path.join(__dirname, paths.src, 'assets'),
+      '@components': path.join(__dirname, paths.src, 'components'),
+      '@core': path.join(__dirname, paths.src, 'core'),
+      '@pages': path.join(__dirname, paths.src, 'pages'),
+      '@services': path.join(__dirname, paths.src, 'services'),
+      '@store': path.join(__dirname, paths.src, 'store'),
+      '@utils': path.join(__dirname, paths.src, 'utils'),
     },
   },
   stats: {
@@ -176,12 +186,12 @@ module.exports = {
           reuseExistingChunk: true,
           enforce: true,
         },
-        styles: {
-          name: 'styles',
-          test: /\.(styl|css)$/,
-          chunks: 'all',
-          enforce: true,
-        },
+        // styles: {
+        //   name: 'styles',
+        //   test: /\.(styl|css)$/,
+        //   chunks: 'all',
+        //   enforce: true,
+        // },
       },
     },
     ...optimizationOptions,
@@ -193,21 +203,14 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/,
         options: {
-          configFile: path.resolve(__dirname, './babel.js'),
+          configFile: path.join(__dirname, 'babel.js'),
           cacheDirectory: true,
         },
       },
       {
         test: /\.styl$/i,
         use: [
-          isDevelopment
-            ? {
-                loader: 'style-loader',
-                options: {
-                  injectType: 'singletonStyleTag',
-                },
-              }
-            : MiniCssExtractPlugin.loader,
+          ...stylusLoaders,
           {
             loader: 'css-loader',
             options: {
@@ -218,7 +221,17 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
-                plugins: [['autoprefixer']],
+                plugins: [
+                  [
+                    'postcss-preset-env',
+                    {
+                      autoprefixer: {
+                        flexbox: 'no-2009',
+                      },
+                      stage: 3,
+                    },
+                  ],
+                ],
               },
             },
           },
@@ -284,7 +297,7 @@ module.exports = {
       ...htmlMinifyOptions,
     }),
     new ESLintPlugin({
-      context: '../src',
+      context: paths.src,
       extensions: ['js', 'jsx'],
       failOnError: false,
       baseConfig: eslintConfig,
