@@ -1,4 +1,6 @@
 {
+  "common/loading": "Information is being uploaded...",
+
   "error/title": "Error",
   "error/application": "Sorry, there is a glitch in the application at the moment. Please try again later.",
   "error/module": "An error has occurred in the operation of the module, please try again later.",

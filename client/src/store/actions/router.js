@@ -1,6 +1,4 @@
 import { isFunction } from '@utils/common';
-// TODO
-import { routerConfig } from '@core/configurations/router';
 import routerTypes from '../types/router';
 import { getState, dispatch } from '../';
 
@@ -11,10 +9,10 @@ const setRoutes = (payload) => {
   });
 };
 
-const calculateRoutes = () => {
+const calculateRoutes = (config) => {
   const state = getState();
 
-  const preparedRoutes = Object.entries(routerConfig).reduce(
+  const preparedRoutes = Object.entries(config).reduce(
     (accumulator, [id, { isEnabled, ...value }]) => {
       let isRouteEnabled;
 

@@ -1,5 +1,6 @@
 import React from 'react';
 
+import InlineLoader from '@components/layout/inline-loader';
 import { coreContext } from '../../core-context';
 
 class ModuleLoader extends React.PureComponent {
@@ -25,11 +26,12 @@ class ModuleLoader extends React.PureComponent {
   }
 
   render() {
+    const { locale } = this.context;
+
     const Component = React.lazy(this.loader);
 
-    // TODO создать компонент инлайн лоадер, либо другой, отличный от лоадера приложения
     return (
-      <React.Suspense fallback="loading...">
+      <React.Suspense fallback={<InlineLoader message={locale('common/loading')} />}>
         <Component />
       </React.Suspense>
     );

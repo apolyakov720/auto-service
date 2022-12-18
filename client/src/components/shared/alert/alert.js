@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Simple from '@components/experimental/simple';
+import Simple from '@components/shared/simple';
 import Icon from '@components/shared/icon';
 import { CSSThemes, CSSSizes } from '@utils/css';
 import { isFunction } from '@utils/common';
